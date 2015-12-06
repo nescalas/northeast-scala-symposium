@@ -1,7 +1,10 @@
-package nescala.boston2015
+package nescala.philly2016
 
 import com.google.common.cache.{ CacheBuilder, CacheLoader }
-import dispatch._ // for future pimping
+import dispatch._
+
+
+// for future pimping
 import dispatch.Defaults._
 import nescala.{ Meetup, SessionCookie }
 import nescala.request.UrlDecoded
@@ -16,30 +19,29 @@ import java.util.concurrent.TimeUnit
 
 object Site extends Templates {
 
-  val DayOneEvent = 218741329
   val TZ = DateTimeZone.forID("US/Eastern")
 
   val dayOneTime =
     new LocalDateTime(TZ)
-      .withYear(2015).withMonthOfYear(1)
-      .withDayOfMonth(30).withMinuteOfHour(0)
+      .withYear(2016).withMonthOfYear(3)
+      .withDayOfMonth(4).withMinuteOfHour(0)
       .withSecondOfMinute(0).withMillisOfSecond(0)
 
   val proposalCutoff = // tuesday @ mignight
-    new DateMidnight(TZ).withYear(2014)
-      .withMonthOfYear(12).withDayOfMonth(9)
+    new DateMidnight(TZ).withYear(2016)
+      .withMonthOfYear(1).withDayOfMonth(4)
 
   val votesCutoff =
-    new DateMidnight(TZ).withYear(2014)
-      .withMonthOfYear(12).withDayOfMonth(16)
+    new DateMidnight(TZ).withYear(2016)
+      .withMonthOfYear(1).withDayOfMonth(18)
 
   def proposalsOpen = proposalCutoff.isAfterNow
 
   def votesOpen = votesCutoff.isAfterNow
 
   def talks(anchor: String = "") =
-    if (anchor.nonEmpty) Redirect(s"/2015/talks#$anchor")
-    else Redirect("/2015/talks")
+    if (anchor.nonEmpty) Redirect(s"/2016/talks#$anchor")
+    else Redirect("/2016/talks")
 
   // cache sponsor list for one hour
   def sponsors = CacheBuilder.newBuilder
@@ -114,32 +116,32 @@ object Site extends Templates {
     }
 
   def pages: Intent[Any, Any] = {
-    case GET(req) & Path(Seg("2015" :: Nil)) =>
+    case GET(req) & Path(Seg(Nil)) =>
       respond(req)(indexPage(Schedule.slots, sponsors.get("nescala")))
-    case GET(req) & Path(Seg("2015" :: "talks" :: Nil)) =>
+    case GET(req) & Path(Seg("2016" :: "talks" :: Nil)) =>
       respond(req)(proposalsPage(Random.shuffle(Proposal.all)))
-    case POST(req) & Path(Seg("2015" :: "talks" :: Nil)) & Params(params) =>
+    case POST(req) & Path(Seg("2016" :: "talks" :: Nil)) & Params(params) =>
       respond(req) {
         case Some(member) =>
           proposeit(member, params)
         case _ =>
           talks()
       }
-    case GET(req) & Path(Seg("2015" :: "talks" :: "peek" :: Nil)) =>
+    case GET(req) & Path(Seg("2016" :: "talks" :: "peek" :: Nil)) =>
       respond(req) {
-        case Some(member) if Meetup.hosts(member.session, DayOneEvent).apply().exists(_ == member.member) =>
+        case Some(member) if Meetup.hosts(member.session, Constants.Day1EventIdNum).apply().exists(_ == member.member) =>
           tally(Proposal.all)
         case _ =>
           talks()
       }
-    case POST(req) & Path(Seg("2015" :: "talks" :: UrlDecoded(id) :: Nil)) & Params(params) =>
+    case POST(req) & Path(Seg("2016" :: "talks" :: UrlDecoded(id) :: Nil)) & Params(params) =>
       respond(req) {
         case Some(member) =>
           proposeit(member, params, Some(id))
         case _ =>
           talks()
       }
-    case req @ Path(Seg("2015" :: "talks" :: UrlDecoded(id) :: "votes" :: Nil)) & Params(params) =>
+    case req @ Path(Seg("2016" :: "talks" :: UrlDecoded(id) :: "votes" :: Nil)) & Params(params) =>
       respond(req) {
         case Some(member) =>
           req match {

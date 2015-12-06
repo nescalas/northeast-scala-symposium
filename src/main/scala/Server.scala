@@ -9,6 +9,7 @@ object Server {
     .resources(getClass().getResource("/www"))
     .filter(Planify {
       (Northeast.site /: Seq(
+        philly2016.Site.pages,
         boston2015.Site.pages,
         nyc2014.Nyc.site,
         philly.Philly.site,

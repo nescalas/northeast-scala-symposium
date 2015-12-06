@@ -123,7 +123,7 @@ trait Templates {
             <a href="#lightning-proposals">Lightning</a>
             (15 min)
             <p class="small mute">6 slots</p>
-          </div>        
+          </div>
         </div>
       </div>)(<div class="grid center" id="speak">
        <div class="unit whole">
@@ -133,6 +133,7 @@ trait Templates {
        </div>
        <div class="unit whole">
       { session match {
+/*
           case Some(member) if member.nescalaMember =>
             propose(member.proposals)
           case Some(member) =>
@@ -143,7 +144,10 @@ trait Templates {
             <p>
               You can be part of this year's symposium by joining our <a href="http://www.meetup.com/nescala/">Meetup group</a>
               and <a href="/login?state=propose">logging in</a> to vote or to submit a talk.
-            </p>            
+            </p>
+*/
+         case _ =>
+           <p>NEScala 2015 is all done now.</p>
         } }
         </div>
       </div>
@@ -314,7 +318,7 @@ trait Templates {
                       else
                         pollsClosed
                     }
-                
+
                   </p>
               }}
             </div>

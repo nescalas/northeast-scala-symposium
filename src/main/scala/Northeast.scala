@@ -19,7 +19,7 @@ object Northeast extends Config {
 
   def index = Redirect("/")
 
-  def site: Intent[Any, Any] = {    
+  def site: Intent[Any, Any] = {
 
     case GET(Path(Seg("login" :: Nil))) & Params(p) =>
       Redirect(Meetup.authorize(callback, State.unapply(p)))
@@ -40,9 +40,9 @@ object Northeast extends Config {
               SessionCookie.drop(session) ~>
                 Redirect(State.unapply(params) match {
                   case Some("propose") =>
-                    "/2015/talks#speak"
+                    "/2016/talks#speak"
                   case Some(value) =>
-                    s"/2015/talks#$value"
+                    s"/2016/talks#$value"
                   case _ =>
                     "/"
                 })
