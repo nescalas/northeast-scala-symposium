@@ -58,13 +58,14 @@ trait Templates {
     <div class="grid center-on-mobiles" id="propose">
       <div class="unit whole">
        <p>
-         Attending NE Scala is only half the experience.
+         Attending is only <i>half</i> the experience.
        </p>
        <p>
-        Attendees are encouraged so submit talk proposals that other attendees can vote on.
-        You can submit up to <strong>3 talk proposals</strong>. If you're shy, don't be afraid.
-        A 15 minute lightning talk goes by faster
-        than you think. If you're used to talking for hours, remember to time yourself.
+         Attendees are encouraged to submit talk proposals that other attendees
+         can vote on. You may submit up to <strong>3 talk proposals</strong>.
+         If you're shy, don't be afraid: It's a friendly crowd, and a
+         15-minute lightning talk goes by faster than you think.
+         If you're used to talking for hours, remember to time yourself.
        </p>
         { if (Site.proposalsOpen)
           <p>Proposals will be accepted until {ProposalCutoffStr} 11:59pm EST.</p>
@@ -108,11 +109,12 @@ trait Templates {
    (proposals: Iterable[Proposal])
    (session: Option[SessionCookie] = None) =
     layout(session)(scripts = Seq("/js/2016/proposals.js", "/js/2016/voting.js"))(
-      <div class="unit whole align-center lead inverse">
+      <div class="unit whole align-center lead well">
         <div class="grid">
           <p class="unit whole">
-          This year's symposium borrows from last year's mix of talk lengths in order to give
-          new attendees a chance to speak up and share what's on their mind.
+            This year's symposium continues with last year's successful
+            mix of talk lengths, to give new attendees a chance to speak up
+            and share what's on their minds.
           </p>
         </div>
         <div class="grid">
@@ -132,88 +134,96 @@ trait Templates {
             <p class="small mute">6 slots</p>
           </div>
         </div>
-      </div>)(<div class="grid center" id="speak">
-       <div class="unit whole">
-         <h2>
-           <i class="fa fa-bullhorn"></i> Speak up
-         </h2>
-       </div>
-       <div class="unit whole">
-      { session match {
-          case Some(member) if member.nescalaMember =>
-            propose(member.proposals)
-          case Some(member) =>
-            <p>
-              You can be part of this year's symposium by joining our <a href="http://www.meetup.com/nescala/">Meetup group</a>
-            </p>
-          case _ =>
-            <p>
-              You can be part of this year's symposium by joining our <a href="http://www.meetup.com/nescala/">Meetup group</a>
-              and <a href="/login?state=propose">logging in</a> to vote or to submit a talk.
-            </p>
-        } }
-        </div>
       </div>
-      <div class="inverse whole" id="proposals">
+    )(
+      <div class="inverse whole" id="speak">
         <div class="grid">
-        <div class="unit whole">
-          <h2>
-           <i class="fa fa-check-circle-o"></i> Listen up
-          </h2>
-          <p>
-            NE Scala does not select speakers for you to watch and listen to.
-            <i>You</i> do.
-          </p>
-            {
-              if (Site.votesOpen) session match {
-                case Some(member) if member.canVote =>
-                  <p>You may vote for up to 6 talks you'd like to see for this year's symposium below.</p>
-                  <p>Polls close {VotesCutoffStr} at 11:59pm EST.</p>
-                  <p id="votes-remaining">
-                  { (Proposal.MaxVotes - member.votes.size) match {
-                    case 0 =>
-                      <span>You have <strong>no votes</strong> remaining</span>
-                    case 1 =>
-                      <span>You have <strong>one vote</strong> remaining</span>
-                    case n =>
-                      <span>You have <strong>{n} votes</strong> remaining</span>
-                  } }
-                  </p>
-                case Some(_) =>
-                  <p>
-                    Members RSVP'd on
-                    <a href={s"http://www.meetup.com/nescala/events/$Day1EventId/"}>meetup.com</a> may
-                    vote for the proposed talk they want to see.
-                  </p>
-                case _ =>
-                  <p>
-                    Members RSVP'd on
-                    <a href={s"http://www.meetup.com/nescala/events/$Day1EventId/"}>meetup.com</a> may
-                    <a class="btn" href="/login?state=proposals">Login</a> and vote for the talk proposals they want to see.
-                  </p>
-              }
-              else
+          <div class="unit whole">
+            <h2>
+              <i class="fa fa-bullhorn"></i> Speak up
+            </h2>
+          </div>
+          <div class="unit whole">{
+            session match {
+              case Some(member) if member.nescalaMember =>
+                propose(member.proposals)
+              case Some(member) =>
                 <p>
-                  Talks are proposed by your peers and in a short time we will open up voting polls for you
-                  to select the talks you want to see.
+                  You can be part of this year's symposium by
+                  joining our <a href="http://www.meetup.com/nescala/">Meetup group</a>.
+                </p>
+              case _ =>
+                <p>
+                  You can be part of this year's symposium by joining our
+                  <a href="http://www.meetup.com/nescala/">Meetup group</a>
+                  and <a href="/login?state=propose">logging in</a>
+                  to vote or to submit a talk.
                 </p>
             }
+          }</div>
         </div>
-        <div class="unit whole">{
-          val grouped = proposals.groupBy(_.kind)
-          Array("medium", "short", "lightning")
-           .map(len => (len, grouped.get(len).getOrElse(Nil))).map {
-            case (kind, ps) =>
-              <h3 id={s"$kind-proposals"} class="unit whole">
-                { ps.size } <strong>{ kind }</strong> length proposals
-              </h3>
-              <ul>{ ps.map(proposal(
-                Site.votesOpen && session.exists(_.canVote),
-                session.filter(_ => Site.votesOpen).map(_.votes).getOrElse(Set.empty)))
-              }</ul>
-          }
-        }</div>
-      </div></div>)
+      </div>
+      <div class="regular whole" id="proposals">
+        <div class="grid">
+          <div class="unit whole">
+            <h2>
+             <i class="fa fa-check-circle-o"></i> Listen up
+            </h2>
+            <p>
+              NE Scala has no program committee. We do not select speakers
+              for you to watch and listen to: <strong>You do.</strong>
+            </p>
+              {
+                if (Site.votesOpen) session match {
+                  case Some(member) if member.canVote =>
+                    <p>You may vote for up to 6 talks you'd like to see for this year's symposium below.</p>
+                    <p>Polls close {VotesCutoffStr} at 11:59pm EST.</p>
+                    <p id="votes-remaining">
+                    { (Proposal.MaxVotes - member.votes.size) match {
+                      case 0 =>
+                        <span>You have <strong>no votes</strong> remaining</span>
+                      case 1 =>
+                        <span>You have <strong>one vote</strong> remaining</span>
+                      case n =>
+                        <span>You have <strong>{n} votes</strong> remaining</span>
+                    } }
+                    </p>
+                  case Some(_) =>
+                    <p>
+                      Members RSVP'd on
+                      <a href={s"http://www.meetup.com/nescala/events/$Day1EventId/"}>meetup.com</a> may
+                      vote for the proposed talk they want to see.
+                    </p>
+                  case _ =>
+                    <p>
+                      Members RSVP'd on
+                      <a href={s"http://www.meetup.com/nescala/events/$Day1EventId/"}>meetup.com</a> may
+                      <a class="btn" href="/login?state=proposals">Login</a> and vote for the talk proposals they want to see.
+                    </p>
+                }
+                else
+                  <p>
+                    Talks are proposed by your peers and in a short time we will open up voting polls for you
+                    to select the talks you want to see.
+                  </p>
+              }
+          </div>
+          <div class="unit whole">{
+            val grouped = proposals.groupBy(_.kind)
+            Array("medium", "short", "lightning")
+             .map(len => (len, grouped.get(len).getOrElse(Nil))).map {
+              case (kind, ps) =>
+                <h3 id={s"$kind-proposals"} class="unit whole">
+                  { ps.size } <strong>{ kind }</strong> length proposals
+                </h3>
+                <ul>{ ps.map(proposal(
+                  Site.votesOpen && session.exists(_.canVote),
+                  session.filter(_ => Site.votesOpen).map(_.votes).getOrElse(Set.empty)))
+                }</ul>
+            }
+          }</div>
+        </div>
+      </div>)
 
   private def personal(p: Proposal): xml.NodeSeq = avatar(p) ++ links(p)
 
@@ -276,15 +286,17 @@ trait Templates {
    (slots: Seq[Schedule.Slot], sponsors: List[Meetup.Sponsor])
    (session: Option[SessionCookie] = None) =
     layout(session)(scripts = Seq.empty[String])(
-      <div class="grid">
+      <div class="grid well">
         <div class="unit half right center-on-mobiles">
-          <p>
-            RSVP on <a href="http://www.meetup.com/nescala/">Meetup</a>
-          </p>
-          <p>
-            <a href={s"http://www.meetup.com/nescala/events/$Day1EventId/"}>Day one</a> |
-            <a href={s"http://www.meetup.com/nescala/events/$Day2EventId/"}>Day two</a>
-          </p>
+          <div>
+            <p>
+              RSVP on <a href="http://www.meetup.com/nescala/">Meetup</a>
+            </p>
+            <p>
+              <a href={s"http://www.meetup.com/nescala/events/$Day1EventId/"}>Day one</a> |
+              <a href={s"http://www.meetup.com/nescala/events/$Day2EventId/"}>Day two</a>
+            </p>
+          </div>
         </div>
         <div class="left unit half center-on-mobiles">
           { session match {
@@ -336,136 +348,145 @@ trait Templates {
         <a href="#when" class="icon"><i class="fa fa-calendar-o"></i><span>Mark your calendar</span></a>
         <a href="#where" class="icon"><i class="fa fa-map-marker"></i><span>Align your compass</span></a>
       </div>
-    )(<div class="inverse" id="what">
-      <div class="grid">
-        <div class="unit">
-          <h2><strong>Conference</strong> meets <strong>community</strong></h2>
-          <p>
-            Northeast Scala Symposium is a <a href="http://scala-lang.org/">Scala</a>-focused <strong>community</strong> gathering.
-          </p>
-          <p>
-            A uniquely-blended programming language deserves a uniquely-blended conference format. NE Scala offers a mix of speaker-oriented conference presentations with unconference-style sessions and discussions. All presenters are attendees and all attendees select presenters.
-          </p>
-          <h2><strong>Day 1 schedule</strong></h2>
+    )(
+      <div class="inverse" id="what">
+        <div class="grid">
+          <div class="unit">
+            <h2>
+              This is <strong>your</strong> conference.
+            </h2>
+            <p>
+              Northeast Scala Symposium is a <a href="http://scala-lang.org/">Scala</a>-focused <strong>community</strong> gathering.
+            </p>
+            <p>
+              A uniquely-blended programming language deserves a uniquely-blended conference format. NE Scala offers a mix of speaker-oriented conference presentations with unconference-style sessions and discussions. All presenters are attendees and all attendees select presenters.
+            </p>
+            <h2><strong>Day 1 schedule</strong></h2>
+          </div>
         </div>
-      </div>
-      <div>{
-        slots.map {
-          case Schedule.Open(at) =>
-            <div class="grid">
-              <h3 class="right unit one-fifth">
-                { timestamp(at) }
-              </h3>
-              <h3 class="unit four-fifths">
-                Doors Open
-              </h3>
-            </div>
+        <div>{
+          slots.map {
+            case Schedule.Open(at) =>
               <div class="grid">
-                <div class="unit one-fifth"></div>
-                <div class="unit four-fifths">
-                  <p>Check in and grab some coffee and snacks, courtesy of <a href="http://hp.com">Hewlett Packard</a>.</p>
-                </div>
+                <h3 class="right unit one-fifth">
+                  { timestamp(at) }
+                </h3>
+                <h3 class="unit four-fifths">
+                  Doors Open
+                </h3>
               </div>
-          case Schedule.Intro(at) =>
-            <div class="grid">
-              <h3 class="right unit one-fifth">
-                { timestamp(at) }
-              </h3>
-              <h3 class="unit four-fifths">
-                Opening Remarks
-              </h3>
-            </div>
+                <div class="grid">
+                  <div class="unit one-fifth"></div>
+                  <div class="unit four-fifths">
+                    <p>Check in and grab some coffee and snacks, courtesy of
+                      <a href="http://www.example.com"><i>we don't know yet</i></a>.
+                    </p>
+                  </div>
+                </div>
+            case Schedule.Intro(at) =>
               <div class="grid">
-                <div class="unit one-fifth"></div>
-                <div class="unit four-fifths">
-                  <p>Let's remember why we are here thank those that made this happen</p>
-                </div>
+                <h3 class="right unit one-fifth">
+                  { timestamp(at) }
+                </h3>
+                <h3 class="unit four-fifths">
+                  Opening Remarks
+                </h3>
               </div>
-          case Schedule.Break(at, length) =>
-            <div class="grid">
-              <h3 class="right unit one-fifth">
-                { timestamp(at) }
-              </h3>
-              <h3 class="unit four-fifths break">
-                Break ({length} minutes)
-              </h3>
-            </div>
-          case Schedule.Close(at) =>
-            <div class="grid">
-              <h3 class="right unit one-fifth">
-                { timestamp(at) }
-              </h3>
-              <h3 class="unit four-fifths">
-                Day one closer
-              </h3>
-            </div>
-          case Schedule.Party(at) =>
-            <div class="grid">
-              <h3 class="right unit one-fifth">
-                { timestamp(at) }
-              </h3>
-              <h3 class="unit four-fifths">
-                MediaMath Party
-              </h3>
-            </div>
+                <div class="grid">
+                  <div class="unit one-fifth"></div>
+                  <div class="unit four-fifths">
+                    <p>We promise: These will be brief.</p>
+                  </div>
+                </div>
+            case Schedule.Break(at, length) =>
               <div class="grid">
-                <div class="unit one-fifth"></div>
-                <div class="unit four-fifths">
-                  <p>Until 9pm, a few blocks away at <a href="http://www.rosamexicano.com/boston/">Rosa Mexicano</a>, 155 Seaport Blvd.  Drinks and appetizers included. Bring your nametag. Thank you <a href="http://www.mediamath.com">MediaMath</a> for sponsoring!</p>
-                </div>
+                <h3 class="right unit one-fifth">
+                  { timestamp(at) }
+                </h3>
+                <h3 class="unit four-fifths break">
+                  Break ({length} minutes)
+                </h3>
               </div>
-          case Schedule.Lunch(at) =>
-            <div class="grid">
-              <h3 class="right unit one-fifth">
-                { timestamp(at) }
-              </h3>
-              <h3 class="unit four-fifths">
-                Lunch
-              </h3>
-            </div>
+            case Schedule.Close(at) =>
               <div class="grid">
-                <div class="unit one-fifth"></div>
-                <div class="unit four-fifths">
-                  <p>Let's eat!</p>
-                </div>
+                <h3 class="right unit one-fifth">
+                  { timestamp(at) }
+                </h3>
+                <h3 class="unit four-fifths">
+                  Day one closer
+                </h3>
               </div>
-          case slot @ Schedule.Talk(p) =>
-            <div class="grid" id ={ s"talk-${p.domId}" }>
-              <h3 class="right unit one-fifth">
-                { timestamp(slot.time, true) }
-              </h3>
-              <h3 class="unit four-fifths">
-                <a href={s"#talk-${p.domId}"}>{ p.name }</a>
-              </h3>
-            </div>
+            case Schedule.Party(at) =>
               <div class="grid">
-                <div class="unit one-fifth right center-on-mobiles">
-                  <p>{ personal(p) }</p>
-                </div>
-                <div class="unit four-fifths">
-                  <p>{ p.desc }</p>
-                  { p.slides.fold(<span/>) { slides =>
-                    <a href={slides} target="_blank">
-                      <i class="fa fa-film"></i> Slides
-                    </a>
-                  } }
-                  { p.video.fold(<span/>) { video =>
-                    <a href={video} target="_blank">
-                      <i class="fa fa-film"></i> Video
-                    </a>
-                  } }
-                </div>
+                <h3 class="right unit one-fifth">
+                  { timestamp(at) }
+                </h3>
+                <h3 class="unit four-fifths">
+                  Chariot Drink-up
+                </h3>
               </div>
-        }
+                <div class="grid">
+                  <div class="unit one-fifth"></div>
+                  <div class="unit four-fifths">
+                    <p>Until 9pm, a few blocks away at
+                      <i>TBD</i>.
+                      Drinks and appetizers included. Bring your nametag.
+                      Thank you <a href="http://www.chariotsolutions.com">Chariot Solutions</a> for
+                      sponsoring!</p>
+                  </div>
+                </div>
+            case Schedule.Lunch(at) =>
+              <div class="grid">
+                <h3 class="right unit one-fifth">
+                  { timestamp(at) }
+                </h3>
+                <h3 class="unit four-fifths">
+                  Lunch
+                </h3>
+              </div>
+                <div class="grid">
+                  <div class="unit one-fifth"></div>
+                  <div class="unit four-fifths">
+                    <p>Let's eat!</p>
+                  </div>
+                </div>
+            case slot @ Schedule.Talk(p) =>
+              <div class="grid" id ={ s"talk-${p.domId}" }>
+                <h3 class="right unit one-fifth">
+                  { timestamp(slot.time, true) }
+                </h3>
+                <h3 class="unit four-fifths">
+                  <a href={s"#talk-${p.domId}"}>{ p.name }</a>
+                </h3>
+              </div>
+                <div class="grid">
+                  <div class="unit one-fifth right center-on-mobiles">
+                    <p>{ personal(p) }</p>
+                  </div>
+                  <div class="unit four-fifths">
+                    <p>{ p.desc }</p>
+                    { p.slides.fold(<span/>) { slides =>
+                      <a href={slides} target="_blank">
+                        <i class="fa fa-film"></i> Slides
+                      </a>
+                    } }
+                    { p.video.fold(<span/>) { video =>
+                      <a href={video} target="_blank">
+                        <i class="fa fa-film"></i> Video
+                      </a>
+                    } }
+                  </div>
+                </div>
+          }
         }</div>
-      <div class="grid">
-        <div class="unit">
-          <h2><strong>Day 2 schedule</strong></h2>
-          <p>See the <a href={s"http://www.meetup.com/nescala/events/$Day2EventId/"}>Meetup page</a>.</p>
+        <div class="grid">
+          <div class="unit">
+            <h2><strong>Day 2 schedule</strong></h2>
+            <p>See the <a href={s"http://www.meetup.com/nescala/events/$Day2EventId/"}>Meetup page</a>.</p>
+          </div>
         </div>
       </div>
-    </div>
-      <div id="when">
+      <div id="when" class="regular">
         <div class="grid">
           <div class="unit">
             <h2>When</h2>
@@ -497,10 +518,30 @@ trait Templates {
           </div>
         </div>
       </div>
-      <div id="kindness">
+      <div class="regular" id="friends">
+        <div class="grid center-on-mobiles">
+          <div class="unit whole">
+            <h2>Friends</h2>
+            <p>Below are some of the sponsors that made this possible.</p>
+            <div class="sponsors">{
+              sponsors.map { sponsor =>
+                <p class="unit one-third">
+                  <a class="friend" title={sponsor.name} href={sponsor.link}>
+                    <img src={sponsor.image}/>
+                  </a>
+                </p>
+              }
+            }</div>
+          </div>
+        </div>
+      </div>)
+      <div id="kindness" class="inverse">
         <div class="grid">
           <div class="unit whole">
-            <h2>Be kind.</h2>
+            <h2>Code of Conduct.</h2>
+            <p>
+              Simply: Be kind.
+            </p>
             <p>
               Nobody likes a jerk, so <strong>show respect</strong> for those around you.
             </p>
@@ -519,19 +560,6 @@ trait Templates {
           </div>
         </div>
       </div>
-      <div class="inverse" id="friends">
-        <div class="grid center-on-mobiles">
-          <div class="unit whole">
-            <h2>Friends</h2>
-            <p>Below are some of the sponsors that made this possible</p>
-            { sponsors.map { sponsor =>
-              <p class="unit one-third">
-                <a title={sponsor.name} href={sponsor.link}><img src={sponsor.image}/></a>
-              </p>
-            } }
-          </div>
-        </div>
-      </div>)
 
   def layout
    (session: Option[SessionCookie] = None)
@@ -544,8 +572,9 @@ trait Templates {
         <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
         <meta name="viewport" content="width=device-width,initial-scale=1"/>
         <title>&#8663;northeast scala symposium</title>
-        <link href="http://fonts.googleapis.com/css?family=Source+Code+Pro|Montserrat:400,700|Open+Sans:300italic,400italic,700italic,400,300,700" rel="stylesheet" type="text/css"/>
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro|Montserrat:400,700|Open+Sans:300italic,400italic,700italic,400,300,700" rel="stylesheet" type="text/css"/>
         <link href="https://fonts.googleapis.com/css?family=Vollkorn:400,400italic,700,700italic" rel="stylesheet" type="text/css"/>
+        <link href="https://fonts.googleapis.com/css?family=Signika:400,700" rel="stylesheet" type="text/css"/>
         <link rel="stylesheet" type="text/css" href="/css/gridism.css" />
         <link rel="stylesheet" type="text/css" href="/css/normalize.css" />
         <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"/>
@@ -558,28 +587,28 @@ trait Templates {
         <script type="text/javascript" src=""></script>
       </head>
       <body class="wrap wider">
-        <div class="unit whole center-on-mobiles top section">
-          <div id="banner">
-            <h1>NEScala 2016</h1>
-            <h2>Railyard edition</h2>
-            <div><a href="/">northeast scala symposium 2016: philadelphia</a></div>
+        <div class="unit whole center-on-mobiles top section" id="banner">
+          <div class="title-block">
+            <h1>NE Scala 2016</h1>
+            <h2>Philadelphia railyard edition</h2>
           </div>
           { headContent }
           <hr/>
         </div>
         { bodyContent }
-        <footer class="unit whole center-on-mobiles">
-          <hr/>
-          <a href="#top">NE Scala</a> is made possible with <span class="love">❤</span> from the
+        <div class="footer unit whole center-on-mobiles">
+          <div class="container inverse">
+          <a href="#top">NE Scala</a> is organized with <span class="love">❤</span> from the
           <div>
-            <a href="http://www.meetup.com/boston-scala/">Boston</a>,
             <a href="http://www.meetup.com/scala-phase/">Philadelphia</a>,
-            and <a href="http://www.meetup.com/ny-scala/">New York</a> scala enthusiasts,
+            <a href="http://www.meetup.com/ny-scala/">New York</a>,
+            and <a href="http://www.meetup.com/boston-scala/">Boston</a>
+            Scala enthusiasts,
             our <a href="#friends">friends</a> and, of course, of all of
             <a href="http://www.meetup.com/nescala/photos/">you</a>.
           </div>
           <div>
-            hosting by the fine folks @ <a href="https://www.heroku.com/">Heroku</a>
+            Hosting by the fine folks @ <a href="https://www.heroku.com/">Heroku</a>
           </div>
           <div>
             &nbsp;
@@ -592,7 +621,8 @@ trait Templates {
               <a href="/2012">2012</a> |
               <a href="/2011">2011</a>
           </div>
-        </footer>
+          </div>
+        </div>
       </body>
     </html>
   )

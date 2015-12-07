@@ -5,3 +5,5 @@ resolvers ++= Seq(
 addSbtPlugin("me.lessis" % "ls-sbt" % "0.1.3")
 
 addSbtPlugin("io.spray" % "sbt-revolver" % "0.7.1")
+
+libraryDependencies += "org.clapper" %% "grizzled-scala" % "1.4.0"

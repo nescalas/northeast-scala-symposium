@@ -1,87 +1,147 @@
-/* this year's color is 0056d3. http://www.color-hex.com/color/0056d3 */
+@themeTextColor:                 #666;
+@themeBackgroundColor:           #ffffff;
+@inverseBackgroundColor:         #ddd;
+@inverseTextColor:               @themeTextColor;
+@anchorColor:                    @themeTextColor;
+@anchorUnderlineColor:           #bfd9ff;
+@buttonBackgroundColor:          #00acff;
+@buttonTextColor:                white;
+@buttonBackgroundColor:          @themeTextColor;
+@buttonHoverBackgroundColor:     @buttonBackgroundColor;
+@buttonHoverTextColor:           @buttonTextColor;
+@buttonBorderRadius:             5px;
+@buttonCancelTextColor:          black;
+@buttonCancelBackgroundColor:    #ff7777;
+@buttonActiveBackgroundColor:    lighten(@buttonHoverBackgroundColor, 20%);
+@buttonActiveTextColor:          @buttonHoverTextColor;
+@buttonDisabledBackgroundColor:  #ddd;
+@buttonDisabledTextColor:        black;
+@iconBackgroundColor:            @themeTextColor;
+@iconHoverBackgroundColor:       @buttonHoverBackgroundColor;
+@iconTextColor:                  white;
+@iconHoverTextColor:             white;
+@popupBackgroundColor:           lighten(@themeTextColor, 20%);
+@popupTextColor:                 white;
+
+@headingFontFamily: Signika, "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+@textFontFamily:    "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
 body {
-  background-color:#ffffff;
-  color: #0056d3;
-  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background-color: @themeBackgroundColor;
+  background-image: url(/images/train-engine-mechanical-drawing.png);
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: @themeTextColor;
+  font-family: @textFontFamily;
 }
 
 #banner {
   margin-left: auto;
   margin-right: auto;
-  background-image: url(/images/train-engine-mechanical-drawing.png);
   margin-bottom: 5px;
 }
 
+h1, h2, h3 {
+  font-family: @headingFontFamily;
+}
+
 @media all and (min-width: 100px) and (max-width: 500px) {
-  #banner {
-    width: 300px;
-    height: 167px;
+  body {
     background-size: 300px 167px;
+  }
+
+  #banner {
+    height: 1000px;
   }
 }
 
 @media all and (min-width: 501px) and (max-width: 767px) {
-  #banner {
-    width: 501px;
-    height: 280px;
+  body {
     background-size: 501px 280px;
+  }
+  #banner {
+    height: 700px;
   }
 }
 
 @media all and (min-width: 768px) and (max-width: 991px) {
-  #banner {
-    width: 768px;
-    height: 429px;
+  body {
     background-size: 768px 429px;
+  }
+  #banner {
+    height: 800px;
   }
 }
 
 @media all and (min-width: 992px) and (max-width: 1199px) {
-  #banner {
-    width: 992px;
-    height: 554px;
+  body {
     background-size: 992px 554px;
+  }
+  #banner {
+    height: 900px;
   }
 }
 
 @media all and (min-width: 1200px) {
-  #banner {
-    width: 1200px;
-    height: 670px;
+  body {
     background-size: 1200px 670px;
+  }
+  #banner {
+    height: 1000px;
   }
 }
 
-@media (min-width: 1px) and (max-width: 200px) {
+#banner {
+  .title-block {
+    margin-top: 30px;
+    margin-bottom: 100px;
+
+    h1 {
+      font-family: @headingFontFamily;
+      font-weight: bold;
+      color: @themeTextColor;
+      margin-top: 5px;
+      margin-bottom: 5px;
+    }
+
+    h2 {
+      margin-top: 5px;
+      font-family: @headingFontFamily;
+      font-weight: bold;
+      font-style: italic;
+      color: @themeTextColor;
+    }
+  }
 }
 
-#banner h1 {
-  font-family: Vollkorn;
-  font-weight: bold;
-  font-color: #0056d3;
-  margin-top: 5px;
-  margin-bottom: 5px;
-}
-
-#banner h2 {
-  font-family: Vollkorn;
-  font-weight: bold;
-  font-style: italic;
-  font-color: #0056d3;
+.well {
+  //background: rgba(196, 196, 196, 0.60);
+  background: white;
+  border-radius: 5px 5px 5px 5px;
+  border: 1px solid @anchorUnderlineColor;
+  margin-left: 20px;
+  margin-right: 20px;
+  box-shadow: 0px 0px 77px 0px @anchorUnderlineColor;
 }
 
 body > header,
 body > section,
-body > footer {
+body > .footer {
   display: block;
   width: 100%;
   clear: both;
   float: left;
 }
 
+.regular {
+  background-color: @themeBackgroundColor;
+  color: @themeTextColor;
+}
+
 .inverse {
-  background-color:#FFFFFF;
-  color:#0056d3;
+  background-color: @inverseBackgroundColor;
+  color: black;
 }
 
 .top {
@@ -102,14 +162,13 @@ body > footer {
   /** http://css-tricks.com/stripes-css/
       http://nimbupani.com/using-background-clip-for-text-with-css-fallback.html */
   -webkit-font-smoothing: antialiased;
+/*
   -webkit-text-fill-color: transparent;
    background:repeating-linear-gradient(145deg, transparent, transparent 10px, #fff 0px, #fff 45px);
    background: -o-linear-gradient(transparent, transparent);
   -webkit-background-clip: text;
-}
-
-h1, h2, h3 {
-  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+*/
+  background: #eeeeee;
 }
 
 h1 {
@@ -117,16 +176,44 @@ h1 {
 }
 
 strong {
-  color:#a92a41;
-  text-shadow:none;
-  font-size:105%;
+  color: @themeTextColor;
+  text-shadow: none;
+  font-size: 105%;
+}
+
+// Fat underline. See http://chiefcreative.me/post/91105692838/wired-fat-highlighter-underline-link-style
+
+.no-underline {
+  box-shadow: none;
+  border-bottom: none;
+  text-decoration: none;
+}
+
+a {
+  color: @anchorColor;
+  font-weight: bold;
+  text-decoration: none;
+  border-bottom: 1px solid @anchorUnderlineColor;
+  box-shadow: 0 -3px 0 @anchorUnderlineColor inset;
+
+  &.btn {
+    .no-underline;
+  }
+
+  &.friend {
+    .no-underline;
+  }
+
+}
+
+#friends {
 }
 
 /** icon links */
 
 a.icon {
-  color:#fff;
-  background-color:#73aad3;
+  color: @iconTextColor;
+  background-color: @iconBackgroundColor;
   border-radius:4px;
   text-align:center;
   position:relative;
@@ -137,61 +224,69 @@ a.icon {
   margin:0 2px;
   transition: all .3s;
   -webkit-font-smoothing: antialiased;
+  box-shadow: none;
+  border-bottom: none;
+  text-decoration: none;
+
+  &:hover {
+    background: @iconHoverBackgroundColor;
+    color: @iconHoverTextColor;
+
+    span {
+      bottom: 50px;
+      visibility: visible;
+    }
+  }
+
+  span {
+    color: @popupTextColor;
+    background: @popupBackgroundColor;
+    position: absolute;
+    bottom: 0;
+    left:-25px;
+    right:-25px;
+    padding:5px 7px;
+    z-index:-1;
+    font-size:14px;
+    border-radius:2px;
+    visibility: hidden;
+    -o-transition:all .5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    -webkit-transition: all .5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    -moz-transition: all .5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    transition: all .5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    &:before {
+      content:'';
+      width: 0;
+      height: 0;
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+      border-top: 5px solid @popupBackgroundColor;
+      position:absolute;
+      bottom:-4px;
+      left:40px;
+    }
+  }
 }
 
-a.icon:hover {
- background:#ef92a3;
+.inverse {
+  a {
+    color: @inverseTextColor;
+    background: @inverseBackgroundColor;
+  }
 }
 
-a.icon span {
-  color:#666;
-  position:absolute;
-  bottom:0;
-  left:-25px;
-  right:-25px;
-  padding:5px 7px;
-  z-index:-1;
-  font-size:14px;
-  border-radius:2px;
-  background:#fff;
-  visibility:hidden;
-  -o-transition:all .5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  -webkit-transition: all .5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  -moz-transition: all .5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  transition: all .5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-}
+.footer {
+  color: @themeTextColor;
+  margin-top: 0;
+  text-align: center;
+  background: @themeBackgroundColor;
 
-a.icon span:before {
-  content:'';
-  width: 0;
-  height: 0;
-  border-left: 5px solid transparent;
-  border-right: 5px solid transparent;
-  border-top: 5px solid #fff;
-  position:absolute;
-  bottom:-4px;
-  left:40px;
-}
-
-a.icon:hover span {
-  bottom:50px;
-  visibility:visible;
-}
-
-a {
-  font-weight:bold;
-  color:#fff;
-  text-decoration:none;
-}
-
-.inverse a {
-  color:#0056d3;
-}
-
-footer {
-  color:#E2899A;
-  margin-top:1em;
-  text-align:center;
+  .container {
+    height: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
 }
 
 hr {
@@ -216,81 +311,40 @@ hr {
 
 /* forms */
 
-.btn:link,
-.btn:hover,
-.btn:active,
-.btn:visited {
-  color:#fff;
-}
-
 .btn  {
   padding:.25em .25em;
-  color:#fff;
-  text-shadow:0 1px #g30A7DF;
-  border:1px solid #25DBFF;
-  -moz-border-radius:5px;
-  -webkit-border-radius:5px;
-  border-radius:5px;
-  background-image: -moz-linear-gradient(top, #66efff, #25DBFF);
-  background-image: -webkit-gradient(linear, center top, center bottom, from(#66efff), to(#25DBFF));
-  background-image: -o-linear-gradient(top, #66efff, #3699ff);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#66efff', endColorstr='#25DBFF');
-  -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#66efff', endColorstr='#25DBFF')";
-  background-image: linear-gradient(top, #66efff, #25DBFF);
+  color: @buttonTextColor;
+  background: @buttonBackgroundColor;
+  -moz-border-radius: @buttonBorderRadius;
+  -webkit-border-radius: @buttonBorderRadius;
+  border-radius: @buttonBorderRadius;
   -moz-background-clip: padding-box;
   -webkit-background-clip: padding-box;
   background-clip: padding-box;
-}
 
-.btn:hover {
-  background-image: -moz-linear-gradient(top, #66efff, #13CAEE);
-  background-image: -webkit-gradient(linear, center top, center bottom, from(#66efff), to(#13CAEE));
-  background-image: -o-linear-gradient(top, #66efff, #13CAEE);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#66efff', endColorstr='#13CAEE');
-  -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#66efff', endColorstr='#13CAEE')";
-  background-image: linear-gradient(top, #66efff, #13CAEE);
-}
+  &:hover {
+    background: @buttonHoverBackgroundColor;
+    color: @buttonHoverTextColor;
+  }
 
-.btn:active {
-  background-image: -moz-linear-gradient(top, #4DE1FF, #02C8F0);
-  background-image: -webkit-gradient(linear, center top, center bottom, from(#4DE1FF), to(#02C8F0));
-  background-image: -o-linear-gradient(top, #4DE1FF, #02C8F0);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#4DE1FF', endColorstr='#02C8F0');
-  -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#4DE1FF', endColorstr='#02C8F0')";
-  background-image: linear-gradient(top, #4DE1FF, #02C8F0);
-}
+  &:active {
+    background: @buttonActiveBackgroundColor;
+    color: @buttonActiveTextColor;
+  }
 
-.btn:disabled {
-  border-color:#D8D8D8;
-  background-image: -moz-linear-gradient(top, #F0F0F0, #D8D8D8);
-  background-image: -webkit-gradient(linear, center top, center bottom, from(#F0F0F0), to(#D8D8D8));
-  background-image: -o-linear-gradient(top, #F0F0F0, #02C8F0);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#F0F0F0', endColorstr='#D8D8D8');
-  -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#F0F0F0', endColorstr='#D8D8D8')";
-  background-image: linear-gradient(top, #F0F0F0, #D8D8D8);
-}
+  &:disabled {
+    background: @buttonDisabledBackgroundColor;
+    color: @buttonDisabledTextColor;
+  }
 
-.btn.cancel {
-  border-color:#9FA1A2;
-  text-shadow:0 1px #9FA1A2;
-  background:#DBDBDB;
-  background-image: -moz-linear-gradient(top, #DBDBDB, #BDC1C4);
-  background-image: -webkit-gradient(linear, center top, center bottom, from(#DBDBDB), to(#BDC1C4));
-  background-image: -o-linear-gradient(top, #DBDBDB, #3699ff);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#DBDBDB', endColorstr='#BDC1C4');
-  -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#DBDBDB', endColorstr='#BDC1C4')";
-  background-image: linear-gradient(top, #DBDBDB, #BDC1C4);
-}
+  &.cancel {
+    background: @buttonCancelBackgroundColor;
+    color: @buttonCancelTextColor;
 
-.btn.cancel:hover {
-  border-color:#9FA1A2;
-  background:#DBDBDB;
-  background-image: -moz-linear-gradient(top, #DBDBDB, #9FA1A2);
-  background-image: -webkit-gradient(linear, center top, center bottom, from(#DBDBDB), to(#9FA1A2));
-  background-image: -o-linear-gradient(top, #DBDBDB, #9FA1A2);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#DBDBDB', endColorstr='#9FA1A2');
-  -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#DBDBDB', endColorstr='#9FA1A2')";
-  background-image: linear-gradient(top, #DBDBDB, #9FA1A2);
+    &:hover {
+      background: lighten(@buttonCancelBackgroundColor, 20%);
+    }
+  }
 }
 
 
@@ -413,25 +467,25 @@ input[type='text'], textarea {
   position:absolute;
   padding: 1em;
   -moz-box-sizing: border-box;
-       box-sizing: border-box;
+  box-sizing: border-box;
   border-radius: 6px;
   -webkit-transition: all 400ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
-          transition: all 400ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  transition: all 400ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
   -webkit-transform: scale(0);
-      -ms-transform: scale(0);
-          transform: scale(0);
+  -ms-transform: scale(0);
+  transform: scale(0);
   opacity: 0;
 }
 
 .modal.active {
   -webkit-transform: scale(1);
-      -ms-transform: scale(1);
-          transform: scale(1);
+  -ms-transform: scale(1);
+  transform: scale(1);
   opacity: 1;
 }
 
 @media (max-width:600px) {
- .modal {
+  .modal {
     top:800px;
   }
 }
@@ -458,8 +512,8 @@ ul { list-style:none; margin:0; padding:0; }
 }
 
 .circle img {
-   border-radius: 50%;/* relative value for
-                             adjustable image size */
+  border-radius: 50%;/* relative value for
+                           adjustable image size */
 }
 
 .circle:hover {
