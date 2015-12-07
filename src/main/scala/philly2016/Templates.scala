@@ -341,12 +341,12 @@ trait Templates {
       </div>
       <div class="communicate">
         <a class="icon" href="http://twitter.com/nescalas" target="_blank"><i class="fa fa-twitter"></i>
-          <span>Listen for our call</span>
+          <span>Follow us.</span>
         </a>
-        <a href="http://www.meetup.com/nescala/" target="_blank" class="icon"><i class="icon-scala"></i><span>Join our community</span></a>
-        <a href="#what" class="icon"><i class="fa fa-check-circle-o"></i><span>Listen to your peers</span></a>
+        <a href="http://www.meetup.com/nescala/" target="_blank" class="icon"><i class="icon-scala"></i><span>Join us</span></a>
+        <a href="#what" class="icon"><i class="fa fa-check-circle-o"></i><span>Learn with us</span></a>
         <a href="#when" class="icon"><i class="fa fa-calendar-o"></i><span>Mark your calendar</span></a>
-        <a href="#where" class="icon"><i class="fa fa-map-marker"></i><span>Align your compass</span></a>
+        <a href="#where" class="icon"><i class="fa fa-map-marker"></i><span>Fire up your GPS</span></a>
       </div>
     )(
       <div class="inverse" id="what">
@@ -359,7 +359,10 @@ trait Templates {
               Northeast Scala Symposium is a <a href="http://scala-lang.org/">Scala</a>-focused <strong>community</strong> gathering.
             </p>
             <p>
-              A uniquely-blended programming language deserves a uniquely-blended conference format. NE Scala offers a mix of speaker-oriented conference presentations with unconference-style sessions and discussions. All presenters are attendees and all attendees select presenters.
+              NE Scala offers a mix of speaker-oriented conference presentations
+              with unconference-style sessions and discussions. (And coffee.
+              Lots of coffee.) All presenters are
+              attendees, and all attendees select presenters.
             </p>
             <h2><strong>Day 1 schedule</strong></h2>
           </div>
