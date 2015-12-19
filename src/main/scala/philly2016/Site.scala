@@ -3,9 +3,6 @@ package nescala.philly2016
 import com.google.common.cache.{ CacheBuilder, CacheLoader }
 import dispatch._
 
-
-// for future pimping
-import dispatch.Defaults._
 import nescala.{ Meetup, SessionCookie }
 import nescala.request.UrlDecoded
 import org.joda.time.{ DateMidnight, DateTimeZone, LocalDateTime }
@@ -13,7 +10,6 @@ import unfiltered.request.{ DELETE, GET, HttpRequest, Params, Path, POST, Seg, &
 import unfiltered.request.QParams._
 import unfiltered.response.{ JsonContent, Redirect, ResponseString, ResponseFunction, Unauthorized }
 import unfiltered.Cycle.Intent
-import scala.util.control.NonFatal
 import scala.util.Random
 import java.util.concurrent.TimeUnit
 
@@ -27,7 +23,7 @@ object Site extends Templates {
       .withDayOfMonth(4).withMinuteOfHour(0)
       .withSecondOfMinute(0).withMillisOfSecond(0)
 
-  val proposalCutoff = // tuesday @ mignight
+  val proposalCutoff = // tuesday @ midnight
     new DateMidnight(TZ).withYear(2016)
       .withMonthOfYear(1).withDayOfMonth(4)
 

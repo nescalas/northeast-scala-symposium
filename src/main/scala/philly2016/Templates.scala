@@ -28,7 +28,8 @@ trait Templates {
   /** list of current member's proposals and modal for editing them */
   private def proposed
     (proposals: Iterable[Proposal]): xml.NodeSeq =
-    (<h3 id="proposed">Your current talk proposals</h3><ul>{
+    <h3 id="proposed">Your current talk proposals</h3>
+    <ul>{
       proposals.map { p =>
         <li>
          <p>
@@ -48,7 +49,6 @@ trait Templates {
         </li>
       }
     }</ul>
-   )
 
   private def pollsClosed =
     <span>Votes on <a href="/2016/talks#proposals">talk proposals</a><br/>are in; winners below.</span>
