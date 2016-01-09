@@ -36,7 +36,7 @@ object Schedule2016 {
     }
 
     val csvStream = new InputStreamReader(
-      getClass.getResourceAsStream("/www/2016/Schedule.csv")
+      getClass.getResourceAsStream("/2016/Schedule.csv")
     )
     val csvLines = CSVReader.open(csvStream).toStream
     val headerMap = csvLines(0).zipWithIndex.toMap

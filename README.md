@@ -87,7 +87,10 @@ To stop:
   
 * **Static resources**: Anything in
   [`src/main/resources/www`](src/main/resources/www) is served as a static
-  resource. (That's why the favicon is in there.)
+  resource. That is, URL path `/foo.png` corresponds to file
+  `src/main/resources/www/foo.png`, and `/www/js/nyc.js` corresponds
+  to `src/main/resources/www/js/nyc.js`. (That's why the `favicon.ico` file
+  is in `src/main/resources/www`.
   
 ### The 2016 Schedule
 
@@ -95,7 +98,7 @@ For simplicitly, the 2016 schedule is read from a CSV file, which is,
 itself, merely a CSV download of a Google Spreadsheet. The code assumes
 that the schedule is loadable as resource `/www/2016/Schedule.csv`
 (so the current schedule is always located at
-[`src/main/resources/www/2016/Schedule.csv`](src/main/resources/www/2016/Schedule.csv)
+[`src/main/resources/2016/Schedule.csv`](src/main/resources/2016/Schedule.csv)
 in the code).
 
 The code also assumes that the first line is a header line, and it looks for 
