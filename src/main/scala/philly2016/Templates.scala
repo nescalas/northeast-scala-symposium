@@ -313,7 +313,7 @@ trait Templates {
 
             <p>
               {offsiteLink("http://newcircle.com", "NewCircle")} is
-              working on a public <i>Intro to Apache Spark</i>, to
+              working on a public <i>Intro to Apache Spark</i> class, to
               be held in Philadelphia March 15 through March 17. Details
               are still being finalized. Stay tuned for details.
             </p>
