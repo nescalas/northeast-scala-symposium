@@ -112,6 +112,14 @@ these headers, interpreted the associated column values as described:
 
 Any other headers (and corresponding columns) are ignored.
 
+Thus, to update the schedule:
+
+* Edit the Google Spreadsheet.
+* Download as CSV.
+* Copy to `src/main/resources/www/2016/Schedule.csv`
+* Compile and run locally, and verify that the schedule looks right.
+* [Deploy](#going-live).
+
 ## Going Live
 
 ### Getting Access
