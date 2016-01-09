@@ -142,7 +142,7 @@ trait Templates {
         </div>
         <div class="grid">
           <div class="unit full center">
-            <p class="warning">NOTE: RSVPs aren't open yet! We'll be opening them shortly.</p>
+            <p class="warning">NOTE: RSVPs aren't open yet! They'll open on Saturday, January 16th at noon (Philadelphia time, aka Eastern Standard). Be aware that previous years have sold out in hours or even minutes.</p>
           </div>
           <div class="one-fourth"></div>
         </div>
