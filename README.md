@@ -111,7 +111,6 @@ a single Git command:
     
 If you prefer, you can also deploy from the Heroku dashboard
 [Deploy](https://dashboard.heroku.com/apps/nescala/deploy/github) tab. The
-
 application has been linked to the main Git repo. If your changes are pushed to 
 the main repo, you can deploy them from the _Manual Deploy_ section of the 
 Deploy tab. (Honestly, though, the command line is faster.) 
