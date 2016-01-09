@@ -74,15 +74,19 @@ To stop:
 
 ## The content
 
-If it's website content you want to update, the templates for the
-current year are in 
-[`src/main/scala/philly2016/Templates.scala`](src/main/scala/philly2016/Templates.scala).
+* **Content**: If it's website content you want to update, the templates for the
+  current year are in 
+  [`src/main/scala/philly2016/Templates.scala`](src/main/scala/philly2016/Templates.scala).
 
-If you need to hack on the CSS rules, the current year uses
-[LESS](http://lesscss.org), while previous years use straight CSS.
-The Philly 2016 LESS rules are in 
-[`src/main/assets/css/philly2016.less`](src/main/assets/css/philly2016.less).
-If you don't understand LESS, **don't hack the CSS until you do.**
+* **CSS**: If you need to hack on the CSS rules, the current year uses
+  [LESS](http://lesscss.org), while previous years use straight CSS.
+  The Philly 2016 LESS rules are in 
+  [`src/main/assets/css/philly2016.less`](src/main/assets/css/philly2016.less).
+  If you don't understand LESS, **don't hack the CSS until you do.**
+  
+* **Static resources**: Anything in
+  [`src/main/resources/www`](src/main/resources/www) is served as a static
+  resource. (That's why the favicon is in there.)
 
 ## Going Live
 
