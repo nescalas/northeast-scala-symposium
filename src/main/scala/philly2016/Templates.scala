@@ -224,7 +224,7 @@ trait Templates {
         <link rel="stylesheet" type="text/css" href="/css/normalize.css" />
         <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"/>
         <link href="/css/font-mfizz/font-mfizz.css" rel="stylesheet"/>
-        <link rel="stylesheet" type="text/css" href="/css/2016/style.css" />
+        <link rel="stylesheet" type="text/css" href="/cssless/philly2016.css" />
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>{
           styles.map { s => <link rel="stylesheet" type="text/css" href={s}/> } ++
           scripts.map { s => <script type="text/javascript" src={s}></script> }

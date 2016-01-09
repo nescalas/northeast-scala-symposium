@@ -7,7 +7,7 @@ import nescala.{ Meetup, SessionCookie }
 import nescala.request.UrlDecoded
 import unfiltered.request.{ DELETE, GET, HttpRequest, Params, Path, POST, Seg, & }
 import unfiltered.request.QParams._
-import unfiltered.response.{ JsonContent, Redirect, ResponseString, ResponseFunction, Unauthorized }
+import unfiltered.response._
 import unfiltered.Cycle.Intent
 import scala.util.Random
 import java.util.concurrent.TimeUnit
@@ -30,6 +30,31 @@ object Site extends Templates {
   def pages: Intent[Any, Any] = {
     case GET(req) & Path(Seg(Nil)) =>
       respond(req)(indexPage(sponsors.get("nescala")))
+
+    // Hook for sbt-less generated CSS files.
+    case GET(req) & Path(Seg("cssless" :: rest)) => {
+      import nescala.BuildInfo
+      import scala.io.Source
+      import java.io.File
+      val thing = rest.mkString("/")
+      val rsrc = s"webjars/root/${BuildInfo.version}/css/$thing"
+      val path = s"target/web/less/main/css/$thing"
+      println(s"trying resource=$rsrc")
+      println(s"...then path=$path")
+      // Try as a resource first. If not there, try the local compile path.
+      val is = Option(getClass.getResourceAsStream(rsrc))
+      if (is.isDefined) {
+        val source = Source.fromInputStream(is.get)
+        ResponseString(source.mkString)
+      }
+      else if (new File(path).exists) {
+        val source = Source.fromFile(path)
+        ResponseString(source.mkString)
+      }
+      else {
+        (NotFound ~> ResponseString(s"cssless/$thing"))
+      }
+    }
   }
 
   def respond

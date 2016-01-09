@@ -24,45 +24,13 @@ scalacOptions ++= Seq("-deprecation", "-unchecked")
 
 seq(Revolver.settings: _*)
 
-// sbt-less is a pain in the ass to use outside Play. Here, we do it manually.
-// Assumes Node.js and lessc are installed and in the path.
 
-val lessc = taskKey[Seq[File]]("run lessc")
-lessc := {
+lazy val root = (project in file(".")).
+  enablePlugins(BuildInfoPlugin).
+  enablePlugins(SbtWeb).
+  settings(
+    buildInfoKeys := Seq[BuildInfoKey](name, version, scalaVersion, sbtVersion),
+    buildInfoPackage := "nescala"
+  )
 
-  import scala.language.postfixOps
-  import grizzled.file.{util => fileutil}
-  import java.io.File
-  import sys.process._
-
-  val log = streams.value.log
-  val sourceDir = sourceDirectory.value
-
-  def relativeSource(path: String) = {
-    val parent = fileutil.dirname(sourceDir.getPath)
-    path.drop(parent.length + 1)
-  }
-
-  // Get the list of sources.
-  val lessFiles: sbt.PathFinder = sourceDir ** "*.less"
-
-  for (source <- lessFiles.get) {
-    val target = new File(source.getPath.replace(".less", ".css"))
-    if (target.lastModified < source.lastModified) {
-      val relSource = relativeSource(source.getPath)
-      val relOutput = relSource.replace(""".less""", ".css")
-      val cmd = s"lessc --no-js $relSource $relOutput"
-      println(s"+ $cmd")
-      cmd.!!
-    }
-  }
-
-  lessFiles.get
-
-}
-
-// Compile hooks
-
-compile in Compile <<= (compile in Compile) dependsOn(lessc)
-
-
+includeFilter in (Assets, LessKeys.less) := "*.less"
