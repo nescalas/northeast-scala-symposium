@@ -78,11 +78,12 @@ To stop:
   for the current year are in 
   [`src/main/scala/philly2016/Templates.scala`](src/main/scala/philly2016/Templates.scala).
 
-* **CSS**: If you need to hack on the CSS rules, the current year uses
+* **CSS**: If you need to hack on the CSS rules, the 2016 code uses
   [LESS](http://lesscss.org), while previous years use straight CSS.
   The Philly 2016 LESS rules are in 
   [`src/main/assets/css/philly2016.less`](src/main/assets/css/philly2016.less).
-  If you don't understand LESS, **don't hack the CSS until you do.**
+  If you don't understand LESS, **don't hack the CSS until 
+  [you do](http://lesscss.org/features/).**
   
 * **Static resources**: Anything in
   [`src/main/resources/www`](src/main/resources/www) is served as a static
