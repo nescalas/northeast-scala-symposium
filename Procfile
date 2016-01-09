@@ -1,1 +1,1 @@
-web: sh target/hero
+web: target/universal/stage/bin/root $PORT
