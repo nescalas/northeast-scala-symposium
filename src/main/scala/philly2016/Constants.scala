@@ -11,6 +11,8 @@ object Constants {
 
   val Day1EventId = Day1EventIdNum.toString
   val Day2EventId = Day2EventIdNum.toString
+  val Day1URL     = s"http://www.meetup.com/nescala/events/$Day1EventId/"
+  val Day2URL     = s"http://www.meetup.com/nescala/events/$Day2EventId/"
 
   val ProposalsURL = "https://github.com/nescalas/proposals-2016"
   val VotingFormURL = "http://goo.gl/forms/kBwCYLOJNH"
@@ -48,5 +50,7 @@ object Constants {
 
   lazy val PhillySchedule = Schedule2016.load().get
 
+  // Target for off-site anchors.
+  val OffsiteAnchorTarget = "nescala-offsite"
 }
 

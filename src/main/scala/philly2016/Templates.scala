@@ -5,10 +5,17 @@ import unfiltered.response.Html5
 import java.text.SimpleDateFormat
 import java.util.{ Calendar, Date, TimeZone }
 
+import scala.xml.Elem
+
 trait Templates {
 
   import Enrichments.EnrichedDate
   import Constants._
+  import nescala.XMLEnrichments._
+
+  private def offsiteLink(url: String, text: String) = {
+    <a href={url} target={OffsiteAnchorTarget}>{text}</a>
+  }
 
   private def timestamp(d: Date, offset: Boolean = true) = {
     def fmt(f: String) = new SimpleDateFormat(f) {
@@ -22,8 +29,8 @@ trait Templates {
 
   def pollsClosed = {
     <span>
-      Votes on <a href={Constants.ProposalsURL}>talk proposals</a> are in.
-      Winners are below.
+      Votes on {offsiteLink(Constants.ProposalsURL, "talk proposals")}
+      are in. Winners are below.
     </span>
   }
 
@@ -41,17 +48,28 @@ trait Templates {
         {
           if (votingIsOpen) {
             <div>
-              <p>RSVP on <a href="http://www.meetup.com/nescala/">Meetup</a>:</p>
-              <a href={s"http://www.meetup.com/nescala/events/$Day1EventId/"}>Day one</a> |
-              <a href={s"http://www.meetup.com/nescala/events/$Day2EventId/"}>Day two</a>
+              <p>
+                RSVP on
+                {offsiteLink("http://www.meetup.com/nescala/", "Meetup")}:
+              </p>
+
+              <p>
+                {offsiteLink(s"http://www.meetup.com/nescala/events/$Day1EventId/",
+                             "Day one")} |
+                {offsiteLink(s"http://www.meetup.com/nescala/events/$Day2EventId/",
+                             "Day two")}
+              </p>
             </div>
             <div>
-              Then, <a href={VotingFormURL}>vote for talks</a> (by {VotesCloseStr}).
+              Then,
+              {offsiteLink(VotingFormURL, "vote for talks")}
+              (by {VotesCloseStr}).
             </div>
           }
           else if (proposingIsOpen) {
             <div>
-              <a href={ProposalsURL}>Propose a talk</a> (by {ProposalsCloseStr})
+              {offsiteLink(ProposalsURL, "Propose a talk")}
+              (by {ProposalsCloseStr})
             </div>
           }
           else {
@@ -61,10 +79,14 @@ trait Templates {
         </div>
       </div>
       <div class="communicate">
-        <a class="icon" href="http://twitter.com/nescalas" target="_blank"><i class="fa fa-twitter"></i>
-          <span>Follow us.</span>
+        <a class="icon" href="http://twitter.com/nescalas"
+           target={OffsiteAnchorTarget}>
+          <i class="fa fa-twitter"></i><span>Follow us.</span>
         </a>
-        <a href="http://www.meetup.com/nescala/" target="_blank" class="icon"><i class="icon-scala"></i><span>Join us</span></a>
+        <a class="icon" href="http://www.meetup.com/nescala/"
+           target={OffsiteAnchorTarget}>
+          <i class="icon-scala"></i><span>Join us</span>
+        </a>
         <a href="#what" class="icon"><i class="fa fa-check-circle-o"></i><span>Learn with us</span></a>
         <a href="#when" class="icon"><i class="fa fa-calendar-o"></i><span>Mark your calendar</span></a>
         <a href="#where" class="icon"><i class="fa fa-map-marker"></i><span>Fire up your GPS</span></a>
@@ -77,13 +99,15 @@ trait Templates {
               This is <strong>your</strong> conference.
             </h2>
             <p>
-              Northeast Scala Symposium is a <a href="http://scala-lang.org/">Scala</a>-focused <strong>community</strong> gathering.
+              Northeast Scala Symposium is a
+              {offsiteLink("http://scala-lang.org/", "Scala")}-focused
+              <strong>community</strong> gathering.
             </p>
             <p>
               NE Scala offers a mix of speaker-oriented conference presentations
               with unconference-style sessions and discussions. (And coffee.
-              Lots of coffee.) All presenters are
-              attendees, and all attendees select presenters.
+              Lots of coffee.) All presenters are attendees, and all
+              attendees select presenters.
             </p>
             <h2><strong>Day 1 schedule</strong></h2>
           </div>
@@ -114,8 +138,20 @@ trait Templates {
                 <span class="unit one-fifth">{slot.speaker.getOrElse("")}</span>
                 <span class="unit one-fifth">{slot.activity.getOrElse("")}</span>
                 <span class="unit two-fifths">{
-                  slot.description.map { scala.xml.XML.loadString(_) }.
-                                   getOrElse(<span></span>)
+                  slot.description.map { s =>
+                    val e = scala.xml.XML.loadString(s)
+                    // For now, assume that any links in the schedule go
+                    // off-site, and adjust them accordingly.
+                    e.child.map { c =>
+                      c match {
+                        case e: Elem if e.label == "a"  => {
+                          e.attr("target", OffsiteAnchorTarget)
+                        }
+                        case e => e
+                      }
+                    }
+                  }.
+                  getOrElse(<span></span>)
                 }
                 </span>
               </div>
@@ -125,7 +161,9 @@ trait Templates {
         <div class="grid">
           <div class="unit">
             <h2><strong>Day 2 schedule</strong></h2>
-            <p>See the <a href={s"http://www.meetup.com/nescala/events/$Day2EventId/"}>Meetup page</a>.</p>
+            <p>See the
+              {offsiteLink(Day2URL, "Meetup page")}.
+            </p>
           </div>
         </div>
       </div>
@@ -136,12 +174,13 @@ trait Templates {
             <p>
               Northeast Scala Symposium is held annually. In 2016, we will
               descend upon the City of Brotherly Love, on
-              <a href={s"http://www.meetup.com/nescala/events/$Day1EventId/"}>Friday, March 4</a>
-              and <a href={s"http://www.meetup.com/nescala/events/$Day2EventId/"}>Saturday, March 5</a>.
+              {offsiteLink(Day1URL, "Friday, March 4")} and
+              {offsiteLink(Day2URL, "Saturday, March 5")}.
             </p>
             <p>
-              To attend, RSVP separately for <a href={s"http://www.meetup.com/nescala/events/$Day1EventId/"}>day one</a> ($60) and/or
-              <a href={s"http://www.meetup.com/nescala/events/$Day2EventId/"}>day two</a> (free).
+              To attend, RSVP separately for
+              {offsiteLink(Day1URL, "day one")} ($60) and/or
+              {offsiteLink(Day2URL, "day one")} (free).
             </p>
           </div>
         </div>
@@ -166,10 +205,14 @@ trait Templates {
             <h2>Where</h2>
             <p>
               This year's symposium will be held at
-              <a href="http://thehub.com/locations/cira-centre/">The Hub Cira Center</a>
+              {offsiteLink("http://thehub.com/locations/cira-centre/",
+                           "The Hub Cira Centre")},
               located at
-              <a href="https://www.google.com/maps/place/2929+Arch+St,+Philadelphia,+PA+19104/@40.002498,-75.1180329,11z/data=!4m2!3m1!1s0x89c6c64bdd84625b:0xbe940a019709b223">2929 Arch Street, Philadelphia, Pa 19104</a>,
-              right next to historic <a href="https://en.wikipedia.org/wiki/30th_Street_Station">30th Street Station</a>,
+              {offsiteLink("https://www.google.com/maps/place/2929+Arch+St,+Philadelphia,+PA+19104/@40.002498,-75.1180329,11z/data=!4m2!3m1!1s0x89c6c64bdd84625b:0xbe940a019709b223",
+                           "2929 Arch Street, Philadelphia, Pa 19104")},
+              right next to historic
+              {offsiteLink("https://en.wikipedia.org/wiki/30th_Street_Station",
+                           "30th Street Station")},
               which makes it highly accessible via mass transit.
             </p>
           </div>
@@ -216,7 +259,8 @@ trait Templates {
             <div class="sponsors">{
               sponsors.map { sponsor =>
                 <div class="sponsor unit one-third">
-                  <a class="friend" title={sponsor.name} href={sponsor.link}>
+                  <a class="friend" title={sponsor.name} href={sponsor.link}
+                     target={OffsiteAnchorTarget}>
                     <img src={sponsor.image}/>
                   </a>
                   <div class="blurb">{sponsor.info}</div>
@@ -303,18 +347,21 @@ trait Templates {
           <div class="container inverse">
           <a href="#top">NE Scala</a> is organized with <span class="love">❤</span> from the
           <div>
-            <a href="http://www.meetup.com/scala-phase/">Philadelphia</a>,
-            <a href="http://www.meetup.com/ny-scala/">New York</a>,
-            and <a href="http://www.meetup.com/boston-scala/">Boston</a>
+            {offsiteLink("http://www.meetup.com/scala-phase/", "Philadelphia")},
+            {offsiteLink("http://www.meetup.com/ny-scala/", "New York")}, and
+            {offsiteLink("http://www.meetup.com/boston-scala/", "Boston")}
             Scala enthusiasts,
             our <a href="#friends">friends</a> and, of course, of all of
-            <a href="http://www.meetup.com/nescala/photos/">you</a>.
+            {offsiteLink("http://www.meetup.com/nescala/photos/", "you")}.
           </div>
           <div>
-            Hosting by the fine folks @ <a href="https://www.heroku.com/">Heroku</a>
+            Hosting by the fine folks @
+            {offsiteLink("https://www.heroku.com/", "Heroku")}.
           </div>
           <div>
-            Problems with the website? <a href="https://github.com/nescalas/northeast-scala-symposium/issues">Open an issue.</a>
+            Problems with the website?
+            {offsiteLink("https://github.com/nescalas/northeast-scala-symposium/issues",
+                         "Open an issue")}.
           </div>
           <div>
             &nbsp;
