@@ -74,8 +74,8 @@ To stop:
 
 ## The content
 
-* **Content**: If it's website content you want to update, the templates for the
-  current year are in 
+* **Web content**: If it's web site content you want to update, the templates 
+  for the current year are in 
   [`src/main/scala/philly2016/Templates.scala`](src/main/scala/philly2016/Templates.scala).
 
 * **CSS**: If you need to hack on the CSS rules, the current year uses
@@ -87,6 +87,30 @@ To stop:
 * **Static resources**: Anything in
   [`src/main/resources/www`](src/main/resources/www) is served as a static
   resource. (That's why the favicon is in there.)
+  
+### The 2016 Schedule
+
+For simplicitly, the 2016 schedule is read from a CSV file, which is,
+itself, merely a CSV download of a Google Spreadsheet. The code assumes
+that the schedule is loadable as resource `/www/2016/Schedule.csv`
+(so the current schedule is always located at
+[`src/main/resources/www/2016/Schedule.csv`](src/main/resources/www/2016/Schedule.csv)
+in the code).
+
+The code also assumes that the first line is a header line, and it looks for 
+these headers, interpreted the associated column values as described:
+
+* "Activity": The short name of the activity. This could be "Lunch", "Break",
+  or a talk title.
+* "Description": The full description of the entry. This field can contain
+  Markdown. It can also be empty.
+* "Speaker": The speaker, if the row is for a talk, or empty otherwise.
+* "Start": The start time of the entry, in "HH:mm a" format (e.g., "8:30 AM",
+  "4:00 PM"). Required.
+* The duration, in hours and minutes. e.g., "0:40" for 40 minutes, "1:15" for
+  an hour and fifteen minutes. Required.
+
+Any other headers (and corresponding columns) are ignored.
 
 ## Going Live
 
