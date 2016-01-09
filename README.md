@@ -22,7 +22,7 @@
 
 ### `meetup.properties`
 
-Before you deploy the site (see below), you _must_ ensure that you can run
+Before you [deploy the site](#going-live), you _must_ ensure that you can run
 it locally. Doing so requires a `meetup.properties` file (which is _never_
 committed, for security reasons). Contact one of the [maintainers][] to get a
 working copy, and install that copy in `src/main/resources`. (The 
