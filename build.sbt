@@ -1,3 +1,5 @@
+import com.typesafe.sbt.packager.archetypes.JavaAppPackaging
+
 seq(lsSettings :_*)
 
 libraryDependencies ++= Seq(
@@ -28,6 +30,7 @@ seq(Revolver.settings: _*)
 lazy val root = (project in file(".")).
   enablePlugins(BuildInfoPlugin).
   enablePlugins(SbtWeb).
+  enablePlugins(JavaAppPackaging).
   settings(
     buildInfoKeys := Seq[BuildInfoKey](name, version, scalaVersion, sbtVersion),
     buildInfoPackage := "nescala"
