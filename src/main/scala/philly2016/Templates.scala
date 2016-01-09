@@ -294,6 +294,9 @@ trait Templates {
             Hosting by the fine folks @ <a href="https://www.heroku.com/">Heroku</a>
           </div>
           <div>
+            Problems with the website? <a href="https://github.com/nescalas/northeast-scala-symposium/issues">Open an issue.</a>
+          </div>
+          <div>
             &nbsp;
           </div>
           <div>
