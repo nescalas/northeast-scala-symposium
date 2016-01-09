@@ -50,8 +50,6 @@ object CommonHandlers {
       val thing = rest.mkString("/")
       val rsrc = s"webjars/root/${BuildInfo.version}/css/$thing"
       val path = s"target/web/less/main/css/$thing"
-      println(s"trying resource=$rsrc")
-      println(s"...then path=$path")
       // Try as a resource first. If not there, try the local compile path.
       val is = Option(getClass.getResourceAsStream(rsrc))
       if (is.isDefined) {
