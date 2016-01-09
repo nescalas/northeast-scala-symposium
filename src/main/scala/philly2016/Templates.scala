@@ -147,7 +147,15 @@ trait Templates {
         </div>
         <div class="grid">
           <div class="unit full center">
-            <p class="warning">NOTE: RSVPs aren't open yet! They'll open on Saturday, January 16th at noon (Philadelphia time, aka Eastern Standard). Be aware that previous years have sold out in hours or even minutes.</p>
+            <div class="warning">
+              <p>NOTE: RSVPs aren't open yet! They'll open on
+              Saturday, January 16th at noon (Philadelphia time, a.k.a., Eastern
+              Standard).</p>
+
+              <p>There are only 200 slots available (minus reserved slots for
+                speakers). In previous years, the conference has sold out in hours
+                or even minutes.</p>
+            </div>
           </div>
           <div class="one-fourth"></div>
         </div>
