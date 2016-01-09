@@ -167,6 +167,39 @@ trait Templates {
           </div>
         </div>
       </div>
+      <div id="kindness">
+        <div class="grid">
+          <div class="unit whole">
+            <h2>Be kind.</h2>
+            <p>
+              Nobody likes a jerk, so <strong>show respect</strong> for those
+              around you.
+            </p>
+            <p>
+              NE Scala is dedicated to providing a harassment-free experience
+              for everyone, regardless of gender, gender identity and
+              expression, sexual orientation, disability, physical appearance,
+              body size, race, or religion (or lack thereof). We
+              <strong>do not</strong> tolerate harassment of participants in
+              any form.
+            </p>
+            <p>
+              All communication should be appropriate for a technical audience,
+              including people of many different backgrounds. Sexual language,
+              innuendo, and imagery is not appropriate for any symposium venue,
+              including talks.
+            </p>
+            <p>
+              Participants violating these rules may be asked to leave without
+              a refund, at the sole discretion of the organizers.
+            </p>
+            <p>
+              Since this is a gathering of static typists, offenders will be
+              caught at compile time.
+            </p>
+          </div>
+        </div>
+      </div>
       <div class="regular" id="friends">
         <div class="grid center-on-mobiles">
           <div class="unit whole">
