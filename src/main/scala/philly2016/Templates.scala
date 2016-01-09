@@ -167,7 +167,7 @@ trait Templates {
           </div>
         </div>
       </div>
-      <div id="kindness">
+      <div id="kindness" class="regular">
         <div class="grid">
           <div class="unit whole">
             <h2>Be kind.</h2>
@@ -200,7 +200,7 @@ trait Templates {
           </div>
         </div>
       </div>
-      <div class="regular" id="friends">
+      <div class="inverse" id="friends">
         <div class="grid center-on-mobiles">
           <div class="unit whole">
             <h2>Friends</h2>
