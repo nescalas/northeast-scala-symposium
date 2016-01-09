@@ -33,6 +33,11 @@ trait Templates {
     layout(session)(scripts = Seq.empty[String])(
       <div class="grid well">
         <div class="unit full center center-on-mobiles">
+          <p>
+            The Northeast Scala Symposium is the original Scala community-based
+            conference, and we're gearing up for our
+            <a href="#what">6th year.</a>
+          </p>
         {
           if (votingIsOpen) {
             <div>
