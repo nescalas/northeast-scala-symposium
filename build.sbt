@@ -13,6 +13,8 @@ libraryDependencies ++= Seq(
   // date math
   "joda-time" % "joda-time" % "2.1",
   "org.joda" % "joda-convert" % "1.2",
+  "org.clapper" %% "markwrap" % "1.0.2",
+  "com.github.tototoshi" %% "scala-csv" % "1.2.2",
   // local cache
   "com.google.guava" % "guava" % "14.0",
   "com.google.code.findbugs" % "jsr305" % "3.0.0" // http://stackoverflow.com/questions/19030954/cant-find-nullable-inside-javax-annotation

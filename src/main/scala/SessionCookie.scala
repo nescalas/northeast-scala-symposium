@@ -31,13 +31,13 @@ case class SessionCookie(session: Session, member: Int) {
 
   def rsvped(event: Int) = Meetup.rsvped(session, event)
 
-  // specific to philly2016
-  lazy val proposals = nescala.philly2016.Proposal.list(member)
+  // Not used in 2016
+  lazy val proposals = nescala.boston2015.Proposal.list(member)
 
   lazy val canVote: Boolean =
-    rsvped(nescala.philly2016.Constants.Day1EventIdNum).apply()
+    rsvped(nescala.boston2015.Site.DayOneEvent).apply()
 
-  lazy val votes: Set[String] = if (canVote) nescala.philly2016.Proposal.votes(member) else Set.empty
+  lazy val votes: Set[String] = if (canVote) nescala.boston2015.Proposal.votes(member) else Set.empty
 }
 
 object SessionCookie {

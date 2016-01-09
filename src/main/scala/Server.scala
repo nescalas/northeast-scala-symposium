@@ -5,7 +5,12 @@ import unfiltered.filter.Planify
 
 object Server {
   def main(args: Array[String]) {
-    Http(Option(System.getenv("PORT")).getOrElse("8080").toInt)
+    val port = args.length match {
+      case 0 => Option(System.getenv("PORT")).getOrElse("8080").toInt
+      case 1 => args(0).toInt
+      case _ => sys.error(s"Usage: Server [port]")
+    }
+    Http(port)
     .resources(getClass().getResource("/www"))
     .filter(Planify {
       (Northeast.site /: Seq(
