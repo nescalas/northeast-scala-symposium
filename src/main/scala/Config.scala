@@ -1,6 +1,6 @@
 package nescala
 
-trait Config {
+abstract class Config {
   private lazy val props = {
     Option(getClass.getResourceAsStream("/meetup.properties")).map { stream =>
       val props = new java.util.Properties
