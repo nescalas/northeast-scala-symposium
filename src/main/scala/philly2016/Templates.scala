@@ -351,7 +351,7 @@ trait Templates {
             {offsiteLink("http://www.meetup.com/ny-scala/", "New York")}, and
             {offsiteLink("http://www.meetup.com/boston-scala/", "Boston")}
             Scala enthusiasts,
-            our <a href="#friends">friends</a> and, of course, of all of
+            our <a href="#friends">friends</a> and, of course, all of
             {offsiteLink("http://www.meetup.com/nescala/photos/", "you")}.
           </div>
           <div>
