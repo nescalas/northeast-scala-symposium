@@ -140,8 +140,8 @@ trait Templates {
               and <a href={s"http://www.meetup.com/nescala/events/$Day2EventId/"}>Saturday, March 5</a>.
             </p>
             <p>
-              To attend, RSVP separately for <a href={s"http://www.meetup.com/nescala/events/$Day1EventId/"}>day one</a> and
-              <a href={s"http://www.meetup.com/nescala/events/$Day2EventId/"}>day two</a>.
+              To attend, RSVP separately for <a href={s"http://www.meetup.com/nescala/events/$Day1EventId/"}>day one</a> ($60) and/or
+              <a href={s"http://www.meetup.com/nescala/events/$Day2EventId/"}>day two</a> (free).
             </p>
           </div>
         </div>
