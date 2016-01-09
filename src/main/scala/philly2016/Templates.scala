@@ -269,43 +269,59 @@ trait Templates {
             }</div>
           </div>
         </div>
-      </div>)
-      <div id="kindness" class="inverse">
+      </div>
+      <div class="regular" id="related">
         <div class="grid">
           <div class="unit whole">
-            <h2>Code of Conduct.</h2>
+            <h2>Related Coolness</h2>
             <p>
-              Simply: Be kind.
+              This year, we're excited to tell you about some <i>other</i>
+              events that are associated with NE Scala 2016.
+            </p>
+
+            <h3 id="typelevel">The Typelevel Conference</h3>
+
+            <p>
+              On the 2nd and 3rd of March, the two days before NE Scala,
+              there will be a
+              {offsiteLink("http://typelevel.org/blog/2015/12/11/announcement_summit.html",
+                           "Typelevel Summit")}
+              including talks, discussion and hacking, focused on the
+              Typelevel family of {offsiteLink("http://typelevel.org", "projects")}.
             </p>
             <p>
-              Nobody likes a jerk, so <strong>show respect</strong> for those
-              around you.
+              The summit is open to all, not just current contributors to
+              and users of the Typelevel projects, and we are especially keen
+              to encourage participation from people who are new to them.
             </p>
             <p>
-              NE Scala is dedicated to providing a harassment-free experience
-              for everyone, regardless of gender, gender identity and
-              expression, sexual orientation, disability, physical appearance,
-              body size, race, or religion (or lack thereof). We
-              <strong>do not</strong> tolerate harassment of participants in
-              any form.
+              While many of the Typelevel projects use somewhat "advanced"
+              Scala, they are a lot more approachable than many people think,
+              and a major part of Typelevel's mission is to make the ideas
+              they embody much more widely accessible.
             </p>
             <p>
-              All communication should be appropriate for a technical audience
-              including people of many different backgrounds. Sexual language,
-              innuendo, and imagery is not appropriate for any symposium venue,
-              including talks.
+              So, if you're interested in types and pure functional
+              programming, want to make those ideas commonplace and are
+              willing to abide by the
+              {offsiteLink("http://typelevel.org/conduct.html",
+                           "Typelevel code of conduct")},
+              then this is the place for you and we'd love to see you there.
             </p>
+
+            <h3 id="spark">Public Spark class</h3>
+
             <p>
-              Participants violating these rules may be asked to leave
-              <strong>without a refund</strong>, at the sole discretion of
-              the organizers.
-            </p>
-            <p>
-              Since this is a gathering of static typists, offenders will be caught at compile time.
+              {offsiteLink("http://newcircle.com", "NewCircle")} is
+              working on a public <i>Intro to Apache Spark</i>, to
+              be held in Philadelphia March 15 through March 17. Details
+              are still being finalized. Stay tuned for details.
             </p>
           </div>
+
         </div>
       </div>
+    )
 
   def layout
    (session: Option[SessionCookie] = None)
