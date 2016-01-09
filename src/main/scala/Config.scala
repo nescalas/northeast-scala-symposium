@@ -2,15 +2,16 @@ package nescala
 
 trait Config {
   private lazy val props = {
-    val file = getClass.getResourceAsStream("/meetup.properties")
-    val props = new java.util.Properties
-    props.load(file)
-    file.close()
-    props
+    Option(getClass.getResourceAsStream("/meetup.properties")).map { stream =>
+      val props = new java.util.Properties
+      props.load(stream)
+      stream.close()
+      props
+    }
   }
 
   def property(name: String) =
-    Option(System.getenv(name)).orElse(Option(props.getProperty(name))) match {
+    Option(System.getenv(name)).orElse(props.map(_.getProperty(name))) match {
       case None => sys.error("missing property %s" format name)
       case Some(value) => value
     }

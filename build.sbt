@@ -26,7 +26,6 @@ scalacOptions ++= Seq("-deprecation", "-unchecked")
 
 seq(Revolver.settings: _*)
 
-
 lazy val root = (project in file(".")).
   enablePlugins(BuildInfoPlugin).
   enablePlugins(SbtWeb).
