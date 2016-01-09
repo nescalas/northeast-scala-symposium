@@ -280,6 +280,7 @@ trait Templates {
         </div>
         { bodyContent }
         <div class="footer unit whole center-on-mobiles">
+          <hr/>
           <div class="container inverse">
           <a href="#top">NE Scala</a> is organized with <span class="love">❤</span> from the
           <div>
