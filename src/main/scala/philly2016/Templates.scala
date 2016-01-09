@@ -27,95 +27,6 @@ trait Templates {
     </span>
   }
 
-  def proposalsPage
-   (session: Option[SessionCookie] = None) =
-    layout(session)(scripts = Seq("/js/2016/proposals.js", "/js/2016/voting.js"))(
-      <div class="unit whole align-center lead well">
-        <div class="grid">
-          <p class="unit whole">
-            This year's symposium continues with last year's successful
-            mix of talk lengths, to give new attendees a chance to speak up
-            and share what's on their minds.
-          </p>
-
-        </div>
-        <div class="grid">
-          <div class="unit one-third">
-            <a href="#medium-proposals">Med</a>
-            (45 min)
-            <p class="small mute">3 slots</p>
-          </div>
-          <div class="unit one-third">
-            <a href="#medium-proposals">Short</a>
-            (30 min)
-            <p class="small mute">4 slots</p>
-          </div>
-          <div class="unit one-third">
-            <a href="#lightning-proposals">Lightning</a>
-            (15 min)
-            <p class="small mute">4 slots</p>
-          </div>
-        </div>
-      </div>
-    )(
-      <div class="inverse whole" id="speak">
-        <div class="grid">
-          <div class="unit whole">
-            <p>
-              This year, however, we're doing things a little differently.
-              To submit a talk proposal, you'll issue a Git pull request
-              against
-              <a href="https://github.com/nescalas/proposals-2016">
-                https://github.com/nescalas/proposals-2016
-              </a>. See that repo for full instructions.
-            </p>
-            <p>
-              Once all the talk proposals are all in, we'll open up
-              voting.
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="regular whole" id="proposals">
-        <div class="grid">
-          <div class="unit whole">
-            <h2>
-             <i class="fa fa-check-circle-o"></i> Listen up
-            </h2>
-            <p>
-              NE Scala has no program committee. We do not select speakers
-              for you to watch and listen to: <strong>You do.</strong>
-            </p>
-            { if (proposingIsOpen) {
-                <p>
-                  Talks are proposed by your peers. In a short time, we will
-                  open up voting polls for you to select the talks you want to
-                  see. (Voting opens {VotesOpenStr}.)
-                </p>
-              }
-              else if (votingIsOpen) {
-                <p>
-                  If you have RSVP'd for Day 1 on
-                  <a href={s"http://www.meetup.com/nescala/events/$Day1EventId/"}>meetup.com</a>,
-                  you may vote for up to 4 talks you'd like to see for this year's
-                  symposium. To vote, use
-                  <a href="http://www.google.com/">this Google form</a>.
-                </p>
-                <p>Polls close {VotesCloseStr} at 11:59pm EST.</p>
-                <p>
-                  <strong>If you haven't RSVP'd, and you vote anyway, we'll toss
-                    your vote in the direction of <tt>/dev/null</tt></strong>.
-                </p>
-              }
-              else {
-                <p>We'll be opening talk proposals soon. Stay tuned.</p>
-              }
-            }
-          </div>
-        </div>
-      </div>)
-
-
   def indexPage
    (sponsors: List[Meetup.Sponsor])
    (session: Option[SessionCookie] = None) =
@@ -249,14 +160,15 @@ trait Templates {
         <div class="grid center-on-mobiles">
           <div class="unit whole">
             <h2>Friends</h2>
-            <p>Below are some of the sponsors that made this possible.</p>
+            <p>Below are some of the sponsors who made this possible.</p>
             <div class="sponsors">{
               sponsors.map { sponsor =>
-                <p class="unit one-third">
+                <div class="sponsor unit one-third">
                   <a class="friend" title={sponsor.name} href={sponsor.link}>
                     <img src={sponsor.image}/>
                   </a>
-                </p>
+                  <div class="blurb">{sponsor.info}</div>
+                </div>
               }
             }</div>
           </div>

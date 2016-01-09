@@ -11,7 +11,10 @@ import scala.util.control.NonFatal
 
 object Meetup extends Config {
 
-  case class Sponsor(name: String, image: String, link: String)
+  case class Sponsor(name: String,
+                     info: String,
+                     image: String,
+                     link: String)
 
   object Nyc {
     val eventId: Int = 15526582
@@ -141,9 +144,13 @@ object Meetup extends Config {
           ("sponsors", JArray(sponsors)) <- group
           JObject(sponsor)               <- sponsors
           ("name", JString(name))        <- sponsor
+          ("info", JString(info))        <- sponsor
           ("image_url", JString(img))    <- sponsor
           ("url", JString(link))         <- sponsor
-        } yield Sponsor(name, img, link)
+        } yield Sponsor(name = name,
+                        info = info,
+                        image = img,
+                        link = link)
       }
 
   val AuthExchange = new dispatch.oauth.Exchange
