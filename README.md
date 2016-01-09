@@ -46,7 +46,7 @@ You can run the server in two ways.
 
 ##### Manually
 
-Within `sbt`
+With the `run` command in `sbt`:
 
     > run
 
