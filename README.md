@@ -1,4 +1,6 @@
-# Source code for NEScala web site.
+# Source code for [NEScala web site][NEScala]
+
+[NEScala]: http://www.nescala.org/
 
 ## Current maintainers
 
