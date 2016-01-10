@@ -111,8 +111,8 @@ these headers, interpreted the associated column values as described:
 * "Speaker": The speaker, if the row is for a talk, or empty otherwise.
 * "Start": The start time of the entry, in "HH:mm a" format (e.g., "8:30 AM",
   "4:00 PM"). Required.
-* The duration, in hours and minutes. e.g., "0:40" for 40 minutes, "1:15" for
-  an hour and fifteen minutes. Required.
+* "Duration": The duration, in hours and minutes. e.g., "0:40" for 40 minutes,
+  "1:15" for an hour and fifteen minutes. Required.
 
 Any other headers (and corresponding columns) are ignored.
 
