@@ -90,7 +90,7 @@ To stop:
   resource. That is, URL path `/foo.png` corresponds to file
   `src/main/resources/www/foo.png`, and `/www/js/nyc.js` corresponds
   to `src/main/resources/www/js/nyc.js`. (That's why the `favicon.ico` file
-  is in `src/main/resources/www`.
+  is in `src/main/resources/www`.)
   
 ### The 2016 Schedule
 
