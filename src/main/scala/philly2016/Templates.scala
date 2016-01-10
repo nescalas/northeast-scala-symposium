@@ -272,13 +272,13 @@ trait Templates {
       <div class="regular" id="related">
         <div class="grid">
           <div class="unit whole">
-            <h2>Related Coolness</h2>
+            <h2>Related coolness</h2>
             <p>
               This year, we're excited to tell you about some <i>other</i>
               events that are associated with NE Scala 2016.
             </p>
 
-            <h3 id="typelevel">The Typelevel Conference</h3>
+            <h3 id="typelevel">Typelevel Summit US</h3>
 
             <p>
               On the 2nd and 3rd of March, the two days before NE Scala,
