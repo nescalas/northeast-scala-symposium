@@ -122,7 +122,6 @@ trait Templates {
             </div>
           }
           else {
-
             PhillySchedule.zipWithIndex.map { case (slot, index) =>
               import org.joda.time._
               val oddEven = if ((index % 2) == 0) "odd" else "even"
@@ -291,8 +290,9 @@ trait Templates {
             </p>
             <p>
               The summit is open to all, not just current contributors to
-              and users of the Typelevel projects, and we are especially keen
-              to encourage participation from people who are new to them.
+              and users of the Typelevel projects, and the Typelevel organizers
+              are especially keen to encourage participation from people who
+              are new to them.
             </p>
             <p>
               While many of the Typelevel projects use somewhat "advanced"
