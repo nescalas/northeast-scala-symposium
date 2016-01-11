@@ -179,7 +179,7 @@ trait Templates {
             <p>
               To attend, RSVP separately for
               {offsiteLink(Day1URL, "day one")} ($60) and/or
-              {offsiteLink(Day2URL, "day one")} (free).
+              {offsiteLink(Day2URL, "day two")} (free).
             </p>
           </div>
         </div>
