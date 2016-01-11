@@ -309,13 +309,21 @@ trait Templates {
               then this is the place for you and we'd love to see you there.
             </p>
 
-            <h3 id="spark">Public Spark class</h3>
+            <h3 id="spark">NewCircle Public Spark class</h3>
 
             <p>
               {offsiteLink("http://newcircle.com", "NewCircle")} is
-              working on a public <i>Intro to Apache Spark</i> class, to
-              be held in Philadelphia March 15 through March 17. Details
-              are still being finalized. Watch this space.
+              offering a public
+              {offsiteLink("https://newcircle.com/instructor-led-training/apache-spark-development-bootcamp?utm_campaign=nescala_2016&utm_source=nescala_website&utm_medium=referral", "Intro to Spark")}
+              class, to be held in Philadelphia March 15—17. NE Scala attendees
+              get a $200 discount on the class fee. (The promotion code
+              will be emailed to all those whose RSVP, a week or two after RSVPs
+              open.) Venue logistics are still being finalized, but the class
+              will be in Center City Philadelphia. More details here and
+              on the
+              {offsiteLink("https://newcircle.com/class/big-data/apache-spark-development-bootcamp/philadelphia-venue-tbd/2016-03-15?utm_campaign=nescala_2016&utm_source=nescala_website&utm_medium=referral",
+                           "NewCircle event page")}
+              as they become available.
             </p>
           </div>
 
