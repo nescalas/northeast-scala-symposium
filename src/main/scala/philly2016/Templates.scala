@@ -69,7 +69,7 @@ trait Templates {
           else if (proposingIsOpen) {
             <div>
               {offsiteLink(ProposalsURL, "Propose a talk")}
-
+              (by {ProposalsCloseStr})
             </div>
           }
           else {
