@@ -34,9 +34,12 @@ object Constants {
 
   val dayOneTime =
     new LocalDateTime(TZ)
-      .withYear(2016).withMonthOfYear(3)
-      .withDayOfMonth(4).withMinuteOfHour(0)
-      .withSecondOfMinute(0).withMillisOfSecond(0)
+      .withYear(2016)
+      .withMonthOfYear(3)
+      .withDayOfMonth(4)
+      .withMinuteOfHour(0)
+      .withSecondOfMinute(0)
+      .withMillisOfSecond(0)
 
   val ProposalsOpen = Year2016.withMonthOfYear(1).withDayOfMonth(7)
   val ProposalsClose = Year2016
