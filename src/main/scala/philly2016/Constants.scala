@@ -1,5 +1,7 @@
 package nescala.philly2016
 
+import java.util.Calendar
+
 import org.joda.time.{DateTime, DateMidnight, DateTimeZone, LocalDateTime}
 import java.text.SimpleDateFormat
 
@@ -19,6 +21,9 @@ object Constants {
 
   val TZ = DateTimeZone.forID("US/Eastern")
 
+  // Used for forcing time zone in date format
+  private val cal = Calendar.getInstance(TZ.toTimeZone)
+
   val Year2016 = new DateTime(TZ)
     .withYear(2016)
     .withMonthOfYear(1)
@@ -33,28 +38,30 @@ object Constants {
       .withDayOfMonth(4).withMinuteOfHour(0)
       .withSecondOfMinute(0).withMillisOfSecond(0)
 
-  val proposalsOpen = Year2016.withMonthOfYear(1).withDayOfMonth(7)
-  val proposalsClose = Year2016
+  val ProposalsOpen = Year2016.withMonthOfYear(1).withDayOfMonth(7)
+  val ProposalsClose = Year2016
     .withMonthOfYear(1)
     .withDayOfMonth(15)
     .withHourOfDay(23)
     .withMinuteOfHour(59)
 
-  val votingOpens = Year2016.withMonthOfYear(1).withDayOfMonth(18)
-  val votingCloses = Year2016.withMonthOfYear(1).withDayOfMonth(25)
+  val VotingOpens = Year2016.withMonthOfYear(1).withDayOfMonth(18)
+  val VotingCloses = Year2016.withMonthOfYear(1).withDayOfMonth(25)
 
   lazy val DefaultDateFormat = new SimpleDateFormat("E MMM d")
+  DefaultDateFormat.setCalendar(cal)
   lazy val DefaultTimeFormat = new SimpleDateFormat("HH:mm a")
+  DefaultTimeFormat.setCalendar(cal)
 
   lazy val DayOneTimeStr = DefaultDateFormat.format(dayOneTime.toDate)
-  lazy val ProposalsOpenStr = DefaultDateFormat.format(proposalsOpen.toDate)
-  lazy val ProposalsCloseStr = DefaultDateFormat.format(proposalsClose.toDate)
-  lazy val VotesOpenStr = DefaultDateFormat.format(votingOpens.toDate)
-  lazy val VotesCloseStr = DefaultDateFormat.format(votingCloses.toDate)
+  lazy val ProposalsOpenStr = DefaultDateFormat.format(ProposalsOpen.toDate)
+  lazy val ProposalsCloseStr = DefaultDateFormat.format(ProposalsClose.toDate)
+  lazy val VotesOpenStr = DefaultDateFormat.format(VotingOpens.toDate)
+  lazy val VotesCloseStr = DefaultDateFormat.format(VotingCloses.toDate)
 
-  def proposingIsOpen = (proposalsOpen.isBeforeNow && proposalsClose.isAfterNow)
-  def votingIsOpen = (votingOpens.isBeforeNow && votingCloses.isAfterNow)
-  def votingIsClosed = votingCloses.isBeforeNow
+  def proposingIsOpen = (ProposalsOpen.isBeforeNow && ProposalsClose.isAfterNow)
+  def votingIsOpen = (VotingOpens.isBeforeNow && VotingCloses.isAfterNow)
+  def votingIsClosed = VotingCloses.isBeforeNow
 
   private def time(hour: Int, minute: Int) =
     dayOneTime.withHourOfDay(hour).withMinuteOfHour(minute)
