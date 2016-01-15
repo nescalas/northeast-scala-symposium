@@ -19,7 +19,13 @@ object Constants {
 
   val TZ = DateTimeZone.forID("US/Eastern")
 
-  val Year2016 = new DateMidnight(TZ).withYear(2016)
+  val Year2016 = new DateTime(TZ)
+    .withYear(2016)
+    .withMonthOfYear(1)
+    .withDayOfMonth(1)
+    .withHourOfDay(0)
+    .withMinuteOfHour(0)
+    .withSecondOfMinute(0)
 
   val dayOneTime =
     new LocalDateTime(TZ)
@@ -28,7 +34,12 @@ object Constants {
       .withSecondOfMinute(0).withMillisOfSecond(0)
 
   val proposalsOpen = Year2016.withMonthOfYear(1).withDayOfMonth(7)
-  val proposalsClose = Year2016.withMonthOfYear(1).withDayOfMonth(15)
+  val proposalsClose = Year2016
+    .withMonthOfYear(1)
+    .withDayOfMonth(15)
+    .withHourOfDay(23)
+    .withMinuteOfHour(59)
+
   val votingOpens = Year2016.withMonthOfYear(1).withDayOfMonth(18)
   val votingCloses = Year2016.withMonthOfYear(1).withDayOfMonth(25)
 
