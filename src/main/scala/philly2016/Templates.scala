@@ -42,7 +42,7 @@ trait Templates {
         <div class="unit full center center-on-mobiles">
           <p>
             The Northeast Scala Symposium is the original Scala community-based
-            conference, and we're gearing up for our
+            conference. We're gearing up for our
             <a href="#what">6th year.</a>
           </p>
         {
@@ -99,7 +99,7 @@ trait Templates {
               This is <strong>your</strong> conference.
             </h2>
             <p>
-              Northeast Scala Symposium is a
+              The Northeast Scala Symposium is a
               {offsiteLink("http://scala-lang.org/", "Scala")}-focused
               <strong>community</strong> gathering.
             </p>
@@ -171,7 +171,7 @@ trait Templates {
           <div class="unit">
             <h2>When</h2>
             <p>
-              Northeast Scala Symposium is held annually. In 2016, we will
+              NEScala is held annually. In 2016, we will
               descend upon the City of Brotherly Love, on
               {offsiteLink(Day1URL, "Friday, March 4")} and
               {offsiteLink(Day2URL, "Saturday, March 5")}.
@@ -309,7 +309,7 @@ trait Templates {
               then this is the place for you and we'd love to see you there.
             </p>
 
-            <h3 id="spark">NewCircle Public Spark class</h3>
+            <h3 id="spark">NewCircle public Spark class</h3>
 
             <p>
               {offsiteLink("http://newcircle.com", "NewCircle")} is
