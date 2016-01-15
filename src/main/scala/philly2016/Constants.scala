@@ -41,7 +41,11 @@ object Constants {
       .withSecondOfMinute(0)
       .withMillisOfSecond(0)
 
-  val ProposalsOpen = Year2016.withMonthOfYear(1).withDayOfMonth(7)
+  val ProposalsOpen = Year2016
+    .withMonthOfYear(1)
+    .withDayOfMonth(7)
+    .withHourOfDay(12)
+    .withMinuteOfHour(0)
   val ProposalsClose = Year2016
     .withMonthOfYear(1)
     .withDayOfMonth(15)
