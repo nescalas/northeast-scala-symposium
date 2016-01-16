@@ -8,6 +8,7 @@ import java.text.SimpleDateFormat
 import philly2016.Schedule2016
 
 object Constants {
+  val MeetupOrgName = "nescala"
   val Day1EventIdNum = 227877388
   val Day2EventIdNum = 227877435
 

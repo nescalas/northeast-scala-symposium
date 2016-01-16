@@ -59,9 +59,13 @@ trait Templates {
                 {offsiteLink(s"http://www.meetup.com/nescala/events/$Day2EventId/",
                              "Day two")}
               </p>
-              <p>
-                {Meetup.rsvps(Day1EventId).length} people have already RSVP'd.
-              </p>
+              {
+                val rsvps = Meetup.rsvpCount(MeetupOrgName, Day1EventId)
+                <p>
+                  {rsvps.yesCount} people have already RSVP'd.
+                  {rsvps.limit - rsvps.yesCount} tickets left.
+                </p>
+              }
             </div> ++ {
             if (votingIsOpen) {
               <div>

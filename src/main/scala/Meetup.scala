@@ -288,6 +288,19 @@ object Meetup extends Config {
     parse(res, meta)
   }
 
+  case class RSVPStatus(limit: Int, yesCount: Int)
+
+  def rsvpCount(urlname: String, eventID: String) = {
+    val url = host / urlname / "events" / eventID
+    val body = http(url <<? Map("key" -> apiKey) > as.json4s.Json).apply()
+    (
+      for { JObject(response)           <- body
+            ("rsvp_limit", JInt(lim))   <- response
+            ("yes_rsvp_count", JInt(y)) <- response }
+      yield RSVPStatus(lim.toInt, y.toInt)
+    ).head
+  }
+
   def hosting(memberId: String, eventId: Int) =
     hosts(eventId).contains(memberId.toInt)
 

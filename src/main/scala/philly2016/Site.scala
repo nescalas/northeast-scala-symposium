@@ -26,7 +26,7 @@ object Site extends Templates {
 
   def pages: Intent[Any, Any] = {
     case GET(req) & Path(Seg(Nil)) =>
-      respond(req)(indexPage(sponsors.get("nescala")))
+      respond(req)(indexPage(sponsors.get(Constants.MeetupOrgName)))
   }
 
   def respond
