@@ -266,22 +266,26 @@ trait Templates {
         </div>
       </div>
       <div class="inverse" id="friends">
-        <div class="grid center-on-mobiles">
+        <div class="sponsors grid">
           <div class="unit whole">
             <h2>Friends</h2>
             <p>Below are some of the sponsors who made this possible.</p>
-            <div class="sponsors">{
-              sponsors.map { sponsor =>
-                <div class="sponsor unit one-third">
-                  <a class="friend" title={sponsor.name} href={sponsor.link}
-                     target={OffsiteAnchorTarget}>
-                    <img src={sponsor.image}/>
-                  </a>
-                  <div class="blurb">{sponsor.info}</div>
-                </div>
-              }
-            }</div>
           </div>
+          {
+            sponsors.grouped(3).map { group =>
+              <div class="grid center-on-mobiles">{
+                group.map { sponsor =>
+                  <div class="sponsor unit one-third">
+                    <a class="friend" title={sponsor.name} href={sponsor.link}
+                       target={OffsiteAnchorTarget}>
+                      <img src={sponsor.image}/>
+                    </a>
+                    <div class="blurb">{sponsor.info}</div>
+                  </div>
+                }
+              }</div>
+            }
+          }
         </div>
       </div>
       <div class="regular" id="related">
