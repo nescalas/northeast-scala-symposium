@@ -46,7 +46,7 @@ trait Templates {
             <a href="#what">6th year.</a>
           </p>
         {
-          if (votingIsOpen) {
+          if (rsvpsAreOpen) {
             <div>
               <p>
                 RSVP on
@@ -60,6 +60,8 @@ trait Templates {
                              "Day two")}
               </p>
             </div>
+          }
+          if (votingIsOpen) {
             <div>
               Then,
               {offsiteLink(VotingFormURL, "vote for talks")}
