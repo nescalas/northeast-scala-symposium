@@ -59,15 +59,18 @@ trait Templates {
                 {offsiteLink(s"http://www.meetup.com/nescala/events/$Day2EventId/",
                              "Day two")}
               </p>
-            </div>
-          }
-          if (votingIsOpen) {
-            <div>
-              Then,
-              {offsiteLink(VotingFormURL, "vote for talks")}
-              (by {VotesCloseStr}).
-            </div>
-          }
+            </div> ++ {
+            if (votingIsOpen) {
+              <div>
+                Then,
+                {offsiteLink(VotingFormURL, "vote for talks")}
+                (by {VotesCloseStr}).
+              </div>
+            }
+            else {
+              <div></div>
+            }
+          }}
           else if (proposingIsOpen) {
             <div>
               {offsiteLink(ProposalsURL, "Propose a talk")}

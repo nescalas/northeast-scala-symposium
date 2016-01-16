@@ -56,6 +56,7 @@ object Constants {
     .withMonthOfYear(1)
     .withDayOfMonth(16)
     .withHourOfDay(12)
+    .withMinuteOfHour(0)
   val VotingOpens = Year2016.withMonthOfYear(1).withDayOfMonth(18)
   val VotingCloses = Year2016.withMonthOfYear(1).withDayOfMonth(25)
 
@@ -73,7 +74,7 @@ object Constants {
   def proposingIsOpen = (ProposalsOpen.isBeforeNow && ProposalsClose.isAfterNow)
   def votingIsOpen = (VotingOpens.isBeforeNow && VotingCloses.isAfterNow)
   def votingIsClosed = VotingCloses.isBeforeNow
-  def rsvpsAreOpen = RSVPsOpen.isAfterNow
+  def rsvpsAreOpen = RSVPsOpen.isBeforeNow
 
   private def time(hour: Int, minute: Int) =
     dayOneTime.withHourOfDay(hour).withMinuteOfHour(minute)
