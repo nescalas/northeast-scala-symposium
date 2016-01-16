@@ -195,20 +195,23 @@ trait Templates {
             </p>
           </div>
         </div>
-        <div class="grid">
-          <div class="unit full center">
-            <div class="warning">
-              <p>NOTE: RSVPs aren't open yet! They'll open on
-              Saturday, January 16th at noon (Philadelphia time, a.k.a., Eastern
-              Standard).</p>
+        {
+        if (! rsvpsAreOpen) {
+          <div class="grid">
+            <div class="unit full center">
+              <div class="warning">
+                <p>NOTE: RSVPs aren't open yet! They'll open on
+                Saturday, January 16th at noon (Philadelphia time, a.k.a., Eastern
+                Standard).</p>
 
-              <p>There are only 200 slots available (minus reserved slots for
-                speakers). In previous years, the conference has sold out in hours
-                or even minutes.</p>
+                <p>There are only 200 slots available (minus reserved slots for
+                  speakers). In previous years, the conference has sold out in hours
+                  or even minutes.</p>
+              </div>
             </div>
+            <div class="one-fourth"></div>
           </div>
-          <div class="one-fourth"></div>
-        </div>
+        }}
       </div>
       <div class="inverse" id="where">
         <div class="grid">
