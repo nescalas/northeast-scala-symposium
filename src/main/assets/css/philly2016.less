@@ -125,6 +125,17 @@ h1, h2, h3 {
   padding: 1em;
 }
 
+.note {
+  font-size:smaller;
+  background:#eee;
+  border-radius: 6px;
+  margin:.5em 0;
+}
+
+.note a {
+  color: #333;
+}
+
 .well {
   //background: rgba(196, 196, 196, 0.60);
   background: white;
@@ -132,7 +143,13 @@ h1, h2, h3 {
   border: 1px solid @anchorUnderlineColor;
   margin-left: 20px;
   margin-right: 20px;
+  padding: 10px;
   box-shadow: 0px 0px 77px 0px @anchorUnderlineColor;
+
+  .note {
+    font-style: italic;
+    background: white;
+  }
 }
 
 body > header,
@@ -572,17 +589,6 @@ ul { list-style:none; margin:0; padding:0; }
 a.circle {
   color: transparent;
 } /* IE fix: removes blue border */
-
-.note {
-  font-size:smaller;
-  background:#eee;
-  border-radius: 6px;
-  margin:.5em 0;
-}
-
-.note a {
-  color: #333;
-}
 
 .limit-label {
   color:#ccc;

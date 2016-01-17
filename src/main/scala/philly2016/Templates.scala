@@ -81,6 +81,13 @@ trait Templates {
                   {Util.singularPlural(rsvps.limit - rsvps.yesCount, "ticket")} left.
                 </p>
               }
+              <hr/>
+              <p class="note">
+                Note: The Hub has a limit of 200 attendees. We are holding 10
+                tickets in reserve, to ensure that each speaker whose talk is
+                chosen has a ticket. Once we are certain all speakers are
+                covered, we will release whatever tickets remain.
+              </p>
             </div> ++ {
             if (votingIsOpen) {
               <div>
