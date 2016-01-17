@@ -1,6 +1,6 @@
 package nescala.philly2016
 
-import nescala.{ Meetup, SessionCookie }
+import nescala.{ Meetup, SessionCookie, Util }
 import unfiltered.response.Html5
 import java.text.SimpleDateFormat
 import java.util.{ Calendar, Date, TimeZone }
@@ -77,8 +77,8 @@ trait Templates {
               {
                 val rsvps = Meetup.rsvpCount(MeetupOrgName, Day1EventId)
                 <p>
-                  {rsvps.yesCount} people have already RSVP'd.
-                  {rsvps.limit - rsvps.yesCount} tickets left.
+                  {Util.singularPlural(rsvps.yesCount, "ticket")} sold for Day 1.
+                  {Util.singularPlural(rsvps.limit - rsvps.yesCount, "ticket")} left.
                 </p>
               }
             </div> ++ {
