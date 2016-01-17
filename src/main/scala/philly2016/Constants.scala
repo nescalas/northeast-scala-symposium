@@ -38,15 +38,15 @@ object Constants {
       .withYear(2016)
       .withMonthOfYear(3)
       .withDayOfMonth(4)
-      .withMinuteOfHour(0)
-      .withSecondOfMinute(0)
-      .withMillisOfSecond(0)
+      .withHourOfDay(8)
+      .withMinuteOfHour(30)
 
   val ProposalsOpen = Year2016
     .withMonthOfYear(1)
     .withDayOfMonth(7)
     .withHourOfDay(12)
     .withMinuteOfHour(0)
+
   val ProposalsClose = Year2016
     .withMonthOfYear(1)
     .withDayOfMonth(15)
@@ -58,19 +58,29 @@ object Constants {
     .withDayOfMonth(16)
     .withHourOfDay(12)
     .withMinuteOfHour(0)
-  val VotingOpens = Year2016.withMonthOfYear(1).withDayOfMonth(18)
-  val VotingCloses = Year2016.withMonthOfYear(1).withDayOfMonth(25)
+
+  val VotingOpens = Year2016
+    .withMonthOfYear(1)
+    .withDayOfMonth(18)
+
+  val VotingCloses = Year2016
+    .withMonthOfYear(1)
+    .withDayOfMonth(25)
+    .withHourOfDay(23)
+    .withMinuteOfHour(59)
 
   lazy val DefaultDateFormat = new SimpleDateFormat("E MMM d")
   DefaultDateFormat.setCalendar(cal)
-  lazy val DefaultTimeFormat = new SimpleDateFormat("HH:mm a")
+  lazy val DefaultTimeFormat = new SimpleDateFormat("hh:mm a")
   DefaultTimeFormat.setCalendar(cal)
 
   lazy val DayOneTimeStr = DefaultDateFormat.format(dayOneTime.toDate)
   lazy val ProposalsOpenStr = DefaultDateFormat.format(ProposalsOpen.toDate)
   lazy val ProposalsCloseStr = DefaultDateFormat.format(ProposalsClose.toDate)
-  lazy val VotesOpenStr = DefaultDateFormat.format(VotingOpens.toDate)
-  lazy val VotesCloseStr = DefaultDateFormat.format(VotingCloses.toDate)
+  lazy val VotesOpenDateStr = DefaultDateFormat.format(VotingOpens.toDate)
+  lazy val VotesOpenTimeStr = DefaultTimeFormat.format(VotingOpens.toDate)
+  lazy val VotesCloseDateStr = DefaultDateFormat.format(VotingCloses.toDate)
+  lazy val VotesCloseTimeStr = DefaultTimeFormat.format(VotingCloses.toDate)
 
   def proposingIsOpen = (ProposalsOpen.isBeforeNow && ProposalsClose.isAfterNow)
   def votingIsOpen = (VotingOpens.isBeforeNow && VotingCloses.isAfterNow)

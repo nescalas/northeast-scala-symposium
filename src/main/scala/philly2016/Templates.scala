@@ -77,29 +77,34 @@ trait Templates {
               {
                 val rsvps = Meetup.rsvpCount(MeetupOrgName, Day1EventId)
                 <p>
-                  {Util.singularPlural(rsvps.yesCount, "ticket")} sold for Day 1.
+                  {Util.singularPlural(rsvps.yesCount, "ticket")} sold for Day One.
                   {Util.singularPlural(rsvps.limit - rsvps.yesCount, "ticket")} left.
                 </p>
               }
-              <hr/>
-              <p class="note">
-                Note: The Hub has a limit of 200 attendees. We are holding 10
-                tickets in reserve, to ensure that each speaker whose talk is
-                chosen has a ticket. Once we are certain all speakers are
-                covered, we will release whatever tickets remain.
-              </p>
             </div> ++ {
             if (votingIsOpen) {
               <div>
                 Then,
                 {offsiteLink(VotingFormURL, "vote for talks")}
-                (by {VotesCloseStr}).
+                (by {VotesCloseDateStr}).
               </div>
             }
-            else {
+            else if (votingIsClosed) {
               <div></div>
             }
-          }}
+
+            else {
+              <div>Voting opens {VotesOpenDateStr} at {VotesOpenTimeStr}.</div>
+            }
+          } ++
+          <div class="note">
+            <hr/>
+            Note: The Hub has a limit of 200 attendees. We are holding 10
+            tickets in reserve, to ensure that each speaker whose talk is
+            chosen has a ticket. Once we are certain all speakers are
+            covered, we will release whatever tickets remain.
+          </div>
+          }
           else if (proposingIsOpen) {
             <div>
               {offsiteLink(ProposalsURL, "Propose a talk")}

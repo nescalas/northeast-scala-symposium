@@ -22,6 +22,7 @@
 @iconHoverTextColor:             white;
 @popupBackgroundColor:           lighten(@themeTextColor, 20%);
 @popupTextColor:                 white;
+@hrColor:                        #bbb;
 
 @headingFontFamily: Signika, "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 @textFontFamily:    "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -134,6 +135,13 @@ h1, h2, h3 {
 
 .note a {
   color: #333;
+}
+
+hr {
+  color: @hrColor;
+  border: 1px solid @hrColor;
+  margin: .75em auto;
+  width: 200px;
 }
 
 .well {
@@ -351,13 +359,6 @@ a.icon {
     padding-top: 10px;
     padding-bottom: 10px;
   }
-}
-
-hr {
-  border: 1px solid #eee;
-  margin: .75em auto;
-  opacity: 0.3;
-  width: 50px;
 }
 
 .communicate {
