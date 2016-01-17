@@ -34,6 +34,21 @@ trait Templates {
     </span>
   }
 
+  private def sectionHeader(id: String, heading: scala.xml.Elem, level: Int = 2) = {
+    val icon = <span class="section-icon">&#x00a7;&nbsp;</span>
+    val header = level match {
+      case 1 => <h1></h1>
+      case 2 => <h2></h2>
+      case 3 => <h3></h3>
+      case 4 => <h4></h4>
+      case _ => <h2></h2>
+    }
+    val content = header.copy(child = icon.toSeq ++ heading.toSeq)
+    <a href={s"#$id"} class="section">
+      {content}
+    </a>
+  }
+
   def indexPage
    (sponsors: List[Meetup.Sponsor])
    (session: Option[SessionCookie] = None) =
@@ -104,12 +119,10 @@ trait Templates {
         <a href="#where" class="icon"><i class="fa fa-map-marker"></i><span>Fire up your GPS</span></a>
       </div>
     )(
-      <div class="inverse" id="what">
+      <div class="inverse">
         <div class="grid">
           <div class="unit">
-            <h2>
-              This is <strong>your</strong> conference.
-            </h2>
+            {sectionHeader("what", <span>This is <strong>your</strong> conference.</span>)}
             <p>
               The Northeast Scala Symposium is a
               {offsiteLink("http://scala-lang.org/", "Scala")}-focused
@@ -121,7 +134,9 @@ trait Templates {
               Lots of coffee.) All presenters are attendees, and all
               attendees select presenters.
             </p>
-            <h2><strong>Day 1 schedule</strong></h2>
+
+            {sectionHeader("day1", <strong>Day 1 schedule</strong>)}
+
           </div>
         </div>
         <div id="schedule">{
@@ -178,10 +193,10 @@ trait Templates {
           </div>
         </div>
       </div>
-      <div id="when" class="regular">
+      <div class="regular">
         <div class="grid">
           <div class="unit">
-            <h2>When</h2>
+            {sectionHeader("when", <span>When</span>)}
             <p>
               NEScala is held annually. In 2016, we will
               descend upon the City of Brotherly Love, on
@@ -213,10 +228,10 @@ trait Templates {
           </div>
         }}
       </div>
-      <div class="inverse" id="where">
+      <div class="inverse">
         <div class="grid">
           <div class="unit whole">
-            <h2>Where</h2>
+            {sectionHeader("where", <span>Where</span>)}
             <p>
               This year's symposium will be held at
               {offsiteLink("http://thehub.com/locations/cira-centre/",
@@ -232,10 +247,10 @@ trait Templates {
           </div>
         </div>
       </div>
-      <div id="kindness" class="regular">
+      <div class="regular">
         <div class="grid">
           <div class="unit whole">
-            <h2>Be kind.</h2>
+            {sectionHeader("kindness", <span>Be kind</span>)}
             <p>
               Nobody likes a jerk, so <strong>show respect</strong> for those
               around you.
@@ -265,10 +280,10 @@ trait Templates {
           </div>
         </div>
       </div>
-      <div class="inverse" id="friends">
+      <div class="inverse">
         <div class="sponsors grid">
           <div class="unit whole">
-            <h2>Friends</h2>
+            {sectionHeader("friends", <span>Friends</span>)}
             <p>Below are some of the sponsors who made this possible.</p>
           </div>
           {
@@ -288,10 +303,10 @@ trait Templates {
           }
         </div>
       </div>
-      <div class="regular" id="related">
+      <div class="regular">
         <div class="grid">
           <div class="unit whole">
-            <h2>Related coolness</h2>
+            {sectionHeader("related", <span>Related coolness</span>)}
             <p>
               This year, we're excited to tell you about some <i>other</i>
               events that are associated with NE Scala 2016.
@@ -373,7 +388,7 @@ trait Templates {
           styles.map { s => <link rel="stylesheet" type="text/css" href={s}/> } ++
           scripts.map { s => <script type="text/javascript" src={s}></script> }
         }
-        <script type="text/javascript" src=""></script>
+        <script type="text/javascript" src="/js/2016/util.js"></script>
       </head>
       <body class="wrap wider">
         <div class="unit whole center-on-mobiles top section" id="banner">
