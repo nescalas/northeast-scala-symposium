@@ -135,7 +135,7 @@ trait Templates {
               attendees select presenters.
             </p>
 
-            {sectionHeader("day1", <strong>Day 1 schedule</strong>)}
+            {sectionHeader("day1", <span>Day 1 schedule</span>)}
 
           </div>
         </div>
@@ -186,7 +186,7 @@ trait Templates {
         }</div>
         <div class="grid">
           <div class="unit">
-            <h2><strong>Day 2 schedule</strong></h2>
+            {sectionHeader("day2", <span>Day 2 schedule</span>)}
             <p>See the
               {offsiteLink(Day2URL, "Meetup page")}.
             </p>
@@ -312,7 +312,7 @@ trait Templates {
               events that are associated with NE Scala 2016.
             </p>
 
-            <h3 id="typelevel">Typelevel Summit US</h3>
+            {sectionHeader("typelevel", <span>Typelevel Summit US</span>, level=3)}
 
             <p>
               On the 2nd and 3rd of March, the two days before NE Scala,
@@ -343,7 +343,7 @@ trait Templates {
               then this is the place for you and we'd love to see you there.
             </p>
 
-            <h3 id="spark">NewCircle public Spark class</h3>
+            {sectionHeader("spark", <span>NewCircle public Spark class</span>, level=3)}
 
             <p>
               {offsiteLink("http://newcircle.com", "NewCircle")} is
