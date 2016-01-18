@@ -15,14 +15,21 @@ object Util {
     * singularPlural(0, "box")   // -> "no boxes"
     * }}}
     *
-    * @param count the count
-    * @param noun  the singular noun
+    * @param count      the count
+    * @param noun       the singular noun
+    * @param initialCap whether the first word (if non-numeric) should be
+    *                   capitalized
     *
     * @return the appropriate phrase
     */
-  def singularPlural(count: Int, noun: String): String = {
+  def singularPlural(count:      Int,
+                     noun:       String,
+                     initialCap: Boolean = true): String = {
     count match {
-      case 0 => s"no ${Inflector.pluralize(noun)}"
+      case 0 => {
+        val zero = if (initialCap) "No" else "no"
+        s"$zero ${Inflector.pluralize(noun)}"
+      }
       case 1 => s"1 $noun"
       case _ => s"$count ${Inflector.pluralize(noun)}"
     }
