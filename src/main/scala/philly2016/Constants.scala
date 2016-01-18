@@ -61,7 +61,8 @@ object Constants {
 
   val VotingOpens = Year2016
     .withMonthOfYear(1)
-    .withDayOfMonth(18)
+    .withDayOfMonth(17)
+    .withHourOfDay(23)
 
   val VotingCloses = Year2016
     .withMonthOfYear(1)

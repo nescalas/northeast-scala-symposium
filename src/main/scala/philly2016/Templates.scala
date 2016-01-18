@@ -86,7 +86,7 @@ trait Templates {
               <div>
                 Then,
                 {offsiteLink(VotingFormURL, "vote for talks")}
-                (by {VotesCloseDateStr}).
+                (by {VotesCloseDateStr} at {VotesCloseTimeStr} EST).
               </div>
             }
             else if (votingIsClosed) {
@@ -94,7 +94,7 @@ trait Templates {
             }
 
             else {
-              <div>Voting opens {VotesOpenDateStr} at {VotesOpenTimeStr}.</div>
+              <div>Voting opens {VotesOpenDateStr} at {VotesOpenTimeStr} EST.</div>
             }
           } ++
           <div class="note">
