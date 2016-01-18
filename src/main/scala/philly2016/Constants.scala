@@ -18,7 +18,7 @@ object Constants {
   val Day2URL     = s"http://www.meetup.com/nescala/events/$Day2EventId/"
 
   val ProposalsURL = "https://github.com/nescalas/proposals-2016"
-  val VotingFormURL = "https://goo.gl/o70ARx"
+  val VotingFormURL = "https://goo.gl/TA3OsM"
 
   val TZ = DateTimeZone.forID("US/Eastern")
 
