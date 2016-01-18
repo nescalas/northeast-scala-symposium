@@ -256,6 +256,11 @@ trait Templates {
                            "30th Street Station")},
               which makes it highly accessible via mass transit.
             </p>
+            <p>
+              Here's a Google Map link showing
+              {offsiteLink("https://goo.gl/3eOMn0",
+                           "hotels near 30th Street Station")}.
+            </p>
           </div>
         </div>
       </div>
