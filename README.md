@@ -158,3 +158,13 @@ the main repo, you can deploy them from the _Manual Deploy_ section of the
 Deploy tab. (Honestly, though, the command line is faster.) 
 
 [Heroku Toolbelt]: https://toolbelt.heroku.com/
+
+## Running on a non-Heroku Server
+
+If you want to run the site on a non-Heroku server (e.g., for testing),
+you can build a fat jar and run it:
+
+    $ sbt fatjar
+    
+That command builds `target/scala_2.10/root-assembly-0.1-SNAPSHOT.jar`,
+which you can run with `java -jar`.

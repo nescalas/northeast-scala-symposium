@@ -48,7 +48,7 @@ object CommonHandlers {
       import scala.io.Source
       import java.io.File
       val thing = rest.mkString("/")
-      val rsrc = s"webjars/root/${BuildInfo.version}/css/$thing"
+      val rsrc = s"/webjars/root/${BuildInfo.version}/css/$thing"
       val path = s"target/web/less/main/css/$thing"
       // Try as a resource first. If not there, try the local compile path.
       val is = Option(getClass.getResourceAsStream(rsrc))

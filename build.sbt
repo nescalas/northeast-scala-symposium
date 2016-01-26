@@ -37,3 +37,21 @@ lazy val root = (project in file(".")).
   )
 
 includeFilter in (Assets, LessKeys.less) := "*.less"
+
+def exec(command: String) = {
+  import sys.process._
+  println(s"Running: $command")
+  print(command.!!)
+}
+
+// Use this task instead of "assembly" to build a fat jar (e.g., for testing
+// on a server that isn't Heroku). It ensures that sbt-less files end up in
+// the jar.
+addCommandAlias("fatjar", ";copyAssets;package;assembly")
+val copyAssets = taskKey[Unit]("run copyAssets")
+copyAssets := {
+  val scalaMajor = scalaVersion.value.split("""\.""").take(2).mkString(".")
+  val targetDir = s"target/scala-${scalaMajor}/classes/resources/webjars/root/${version.value}"
+  exec(s"mkdir -p ${targetDir}")
+  exec(s"cp -r target/web/less/main/css ${targetDir}")
+}
