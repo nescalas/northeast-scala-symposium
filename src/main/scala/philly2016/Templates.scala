@@ -78,7 +78,11 @@ trait Templates {
                 val rsvps = Meetup.rsvpCount(MeetupOrgName, Day1EventId)
                 <p>
                   {Util.singularPlural(rsvps.yesCount, "ticket")} sold for Day One.
-                  {Util.singularPlural(rsvps.limit - rsvps.yesCount, "ticket")}
+                  {
+                    val left = (rsvps.limit - rsvps.yesCount)
+                    val reallyLeft = if (left < 0) 0 else left
+                    Util.singularPlural(reallyLeft, "ticket")
+                  }
                   left.<sup>*</sup>
                 </p>
               }
