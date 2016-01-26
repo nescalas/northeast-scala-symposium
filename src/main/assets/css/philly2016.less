@@ -251,6 +251,7 @@ a {
 
 #schedule {
   .grid {
+    vertical-align: text-top;
 
     color: @themeTextColor;
     background-color: @themeBackgroundColor;
@@ -264,6 +265,20 @@ a {
       p {
         margin: 0;
       }
+    }
+
+    .speaker-name {
+      vertical-align: text-top;
+      font-weight: bold;
+    }
+
+    .speaker-photo {
+      height: 100px;
+
+      // Circular
+      border-radius: 50%;
+      -webkit-border-radius: 50%;
+      -moz-border-radius: 50%;
     }
   }
 }

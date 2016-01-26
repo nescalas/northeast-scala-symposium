@@ -27,7 +27,7 @@ trait Templates {
     <span class="time">{ time }</span><span class="ampm">{ fmt("aa").format(d).toLowerCase }</span>
   }
 
-  def pollsClosed = {
+  private def pollsClosed = {
     <span>
       Votes on {offsiteLink(Constants.ProposalsURL, "talk proposals")}
       are in. Winners are below.
@@ -47,6 +47,73 @@ trait Templates {
     <a href={s"#$id"} class="section">
       {content}
     </a>
+  }
+
+  private def renderSchedule = {
+    val speakerMeetupIDs = PhillySchedule.flatMap { _.meetupID }
+    val speakers = Meetup.members(speakerMeetupIDs).map { member =>
+      member.id -> member
+    }.toMap
+
+    PhillySchedule.zipWithIndex.map { case (slot, index) =>
+      import org.joda.time._
+      val oddEven = if ((index % 2) == 0) "odd" else "even"
+
+      <div class={s"grid $oddEven"}>
+        <span class="right unit one-fifth">
+          {
+          val hour = slot.time.get(DateTimeFieldType.hourOfDay)
+          val minute = slot.time.get(DateTimeFieldType.minuteOfHour)
+          f"$hour:$minute%02d"
+          }
+        </span>
+        <span class="unit one-fifth">{slot.activity.getOrElse("")}</span>
+        <span class="unit one-fifth">{
+          slot.meetupID.flatMap { id =>
+            speakers.get(id).map { m =>
+              <img class="speaker-photo" src={m.photo}/>
+            }
+          }
+          .getOrElse(<span>&nbsp;</span>)
+        }
+        </span>
+
+        <span class="unit two-fifths">{
+          val speaker = slot.speaker.map { s =>
+            <span class="speaker-name">{s}:&nbsp;</span>
+          }
+          .getOrElse(<span/>)
+
+          val desc = slot.description.map { s =>
+            val e = scala.xml.XML.loadString(s)
+            // Find all links (<a> tags). Any with off-page href
+            // attributes (i.e., those not beginning with "#") should
+            // open in a new tab.
+            e.child.map { c =>
+              c match {
+                case e: Elem if e.label == "a"  => {
+                  val href = e.attribute("href")
+                    .flatMap(_.headOption)
+                    .map(_.text)
+                    .getOrElse("")
+                  if (! href.startsWith("#")) {
+                    e.attr("target", OffsiteAnchorTarget)
+                  }
+                  else {
+                    e
+                  }
+                }
+                case e => e
+              }
+            }
+          }.
+          getOrElse(<span></span>)
+
+          speaker ++ desc
+        }
+        </span>
+      </div>
+    }
   }
 
   def indexPage
@@ -166,49 +233,7 @@ trait Templates {
             </div>
           }
           else {
-            PhillySchedule.zipWithIndex.map { case (slot, index) =>
-              import org.joda.time._
-              val oddEven = if ((index % 2) == 0) "odd" else "even"
-
-              <div class={s"grid $oddEven"}>
-                <span class="right unit one-fifth">
-                  {
-                    val hour = slot.time.get(DateTimeFieldType.hourOfDay)
-                    val minute = slot.time.get(DateTimeFieldType.minuteOfHour)
-                    f"$hour:$minute%02d"
-                  }
-                </span>
-                <span class="unit one-fifth">{slot.speaker.getOrElse("")}</span>
-                <span class="unit one-fifth">{slot.activity.getOrElse("")}</span>
-                <span class="unit two-fifths">{
-                  slot.description.map { s =>
-                    val e = scala.xml.XML.loadString(s)
-                    // Find all links (<a> tags). Any with off-page href
-                    // attributes (i.e., those not beginning with "#") should
-                    // open in a new tab.
-                    e.child.map { c =>
-                      c match {
-                        case e: Elem if e.label == "a"  => {
-                          val href = e.attribute("href")
-                                      .flatMap(_.headOption)
-                                      .map(_.text)
-                                      .getOrElse("")
-                          if (! href.startsWith("#")) {
-                            e.attr("target", OffsiteAnchorTarget)
-                          }
-                          else {
-                            e
-                          }
-                        }
-                        case e => e
-                      }
-                    }
-                  }.
-                  getOrElse(<span></span>)
-                }
-                </span>
-              </div>
-            }
+            renderSchedule
           }
         }</div>
         <div class="grid">

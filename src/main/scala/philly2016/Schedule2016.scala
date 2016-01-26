@@ -19,6 +19,7 @@ import scala.util.Try
 case class ScheduleSlot(val time:        LocalTime,
                         val duration:    Duration,
                         val speaker:     Option[String],
+                        val meetupID:    Option[String],
                         val activity:    Option[String],
                         val description: Option[String])
 
@@ -62,6 +63,7 @@ object Schedule2016 {
         case _ => throw new Exception(s"Bad duration: $durationField")
       }
       val activity = someOrNone(field("Activity"))
+      val meetupID = someOrNone(field("Meetup ID"))
       val desc = someOrNoneMapped(field("Description")) {
         markdownParser.parseToHTML(_)
       }
@@ -80,6 +82,7 @@ object Schedule2016 {
                    duration    = duration,
                    speaker     = speaker,
                    activity    = activity,
+                   meetupID    = meetupID,
                    description = desc)
     }.
     toArray.
