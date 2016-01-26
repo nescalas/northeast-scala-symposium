@@ -179,12 +179,22 @@ trait Templates {
                 <span class="unit two-fifths">{
                   slot.description.map { s =>
                     val e = scala.xml.XML.loadString(s)
-                    // For now, assume that any links in the schedule go
-                    // off-site, and adjust them accordingly.
+                    // Find all links (<a> tags). Any with off-page href
+                    // attributes (i.e., those not beginning with "#") should
+                    // open in a new tab.
                     e.child.map { c =>
                       c match {
                         case e: Elem if e.label == "a"  => {
-                          e.attr("target", OffsiteAnchorTarget)
+                          val href = e.attribute("href")
+                                      .flatMap(_.headOption)
+                                      .map(_.text)
+                                      .getOrElse("")
+                          if (! href.startsWith("#")) {
+                            e.attr("target", OffsiteAnchorTarget)
+                          }
+                          else {
+                            e
+                          }
                         }
                         case e => e
                       }
@@ -299,7 +309,7 @@ trait Templates {
         </div>
       </div>
       <div class="inverse">
-        <div class="sponsors grid">
+        <div id="sponsors" class="sponsors grid">
           <div class="unit whole">
             {sectionHeader("friends", <span>Friends</span>)}
             <p>Below are some of the sponsors who made this possible.</p>
