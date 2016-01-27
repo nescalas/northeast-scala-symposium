@@ -238,15 +238,21 @@ trait Templates {
       <div class="communicate">
         <a class="icon" href="http://twitter.com/nescalas"
            target={OffsiteAnchorTarget}>
-          <i class="fa fa-twitter"></i><span>Follow us.</span>
+          <i class="fa fa-twitter"></i><span>Follow us</span>
         </a>
         <a class="icon" href="http://www.meetup.com/nescala/"
            target={OffsiteAnchorTarget}>
           <i class="icon-scala"></i><span>Join us</span>
         </a>
-        <a href="#what" class="icon"><i class="fa fa-check-circle-o"></i><span>Learn with us</span></a>
-        <a href="#when" class="icon"><i class="fa fa-calendar-o"></i><span>Mark your calendar</span></a>
-        <a href="#where" class="icon"><i class="fa fa-map-marker"></i><span>Fire up your GPS</span></a>
+        <a href="#what" class="icon">
+          <i class="fa fa-check-circle-o"></i><span>Learn with us</span>
+        </a>
+        <a href="#when" class="icon">
+          <i class="fa fa-calendar-o"></i><span>Mark your calendar</span>
+        </a>
+        <a href="#where" class="icon">
+          <i class="fa fa-map-marker"></i><span>Fire up your GPS</span>
+        </a>
       </div>
     )(
       <div class="inverse">
@@ -497,7 +503,6 @@ trait Templates {
         <link href="https://fonts.googleapis.com/css?family=Signika:400,700" rel="stylesheet" type="text/css"/>
         <link rel="stylesheet" type="text/css" href="/css/gridism.css" />
         <link rel="stylesheet" type="text/css" href="/css/normalize.css" />
-        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"/>
         <link href="/css/font-mfizz/font-mfizz.css" rel="stylesheet"/>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"/>
         <link rel="stylesheet" type="text/css" href="/cssless/philly2016.css" />
