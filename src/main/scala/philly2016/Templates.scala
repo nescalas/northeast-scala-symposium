@@ -109,7 +109,10 @@ trait Templates {
           val twitter = (for { id <- slot.meetupID
                                m  <- speakers.get(id)
                                t  <- m.twttr } yield {
-            <div class="twitter-handle">{t}</div>
+            <div>
+              <i class="fa fa-twitter"></i>
+              <span class="twitter-handle">{t}</span>
+            </div>
           })
           .getOrElse(<span>&nbsp;</span>)
 
