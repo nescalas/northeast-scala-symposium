@@ -113,6 +113,8 @@ these headers, interpreted the associated column values as described:
   "4:00 PM"). Required.
 * "Duration": The duration, in hours and minutes. e.g., "0:40" for 40 minutes,
   "1:15" for an hour and fifteen minutes. Required.
+* "Meetup ID": The meetup ID of the speaker, if the row is a talk. Empty
+  otherwise.
 
 Any other headers (and corresponding columns) are ignored.
 
