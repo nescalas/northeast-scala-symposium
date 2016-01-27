@@ -64,8 +64,11 @@ object Schedule2016 {
       }
       val activity = someOrNone(field("Activity"))
       val meetupID = someOrNone(field("Meetup ID"))
-      val desc = someOrNoneMapped(field("Description")) {
-        markdownParser.parseToHTML(_)
+      val desc = someOrNoneMapped(field("Description")) { s =>
+        // Wrap the whole thing in a <span>, since it could be multiple
+        // paragraphs, which won't parse (because there's no root container
+        // in that case).
+        s"<div>${markdownParser.parseToHTML(s)}</div>"
       }
 
       val speaker = someOrNone(field("Speaker"))
@@ -87,5 +90,11 @@ object Schedule2016 {
     }.
     toArray.
     sortBy { _.time.getMillisOfDay }
+  }
+
+  /** Get rid of entity codes that XML doesn't like.
+    */
+  private def fixHTML(html: String) = {
+
   }
 }

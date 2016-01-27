@@ -23,6 +23,7 @@
 @popupBackgroundColor:           lighten(@themeTextColor, 20%);
 @popupTextColor:                 white;
 @hrColor:                        #bbb;
+@baseFontSize:                   16px;
 
 @headingFontFamily: Signika, "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 @textFontFamily:    "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -35,6 +36,7 @@ body {
   background-repeat: no-repeat;
   color: @themeTextColor;
   font-family: @textFontFamily;
+  font-size: @baseFontSize;
 }
 
 #banner {
@@ -250,9 +252,9 @@ a {
 }
 
 #schedule {
-  .grid {
-    vertical-align: text-top;
+  font-size: @baseFontSize + 3px;
 
+  .grid {
     color: @themeTextColor;
     background-color: @themeBackgroundColor;
 
@@ -267,9 +269,17 @@ a {
       }
     }
 
+    .time-slot {
+      vertical-align: text-top;
+      font-size: @baseFontSize + 10px;
+      font-weight: bold;
+    }
+
+    .activity {
+    }
+
     .speaker-name {
       vertical-align: text-top;
-      font-weight: bold;
     }
 
     .speaker-photo {
@@ -279,6 +289,10 @@ a {
       border-radius: 50%;
       -webkit-border-radius: 50%;
       -moz-border-radius: 50%;
+    }
+
+    .description {
+      vertical-align: text-top;
     }
   }
 }

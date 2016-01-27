@@ -15,7 +15,8 @@ libraryDependencies ++= Seq(
   // date math
   "joda-time" % "joda-time" % "2.1",
   "org.joda" % "joda-convert" % "1.2",
-  "org.clapper" %% "markwrap" % "1.0.2",
+  "org.clapper" %% "markwrap" % "1.1.0",
+  "org.clapper" % "javautil" % "3.1.2",
   "com.github.tototoshi" %% "scala-csv" % "1.2.2",
   "io.backchat.inflector" %% "scala-inflector" % "1.3.5",
   // local cache

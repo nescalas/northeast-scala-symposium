@@ -60,32 +60,45 @@ trait Templates {
       val oddEven = if ((index % 2) == 0) "odd" else "even"
 
       <div class={s"grid $oddEven"}>
-        <span class="right unit one-fifth">
+        <span class="right unit one-fifth time-slot">
           {
           val hour = slot.time.get(DateTimeFieldType.hourOfDay)
           val minute = slot.time.get(DateTimeFieldType.minuteOfHour)
           f"$hour:$minute%02d"
           }
         </span>
-        <span class="unit one-fifth">{slot.activity.getOrElse("")}</span>
-        <span class="unit one-fifth">{
-          slot.meetupID.flatMap { id =>
+        <span class="unit one-fifth activity">{
+          slot.activity.getOrElse("")
+        }</span>
+        <span class="unit one-fifth align-center">{
+          val photo = slot.meetupID.flatMap { id =>
             speakers.get(id).map { m =>
               <img class="speaker-photo" src={m.photo}/>
             }
           }
           .getOrElse(<span>&nbsp;</span>)
+
+          val speakerName = slot.speaker.map { s =>
+            <div class="speaker-name">{s}</div>
+          }.
+          getOrElse(<span>&nbsp;</span>)
+
+          photo ++ speakerName
         }
         </span>
 
-        <span class="unit two-fifths">{
-          val speaker = slot.speaker.map { s =>
-            <span class="speaker-name">{s}:&nbsp;</span>
-          }
-          .getOrElse(<span/>)
+        <span class="unit two-fifths description">{
+          slot.description.map { s =>
+            val e = try {
+              scala.xml.XML.loadString(s)
+            }
+            catch {
+              case ex: Exception => {
+                println(s"Failed to parse HTML:\n$s\n")
+                throw ex
+              }
+            }
 
-          val desc = slot.description.map { s =>
-            val e = scala.xml.XML.loadString(s)
             // Find all links (<a> tags). Any with off-page href
             // attributes (i.e., those not beginning with "#") should
             // open in a new tab.
@@ -93,9 +106,9 @@ trait Templates {
               c match {
                 case e: Elem if e.label == "a"  => {
                   val href = e.attribute("href")
-                    .flatMap(_.headOption)
-                    .map(_.text)
-                    .getOrElse("")
+                              .flatMap(_.headOption)
+                              .map(_.text)
+                              .getOrElse("")
                   if (! href.startsWith("#")) {
                     e.attr("target", OffsiteAnchorTarget)
                   }
@@ -106,10 +119,8 @@ trait Templates {
                 case e => e
               }
             }
-          }.
-          getOrElse(<span></span>)
-
-          speaker ++ desc
+          }
+          .getOrElse(<span></span>)
         }
         </span>
       </div>

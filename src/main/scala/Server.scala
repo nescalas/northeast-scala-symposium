@@ -7,6 +7,8 @@ import unfiltered.filter.Planify
 import unfiltered.request.{GET, Seg, Path, Method, &}
 import unfiltered.response.{NotFound, ResponseString}
 
+import scala.io.Source
+
 object Server {
   def main(args: Array[String]) {
     val port = args.length match {
@@ -50,21 +52,21 @@ object CommonHandlers {
       val thing = rest.mkString("/")
       val rsrc = s"/webjars/root/${BuildInfo.version}/css/$thing"
       val path = s"target/web/less/main/css/$thing"
-      // Try as a resource first. If not there, try the local compile path.
-      val is = Option(getClass.getResourceAsStream(rsrc))
-      if (is.isDefined) {
-        val source = Source.fromInputStream(is.get)
-        ResponseString(source.mkString)
-      }
-      else if (new File(path).exists) {
-        val source = Source.fromFile(path)
-        ResponseString(source.mkString)
+      // Try the local compile path first. If not there, try as a resource.
+      val sourceOpt = if (new File(path).exists) {
+        Some(Source.fromFile(path))
       }
       else {
-        (NotFound ~> ResponseString(s"cssless/$thing"))
+        sourceFromResource(rsrc)
       }
+
+      sourceOpt.map { source => ResponseString(source.mkString) }
+               .getOrElse(NotFound ~> ResponseString(s"cssless/$thing"))
     }
+  }
 
-
+  private def sourceFromResource(resource: String): Option[Source] = {
+    val stream = Option(getClass.getResourceAsStream(resource))
+    stream.map { Source.fromInputStream(_) }
   }
 }
