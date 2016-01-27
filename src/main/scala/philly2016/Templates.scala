@@ -427,12 +427,16 @@ trait Templates {
               class, to be held in Philadelphia March 15—17. NE Scala attendees
               get a $200 discount on the class fee. (The promotion code
               will be emailed to all those whose RSVP, a week or two after RSVPs
-              open.) Venue logistics are still being finalized, but the class
-              will be in Center City Philadelphia. More details here and
-              on the
+              open.) The class will be held in Suite 1700 of the
+              {offsiteLink("http://www.americanexecutivecenters.com/locations/philadelphia/",
+                           "American Executive Center")}
+              at
+              {offsiteLink("https://www.google.com/maps/place/1515+Market+St,+Philadelphia,+PA+19102/@39.9529779,-75.1683976,17z/data=!3m1!4b1!4m2!3m1!1s0x89c6c62e274ce023:0xa4419ca196a9a5a8",
+                           "1515 Market Street, Philadelphia, PA 19102")}.
+              Full details on the class, including registration information,
+              are on the
               {offsiteLink("https://newcircle.com/class/big-data/apache-spark-development-bootcamp/philadelphia-venue-tbd/2016-03-15?utm_campaign=nescala_2016&utm_source=nescala_website&utm_medium=referral",
-                           "NewCircle event page")}
-              as they become available.
+                           "NewCircle event page")}.
             </p>
           </div>
 
