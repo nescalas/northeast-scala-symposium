@@ -178,7 +178,7 @@ body > .footer {
 
 .inverse {
   background-color: @inverseBackgroundColor;
-  color: black;
+  color: @themeTextColor;
 }
 
 .top {
@@ -248,6 +248,33 @@ a {
     .section-icon {
       color: #bbb;
     }
+  }
+}
+
+#live-stream-blurb {
+  float: right;
+  font-size: @baseFontSize;
+  background-color: darken(@inverseBackgroundColor, 10%);
+  color: black;
+  padding-top: 5px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+
+  h3 {
+    margin-top: 0;
+    padding-top: 0;
+  }
+
+  a {
+    color: inherit;
+    background: transparent;
+  }
+
+  .icon {
+    font-size: @baseFontSize * 3;
+    float: right;
+    margin-left: 10px;
   }
 }
 

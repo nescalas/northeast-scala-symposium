@@ -34,19 +34,42 @@ trait Templates {
     </span>
   }
 
-  private def sectionHeader(id: String, heading: scala.xml.Elem, level: Int = 2) = {
-    val icon = <span class="section-icon">&#x00a7;&nbsp;</span>
-    val header = level match {
+  private def levelToHeader(level: Int) = {
+    level match {
       case 1 => <h1></h1>
       case 2 => <h2></h2>
       case 3 => <h3></h3>
       case 4 => <h4></h4>
       case _ => <h2></h2>
     }
-    val content = header.copy(child = icon.toSeq ++ heading.toSeq)
+  }
+
+  private def augmentHeading(heading: scala.xml.Elem, level: Int) = {
+    val icon = <span class="section-icon">&#x00a7;&nbsp;</span>
+    val header = levelToHeader(level)
+    header.copy(child = icon.toSeq ++ heading.toSeq)
+  }
+
+  private def sectionHeader(id: String, heading: scala.xml.Elem, level: Int = 2) = {
     <a href={s"#$id"} class="section">
-      {content}
+      {augmentHeading(heading, level)}
     </a>
+  }
+
+  private def sectionHeaderWithContent(id: String,
+                                       heading: scala.xml.Elem,
+                                       headingClass: String = "three-fifths",
+                                       contentClass: String = "two-fifths",
+                                       level: Int = 2)
+                                      (content: => scala.xml.Elem) = {
+    <div class="grid">
+      <div class={"unit " + headingClass}>
+        {augmentHeading(heading, level)}
+      </div>
+      <div class={"unit " + contentClass}>
+        {content}
+      </div>
+    </div>
   }
 
   private def renderSchedule = {
@@ -55,9 +78,9 @@ trait Templates {
       member.id -> member
     }.toMap
 
-    PhillySchedule.zipWithIndex.map { case (slot, index) =>
+    val schedule = PhillySchedule.zipWithIndex.map { case (slot, index) =>
       import org.joda.time._
-      val oddEven = if ((index % 2) == 0) "odd" else "even"
+      val oddEven = if ((index % 2) == 0) "even" else "odd"
 
       <div class={s"grid $oddEven"}>
         <span class="right unit one-fifth time-slot">
@@ -132,6 +155,8 @@ trait Templates {
         </span>
       </div>
     }
+
+    schedule
   }
 
   def indexPage
@@ -236,11 +261,20 @@ trait Templates {
               Lots of coffee.) All presenters are attendees, and all
               attendees select presenters.
             </p>
-
-            {sectionHeader("day1", <span>Day 1 schedule</span>)}
-
           </div>
         </div>
+
+        {sectionHeaderWithContent("day1", <span>Day 1 schedule</span>) {
+          <div id="live-stream-blurb">
+            <h3>Live Streaming</h3>
+            <i class="icon fa fa-video-camera"></i>
+            This year, thanks to <a href="#sponsors">Typesafe</a>, the Day 1
+            talks will be streamed live, over the Internet, for up to 100
+            remote watchers. If you can't join us in person, you can join
+            us virtually. Details will be posted here when they're available.
+          </div>
+        }}
+
         <div id="schedule">{
           if (! votingIsClosed) {
             <div class="grid odd">
@@ -462,6 +496,7 @@ trait Templates {
         <link rel="stylesheet" type="text/css" href="/css/normalize.css" />
         <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"/>
         <link href="/css/font-mfizz/font-mfizz.css" rel="stylesheet"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"/>
         <link rel="stylesheet" type="text/css" href="/cssless/philly2016.css" />
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>{
           styles.map { s => <link rel="stylesheet" type="text/css" href={s}/> } ++
