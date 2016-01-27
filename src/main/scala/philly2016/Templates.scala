@@ -83,7 +83,14 @@ trait Templates {
           }.
           getOrElse(<span>&nbsp;</span>)
 
-          photo ++ speakerName
+          val twitter = (for { id <- slot.meetupID
+                               m  <- speakers.get(id)
+                               t  <- m.twttr } yield {
+            <div class="twitter-handle">{t}</div>
+          })
+          .getOrElse(<span>&nbsp;</span>)
+
+          photo ++ speakerName ++ twitter
         }
         </span>
 
