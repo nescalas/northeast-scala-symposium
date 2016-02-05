@@ -51,7 +51,7 @@ trait Templates {
   }
 
   private def sectionHeader(id: String, heading: scala.xml.Elem, level: Int = 2) = {
-    <a href={s"#$id"} class="section">
+    <a name={s"$id"} class="section">
       {augmentHeading(heading, level)}
     </a>
   }
