@@ -320,7 +320,7 @@ trait Templates {
               Sponsored by {offsiteLink("http://meetup.com", "Meetup")},
               the drink-up will be held a few blocks away, at
               {offsiteLink("http://landmarkamericana.com/ph-home.htm", "The Landmark Americana")}
-              {offsiteLink("https://www.google.com/maps/dir/2929+Arch+Street,+Philadelphia,+PA/LANDMARK+AMERICANA,+3343,+3367+Market+St,+Philadelphia,+PA+19104/@39.9563119,-75.1910233,16z/am=t/data=!3m1!4b1!4m14!4m13!1m5!1m1!1s0x89c6c64bdd84625b:0xbe940a019709b223!2m2!1d-75.1823661!2d39.9577767!1m5!1m1!1s0x89c6c651c7b8386d:0x53921f63a1db072e!2m2!1d-75.1908853!2d39.9559731!3e2?hl=en", "map")}
+              ({offsiteLink("https://www.google.com/maps/dir/2929+Arch+Street,+Philadelphia,+PA/LANDMARK+AMERICANA,+3343,+3367+Market+St,+Philadelphia,+PA+19104/@39.9563119,-75.1910233,16z/am=t/data=!3m1!4b1!4m14!4m13!1m5!1m1!1s0x89c6c64bdd84625b:0xbe940a019709b223!2m2!1d-75.1823661!2d39.9577767!1m5!1m1!1s0x89c6c651c7b8386d:0x53921f63a1db072e!2m2!1d-75.1908853!2d39.9559731!3e2?hl=en", "map")})
               from 17:30 to 20:00. Meetup will provide some light appetizers and
               up to two-drinks (non-alcoholic and alcoholic beverages) for
               attendees.
