@@ -5,7 +5,7 @@ import unfiltered.response.Html5
 import java.text.SimpleDateFormat
 import java.util.{ Calendar, Date, TimeZone }
 
-import scala.xml.Elem
+import scala.xml.{NodeSeq, Elem}
 
 trait Templates {
 
@@ -64,7 +64,7 @@ trait Templates {
                                       (content: => scala.xml.Elem) = {
     <div class="grid">
       <div class={"unit " + headingClass}>
-        {augmentHeading(heading, level)}
+        {sectionHeader(id, heading, level)}
       </div>
       <div class={"unit " + contentClass}>
         {content}
@@ -72,7 +72,7 @@ trait Templates {
     </div>
   }
 
-  private def renderSchedule = {
+  private def renderSchedule: NodeSeq = {
     val speakerMeetupIDs = PhillySchedule.flatMap { _.meetupID }
     val speakers = Meetup.members(speakerMeetupIDs).map { member =>
       member.id -> member
@@ -159,7 +159,7 @@ trait Templates {
       </div>
     }
 
-    schedule
+    NodeSeq.fromSeq(schedule)
   }
 
   def indexPage
@@ -170,8 +170,8 @@ trait Templates {
         <div class="unit full center center-on-mobiles">
           <p>
             The Northeast Scala Symposium is the original Scala community-based
-            conference. We're gearing up for our
-            <a href="#what">6th year.</a>
+            conference. 2016 is our
+            <a href="#what">6th year</a>, and we're back in Philadelphia.
           </p>
         {
           if (rsvpsAreOpen) {
@@ -179,13 +179,15 @@ trait Templates {
               <p>
                 RSVP on
                 {offsiteLink("http://www.meetup.com/nescala/", "Meetup")}:
-              </p>
-
-              <p>
+                for
                 {offsiteLink(s"http://www.meetup.com/nescala/events/$Day1EventId/",
-                             "Day one")} |
+                             "Day 1")} and
                 {offsiteLink(s"http://www.meetup.com/nescala/events/$Day2EventId/",
-                             "Day two")}
+                             "Day 2")}
+              </p>
+              <p>
+                Jump to the schedule:
+                <a href="#day1">Day 1</a> | <a href="#day2">Day 2</a>
               </p>
               {
                 val rsvps = Meetup.rsvpCount(MeetupOrgName, Day1EventId)
@@ -270,22 +272,25 @@ trait Templates {
               Lots of coffee.) All presenters are attendees, and all
               attendees select presenters.
             </p>
+            <h3>Live Streaming <i class="icon fa fa-video-camera"></i></h3>
+            <p>
+              This year, thanks to <a href="#sponsors">Typesafe</a>, the Day 1
+              talks will be streamed live, over the Internet, for up to 100
+              remote watchers. If you can't join us in person, you can join
+              us virtually. Details will be posted here when they're available.
+            </p>
           </div>
         </div>
 
-        {sectionHeaderWithContent("day1", <span>Day 1 schedule</span>) {
-          <div id="live-stream-blurb">
-            <h3>Live Streaming</h3>
-            <i class="icon fa fa-video-camera"></i>
-            This year, thanks to <a href="#sponsors">Typesafe</a>, the Day 1
-            talks will be streamed live, over the Internet, for up to 100
-            remote watchers. If you can't join us in person, you can join
-            us virtually. Details will be posted here when they're available.
-          </div>
-        }}
-
         <div class="schedule">{
-          if (! votingIsClosed) {
+
+          val header: NodeSeq = <div class="grid odd">
+            <div class="unit">
+              {sectionHeader("day1", <span>Day 1 schedule</span>)}
+            </div>
+          </div>
+
+          val body: NodeSeq = if (! votingIsClosed) {
             <div class="grid odd">
               <div class="unit">
                 When voting is complete and the votes are tallied, the schedule
@@ -296,6 +301,8 @@ trait Templates {
           else {
             renderSchedule
           }
+
+          header ++ body
         }</div>
         <div class="schedule">
           <div class="grid odd">
