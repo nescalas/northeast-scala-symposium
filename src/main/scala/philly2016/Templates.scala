@@ -274,7 +274,7 @@ trait Templates {
             </p>
             <h3>Live Streaming <i class="icon fa fa-video-camera"></i></h3>
             <p>
-              This year, thanks to <a href="#sponsors">Typesafe</a>, the Day 1
+              This year, thanks to <a href="#sponsors">Lightbend</a>, the Day 1
               talks will be streamed live, over the Internet, for up to 100
               remote watchers. If you can't join us in person, you can join
               us virtually. Details will be posted here when they're available.
