@@ -51,7 +51,7 @@ trait Templates {
   }
 
   private def sectionHeader(id: String, heading: scala.xml.Elem, level: Int = 2) = {
-    <a name={s"$id"} class="section">
+    <a name={s"$id"} class="section" href={s"#$id"}>
       {augmentHeading(heading, level)}
     </a>
   }
@@ -272,7 +272,9 @@ trait Templates {
               Lots of coffee.) All presenters are attendees, and all
               attendees select presenters.
             </p>
-            <h3>Live Streaming <i class="icon fa fa-video-camera"></i></h3>
+            {sectionHeader("livestream",
+                           <span>Live Streaming <i class="icon fa fa-video-camera"></i></span>,
+                          level=3)}
             <p>
               This year, thanks to <a href="#sponsors">Lightbend</a>, the Day 1
               talks will be streamed live, over the Internet, for up to 100
