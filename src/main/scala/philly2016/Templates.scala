@@ -277,7 +277,17 @@ trait Templates {
               This year, thanks to <a href="#sponsors">Lightbend</a>, the Day 1
               talks will be streamed live, over the Internet, for up to 100
               remote watchers. If you can't join us in person, you can join
-              us virtually. Details will be posted here when they're available.
+              us virtually.
+            </p>
+            <p>
+              The talks will be streamed via WebEx.
+              {offsiteLink("https://meetings.webex.com/collabs/#/meetings/detail?uuid=M2BXRUO67002S1MO2G5F4XSTS1-C7GH",
+                           "Go here")}
+              for access to the stream.
+            </p>
+
+            <p>
+              <strong>There's a 100-viewer limit on the WebEx stream.</strong>
             </p>
           </div>
         </div>
