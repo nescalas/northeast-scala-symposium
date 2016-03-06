@@ -216,14 +216,7 @@ trait Templates {
             else {
               <div>Voting opens {VotesOpenDateStr} at {VotesOpenTimeStr} EST.</div>
             }
-          } ++
-          <div class="note">
-            <hr/>
-            <sup>*</sup>Note: The Hub has a limit of 200 attendees. We are holding 10
-            tickets in reserve, to ensure that each speaker whose talk is
-            chosen has a ticket. Once we are certain all speakers are
-            covered, we will release whatever tickets remain.
-          </div>
+          } 
           }
           else if (proposingIsOpen) {
             <div>
