@@ -99,24 +99,37 @@ trait Templates {
               <img class="speaker-photo" src={m.photo}/>
             }
           }
-          .getOrElse(<span>&nbsp;</span>)
 
           val speakerName = slot.speaker.map { s =>
             <div class="speaker-name">{s}</div>
-          }.
-          getOrElse(<span>&nbsp;</span>)
+          }
 
           val twitter = (for { id <- slot.meetupID
                                m  <- speakers.get(id)
                                t  <- m.twttr } yield {
             <div>
-              <i class="fa fa-twitter"></i>
-              <span class="twitter-handle">{t}</span>
+              <a href={s"https://twitter.com/$t"} target={OffsiteAnchorTarget}
+                 class="icon-link">
+                <i class="fa fa-twitter"></i>
+                <span class="twitter-handle">{t}</span>
+              </a>
             </div>
           })
-          .getOrElse(<span>&nbsp;</span>)
 
-          photo ++ speakerName ++ twitter
+
+          val video = slot.video.map { link =>
+            <a href={link} target={OffsiteAnchorTarget} class="icon-link">
+              <i class="fa fa-video-camera"></i> Video
+            </a>
+          }
+
+          val slides = slot.slides.map { link =>
+            <a href={link} target={OffsiteAnchorTarget} class="icon-link">
+              <i class="fa fa-file-text-o"></i> Slides
+            </a>
+          }
+
+          Seq(photo, speakerName, twitter, video, slides).flatten
         }
         </span>
 
@@ -216,7 +229,7 @@ trait Templates {
             else {
               <div>Voting opens {VotesOpenDateStr} at {VotesOpenTimeStr} EST.</div>
             }
-          } 
+          }
           }
           else if (proposingIsOpen) {
             <div>

@@ -14,14 +14,18 @@ import scala.util.Try
   * @param duration     duration
   * @param speaker      speaker, or None
   * @param activity     activity title, or None
+  * @param video        link to video, or None
+  * @param slides       link to slides, or None
   * @param description  description, as an HTML string, or None
   */
-case class ScheduleSlot(val time:        LocalTime,
-                        val duration:    Duration,
-                        val speaker:     Option[String],
-                        val meetupID:    Option[String],
-                        val activity:    Option[String],
-                        val description: Option[String])
+case class ScheduleSlot(time:        LocalTime,
+                        duration:    Duration,
+                        speaker:     Option[String],
+                        meetupID:    Option[String],
+                        activity:    Option[String],
+                        video:       Option[String],
+                        slides:      Option[String],
+                        description: Option[String])
 
 object Schedule2016 {
   // Load the schedule. In a decidedly non-functional hack, throws exceptions
@@ -62,16 +66,13 @@ object Schedule2016 {
         }
         case _ => throw new Exception(s"Bad duration: $durationField")
       }
-      val activity = someOrNone(field("Activity"))
-      val meetupID = someOrNone(field("Meetup ID"))
+
       val desc = someOrNoneMapped(field("Description")) { s =>
         // Wrap the whole thing in a <span>, since it could be multiple
         // paragraphs, which won't parse (because there's no root container
         // in that case).
         s"<div>${markdownParser.parseToHTML(s)}</div>"
       }
-
-      val speaker = someOrNone(field("Speaker"))
 
       // Time is "hh:mm AM" or "hh:mm PM". Hard to parse that with JodaTime,
       // so we cheat.
@@ -83,9 +84,11 @@ object Schedule2016 {
       }
       ScheduleSlot(time        = time,
                    duration    = duration,
-                   speaker     = speaker,
-                   activity    = activity,
-                   meetupID    = meetupID,
+                   speaker     = someOrNone(field("Speaker")),
+                   activity    = someOrNone(field("Activity")),
+                   meetupID    = someOrNone(field("Meetup ID")),
+                   video       = someOrNone(field("Video")),
+                   slides      = someOrNone(field("Slides")),
                    description = desc)
     }.
     toArray.
