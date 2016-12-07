@@ -1,11 +1,19 @@
 package nescala.boston2015
 
 import java.util.{ Calendar, Date, TimeZone }
+import java.time.{ZoneId, ZonedDateTime}
 
 object Schedule {
 
   sealed trait Slot {
+    // deprecated
     def time: Date
+    // this replaces previous use of ye-old java.util "time"
+    def easternTime: ZonedDateTime =
+      ZonedDateTime.ofInstant(
+        time.toInstant(),
+        ZoneId.of("US/Eastern")
+      )
   }
 
   case class Open(time: Date) extends Slot
