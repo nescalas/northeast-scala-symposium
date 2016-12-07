@@ -1,4 +1,4 @@
-# Source code for [NEScala web site][NEScala][![Build Status](https://travis-ci.org/nescalas/northeast-scala-symposium.svg?branch=master)](https://travis-ci.org/nescalas/northeast-scala-symposium)
+# Source code for [NEScala web site][NEScala] [![Build Status](https://travis-ci.org/nescalas/northeast-scala-symposium.svg?branch=master)](https://travis-ci.org/nescalas/northeast-scala-symposium)
 
 [NEScala]: http://www.nescala.org/
 

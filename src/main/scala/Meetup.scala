@@ -4,6 +4,7 @@ import dispatch._
 import dispatch.oauth._
 import com.ning.http.client.oauth.{ ConsumerKey, RequestToken }
 import org.json4s._
+import org.json4s.native.JsonMethods.parse
 import org.json4s.JsonDSL._
 import scala.concurrent.{ Future, ExecutionContext }
 import scala.concurrent.ExecutionContext.Implicits.global
@@ -52,11 +53,12 @@ object Meetup extends Config {
   def sign(req: Req, session: Session) =
     req <:< Map("Authorization" -> s"Bearer ${session.access}")
 
+
   def memberId(session: Session): Future[Int] =
     http(sign(url("https://api.meetup.com/2/member/self"), session)
-         <<? Map("only" -> "id") OK as.json4s.Json)
+         <<? Map("only" -> "id") OK as.String)
       .map( js => (for {
-        JObject(member)  <- js
+        JObject(member)  <- parse(js)
         ("id", JInt(id)) <- member
       } yield id.toInt).head)
 
@@ -71,10 +73,10 @@ object Meetup extends Config {
   def hosts(session: Session, eventId: Int): Future[Iterable[Int]] =
     http(sign(url(s"https://api.meetup.com/2/event/$eventId"), session)
          <<? Map("fields" -> "event_hosts", "only" -> "event_hosts.member_id")
-         OK as.json4s.Json)
+         OK as.String)
       .map { js =>
         for {
-          JObject(event)                 <- js
+          JObject(event)                 <- parse(js)
           ("event_hosts", JArray(hosts)) <- event
           JObject(host)                  <- hosts
           ("member_id", JInt(id))        <- host
@@ -87,10 +89,10 @@ object Meetup extends Config {
   def rsvped(session: Session, eventId: Int): Future[Boolean] =
     http(sign(url(s"https://api.meetup.com/2/event/$eventId"), session)
          <<? Map("fields" -> "self", "only" -> "self.rsvp.response")
-         OK as.json4s.Json)
+         OK as.String)
       .map { js =>
         (for {
-          JObject(event)              <- js
+          JObject(event)              <- parse(js)
           ("self", JObject(self))     <- event
           ("rsvp", JObject(rsvp))     <- self
           ("response", JString(resp)) <- rsvp
@@ -102,9 +104,9 @@ object Meetup extends Config {
           false
       }
 
-  private def tokens(js: JValue): Option[(String, String)] =
+  private def tokens(js: String): Option[(String, String)] =
     (for {
-      JObject(response)                   <- js
+      JObject(response)                   <- parse(js)
       ("access_token", JString(access))   <- response
       ("refresh_token", JString(refresh)) <- response
     } yield (access, refresh)).headOption
@@ -115,7 +117,7 @@ object Meetup extends Config {
                 "client_secret" -> consumer.getSecret,
                 "grant_type"    -> "authorization_code",
                 "code"          -> code,
-                "redirect_uri"  -> redirect) OK as.json4s.Json)
+                "redirect_uri"  -> redirect) OK as.String)
         .map(tokens).apply()
 
   def refresh(session: Session): Future[Session] =
@@ -123,8 +125,8 @@ object Meetup extends Config {
          << Map("client_id"     -> consumer.getKey,
                 "client_secret" -> consumer.getSecret,
                 "grant_type"    -> "refresh_token",
-                "refresh_token" -> session.refresh) OK as.json4s.Json)
-      .map(tokens).map {
+                "refresh_token" -> session.refresh) OK as.String)
+      .map(tokens).collect {
         case Some((access, refresh)) =>
           Session.delete(session.uuid)
           Session.create(access, refresh)
@@ -135,10 +137,10 @@ object Meetup extends Config {
          <<? Map("key"           -> apiKey,
                 "group_urlname" -> urlname,
                 "fields"        -> "sponsors",
-                "only"          -> "sponsors") OK as.json4s.Json)
+                "only"          -> "sponsors") OK as.String)
       .map { js =>
         for {
-          JObject(response)              <- js
+          JObject(response)              <- parse(js)
           ("results", JArray(results))   <- response
           JObject(group)                 <- results
           ("sponsors", JArray(sponsors)) <- group
@@ -185,9 +187,9 @@ object Meetup extends Config {
     val body = Clock("checking rsvp") {
       http(
         host / "2" / "event" / eventId <<? Map("fields" -> "self", "only" -> "self.rsvp.response") <@(consumer, token)
-        > as.json4s.Json).apply()
+        > as.String).apply()
     }
-    (for (JString(resp) <- body \ "self" \ "rsvp" \ "response") yield resp)
+    (for (JString(resp) <- parse(body) \ "self" \ "rsvp" \ "response") yield resp)
     .headOption.filter(_ == "yes").isDefined
   }
 
@@ -195,10 +197,10 @@ object Meetup extends Config {
     val body = Clock("fetching members") {
       http(
         host / "2" / "members" <<? Map("key" -> apiKey, "member_id" -> ids.mkString(","))
-        > as.json4s.Json).apply()
+        > as.String).apply()
     }
     for {
-      JObject(fields) <- body
+      JObject(fields) <- parse(body)
       ("results", JArray(ary))     <- fields
       JObject(member)              <- ary
       ("id", JInt(id))             <- member
@@ -222,19 +224,19 @@ object Meetup extends Config {
     val body = Clock("fetching member") {
       http(
         host / "2" / "member" / "self" <<? Map("only" -> "id") <@(consumer, token)
-        > as.json4s.Json).apply()
+        > as.String).apply()
     }
-    (for (JInt(id) <- body \ "id") yield id.toInt).headOption.getOrElse(0)
+    (for (JInt(id) <- parse(body) \ "id") yield id.toInt).headOption.getOrElse(0)
   }
 
   def photos(eventId: String) = {
     val body = Clock("fetching photos") {
       http(
         host / "2" / "photos" <<? Map("key" -> apiKey, "event_id" -> eventId)
-        > as.json4s.Json).apply()
+        > as.String).apply()
     }
     for {
-      JObject(resp) <- body
+      JObject(resp) <- parse(body)
       ("results", JArray(ary)) <- resp
       JObject(photo) <- ary
       ("photo_id", id) <- photo
@@ -245,7 +247,7 @@ object Meetup extends Config {
   }
 
   def rsvps(eventId: String) = {
-    def parse(res: JValue, meta: JValue): List[JValue] = {
+    def parseValues(res: JValue, meta: JValue): List[JValue] = {
       val yeses: List[(Int, String, String)] = for {
         JObject(rsvp)               <- res
         ("rsvp_id", JInt(id))       <- rsvp
@@ -268,33 +270,33 @@ object Meetup extends Config {
       }
       val JString(next) = meta \ "next"
       if (next.isEmpty) json else {
-        val body = http(url(next) > as.json4s.Json).apply()
+        val body = http(url(next) > as.String).apply()
         val (r2, m2) = (for {
-          JObject(fs)     <- body
+          JObject(fs)     <- parse(body)
           ("results", r2) <- fs
           ("meta", m2)    <- fs
         } yield (r2, m2)).head
 
-        parse(r2, m2) ++ json
+        parseValues(r2, m2) ++ json
       }
     }
     val body = http(host / "2" / "rsvps" <<? Map("event_id" -> eventId, "key" -> apiKey)
-                    > as.json4s.Json).apply()
+                    > as.String).apply()
     val (res, meta) = (for {
-      JObject(fs)      <- body
+      JObject(fs)      <- parse(body)
       ("results", res) <- fs
       ("meta", meta)   <- fs
     } yield (res, meta)).head
-    parse(res, meta)
+    parseValues(res, meta)
   }
 
   case class RSVPStatus(limit: Int, yesCount: Int)
 
   def rsvpCount(urlname: String, eventID: String) = {
     val url = host / urlname / "events" / eventID
-    val body = http(url <<? Map("key" -> apiKey) > as.json4s.Json).apply()
+    val body = http(url <<? Map("key" -> apiKey) > as.String).apply()
     (
-      for { JObject(response)           <- body
+      for { JObject(response)           <- parse(body)
             ("rsvp_limit", JInt(lim))   <- response
             ("yes_rsvp_count", JInt(y)) <- response }
       yield RSVPStatus(lim.toInt, y.toInt)
@@ -307,21 +309,21 @@ object Meetup extends Config {
   def hosts(eventId: Int) =  {
     val body = http(host / "2" / "event" / eventId <<? Map(
       "fields" -> "event_hosts", "only" -> "event_hosts.member_id", "key" -> apiKey)
-      > as.json4s.Json).apply()
-    for (JInt(id) <- body \ "event_hosts" \ "member_id") yield id
+      > as.String).apply()
+    for (JInt(id) <- parse(body) \ "event_hosts" \ "member_id") yield id
   }
 
   def event(eventId: Int) = {
     val body = http(host / "2"/ "event" / eventId <<? Map(
       "key" -> apiKey, "fields" -> "rsvp_rules", "only" -> "rsvp_rules,rsvp_limit,yes_rsvp_count")
-      > as.json4s.Json).apply()
+      > as.String).apply()
     for {
-      JObject(event) <- body
+      JObject(event) <- parse(body)
       ("yes_rsvp_count", JInt(yes)) <- event
     } yield Map(
-      "cutoff" -> (for (JInt(cutoff) <- body \ "rsvp_rules" \ "close_time") yield cutoff.toInt).headOption.getOrElse(0),
+      "cutoff" -> (for (JInt(cutoff) <- parse(body) \ "rsvp_rules" \ "close_time") yield cutoff.toInt).headOption.getOrElse(0),
       "yes" -> yes.toInt,
       "no" -> 0,
-      "limit" -> (for (JInt(lim) <- body \ "rsvp_limit") yield lim.toInt).headOption.getOrElse(0))
+      "limit" -> (for (JInt(lim) <- parse(body) \ "rsvp_limit") yield lim.toInt).headOption.getOrElse(0))
   }
 }

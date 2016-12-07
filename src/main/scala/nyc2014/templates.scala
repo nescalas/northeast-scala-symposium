@@ -4,6 +4,8 @@ import java.text.SimpleDateFormat
 import java.util.{ Date, TimeZone }
 import nescala.Meetup
 import java.net.URLEncoder.encode
+import java.time.{ZoneId, ZonedDateTime}
+import java.time.format.DateTimeFormatter
 
 trait Templates {
 
@@ -149,26 +151,27 @@ trait Templates {
     </section>
 
   def dateFormat(pat: String) = {
-    val s = new SimpleDateFormat(pat)
-    s.setTimeZone(TimeZone.getTimeZone(
-        "US/Eastern"))
-    s
+    //val s = new SimpleDateFormat(pat)
+    //s.setTimeZone(TimeZone.getTimeZone(
+    //    "US/Eastern"))
+    //s
+     DateTimeFormatter.ofPattern(pat).withZone(ZoneId.of("US/Eastern"))
   }
 
-  def formatTime(d: Date) =
-    (if (d.getMinutes > 0) dateFormat("h:mm")
+  def formatTime(d: ZonedDateTime) =
+    (if (d.getMinute > 0) dateFormat("h:mm")
      else dateFormat("h")).format(d)
 
-  def ampm(d: Date) =
-    dateFormat("aa").format(d).toLowerCase
+  def ampm(d: ZonedDateTime) =
+    dateFormat("a").format(d).toLowerCase
 
   def scheduleItem(slot: Slot): xml.NodeSeq = slot match {
-    case NonPresentation(time, title, content) =>
+    case np @ NonPresentation(time, title, content) =>
       <div class="unit whole slot">
         <div class="grid">
           <h3 class="unit one-fifth">
-            <span class="time">{ formatTime(time) }</span>
-            <span class="ampm">{ ampm(time) }</span>
+            <span class="time">{ formatTime(np.easternTime) }</span>
+            <span class="ampm">{ ampm(np.easternTime) }</span>
           </h3>
           <h3 class="unit four-fifths">{ title }</h3>
         </div>
@@ -181,8 +184,8 @@ trait Templates {
       <div class="unit whole slot" id={ s"talk-${proposal.domId}" }>
         <div class="grid">
           <h3 class="unit one-fifth">
-            <span class="time">{ formatTime(p.time) }</span>
-            <span class="ampm">{ ampm(p.time) }</span>
+            <span class="time">{ formatTime(p.easternTime) }</span>
+            <span class="ampm">{ ampm(p.easternTime) }</span>
           </h3>
           <h3 class="unit four-fifths">
             <a href={s"#talk-${proposal.domId}"}>{ p.title }</a>

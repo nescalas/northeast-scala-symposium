@@ -7,9 +7,11 @@ libraryDependencies += "org.scalatest" %% "scalatest" % "3.0.1" % "test"
 libraryDependencies ++= Seq(
   "net.databinder" %% "unfiltered-filter" % "0.7.1",
   "net.databinder" %% "unfiltered-jetty" % "0.7.1",
+  // json
+   "org.json4s" % "json4s-native_2.10" % "3.5.0",
   "net.databinder" %% "unfiltered-json4s" % "0.7.1",
   // http client
-  "net.databinder.dispatch" %% "dispatch-json4s-native" % "0.10.0",
+  "net.databinder.dispatch" %% "dispatch-core" % "0.10.0",
   // persistance
   "net.debasishg" %% "redisclient" % "2.13",
   // loging
@@ -25,7 +27,7 @@ libraryDependencies ++= Seq(
   "com.google.code.findbugs" % "jsr305" % "3.0.0" // http://stackoverflow.com/questions/19030954/cant-find-nullable-inside-javax-annotation
 )
 
-scalacOptions ++= Seq("-deprecation", "-unchecked")
+scalacOptions ++= Seq("-deprecation", "-unchecked", "-Xfatal-warnings")
 
 seq(Revolver.settings: _*)
 

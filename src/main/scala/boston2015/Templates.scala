@@ -5,17 +5,24 @@ import unfiltered.response.Html5
 import java.net.URLEncoder.encode
 import java.text.SimpleDateFormat
 import java.util.{ Date, TimeZone }
+import java.time.{ZoneId, ZonedDateTime}
+import java.time.format.DateTimeFormatter
 
 trait Templates {
 
-  private def timestamp(d: Date, offset: Boolean = true) = {
+
+  private def timestamp(zd: ZonedDateTime, offset: Boolean = true) = {
     def fmt(f: String) = new SimpleDateFormat(f) {
       if (offset) {
         setTimeZone(TimeZone.getTimeZone("US/Eastern"))
       }
     }
-    val time = (if (d.getMinutes > 0) fmt("h:mm") else fmt("h")).format(d)
-    <span class="time">{ time }</span><span class="ampm">{ fmt("aa").format(d).toLowerCase }</span>
+    val time = DateTimeFormatter.ofPattern(
+      if (zd.getMinute > 0) "h:mm" else "h"
+    ).withZone(ZoneId.of("US/Eastern"))
+    val ampm = DateTimeFormatter.ofPattern("a")
+    //val time = (if (d.getMinutes > 0) fmt("h:mm") else fmt("h")).format(d)
+    <span class="time">{ time.format(zd) }</span><span class="ampm">{ ampm.format(zd).toLowerCase }</span>
   }
 
   /** list of current member's proposals and modal for editing them */
@@ -347,10 +354,10 @@ trait Templates {
           </div>
           <div>{
             slots.map {
-              case Schedule.Open(at) =>
+              case o @ Schedule.Open(at) =>
                 <div class="grid">
                   <h3 class="right unit one-fifth">
-                    { timestamp(at) }
+                    { timestamp(o.easternTime) }
                   </h3>
                   <h3 class="unit four-fifths">
                     Doors Open
@@ -362,10 +369,10 @@ trait Templates {
                     <p>Check in and grab some coffee and snacks, courtesy of <a href="http://hp.com">Hewlett Packard</a>.</p>
                   </div>
                 </div>
-              case Schedule.Intro(at) =>
+              case i @ Schedule.Intro(at) =>
                 <div class="grid">
                   <h3 class="right unit one-fifth">
-                    { timestamp(at) }
+                    { timestamp(i.easternTime) }
                   </h3>
                   <h3 class="unit four-fifths">
                     Opening Remarks
@@ -377,28 +384,28 @@ trait Templates {
                     <p>Let's remember why we are here thank those that made this happen</p>
                   </div>
                 </div>
-              case Schedule.Break(at, length) =>
+              case b @ Schedule.Break(at, length) =>
                 <div class="grid">
                   <h3 class="right unit one-fifth">
-                    { timestamp(at) }
+                    { timestamp(b.easternTime) }
                   </h3>
                   <h3 class="unit four-fifths break">
                     Break ({length} minutes)
                   </h3>
                 </div>
-              case Schedule.Close(at) =>
+              case c @ Schedule.Close(at) =>
                 <div class="grid">
                   <h3 class="right unit one-fifth">
-                    { timestamp(at) }
+                    { timestamp(c.easternTime) }
                   </h3>
                   <h3 class="unit four-fifths">
                     Day one closer
                   </h3>
                 </div>
-              case Schedule.Party(at) =>
+              case p @ Schedule.Party(at) =>
                 <div class="grid">
                   <h3 class="right unit one-fifth">
-                    { timestamp(at) }
+                    { timestamp(p.easternTime) }
                   </h3>
                   <h3 class="unit four-fifths">
                     MediaMath Party
@@ -410,10 +417,10 @@ trait Templates {
                     <p>Until 9pm, a few blocks away at <a href="http://www.rosamexicano.com/boston/">Rosa Mexicano</a>, 155 Seaport Blvd.  Drinks and appetizers included. Bring your nametag. Thank you <a href="http://www.mediamath.com">MediaMath</a> for sponsoring!</p>
                   </div>
                 </div>
-              case Schedule.Lunch(at) =>
+              case l @ Schedule.Lunch(at) =>
                 <div class="grid">
                   <h3 class="right unit one-fifth">
-                    { timestamp(at) }
+                    { timestamp(l.easternTime) }
                   </h3>
                   <h3 class="unit four-fifths">
                     Lunch
@@ -428,7 +435,7 @@ trait Templates {
               case slot @ Schedule.Talk(p) =>
                 <div class="grid" id ={ s"talk-${p.domId}" }>
                   <h3 class="right unit one-fifth">
-                    { timestamp(slot.time, true) }
+                    { timestamp(slot.easternTime) }
                   </h3>
                   <h3 class="unit four-fifths">
                     <a href={s"#talk-${p.domId}"}>{ p.name }</a>

@@ -1,11 +1,18 @@
 package nescala.nyc2014
 
 import java.util.{ Calendar, Date, TimeZone }
+import java.time.{ZoneId, ZonedDateTime}
 
 sealed trait Slot {
-  def time: Date
+  def time: Date // deprecated
   def title: String
   def content: xml.NodeSeq
+  // this replaces previous use of ye-old java.util "time"
+  def easternTime: ZonedDateTime =
+    ZonedDateTime.ofInstant(
+      time.toInstant(),
+      ZoneId.of("US/Eastern")
+    )
 }
 
 case class NonPresentation(time: Date, title: String, content: xml.NodeSeq) extends Slot
