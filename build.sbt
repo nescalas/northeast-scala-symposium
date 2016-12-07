@@ -1,6 +1,8 @@
 import com.typesafe.sbt.packager.archetypes.JavaAppPackaging
 
-seq(lsSettings :_*)
+//seq(lsSettings :_*)
+
+libraryDependencies += "org.scalatest" %% "scalatest" % "3.0.1" % "test"
 
 libraryDependencies ++= Seq(
   "net.databinder" %% "unfiltered-filter" % "0.7.1",

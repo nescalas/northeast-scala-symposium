@@ -2,7 +2,7 @@ resolvers ++= Seq(
   "coda" at "http://repo.codahale.com"
 )
 
-addSbtPlugin("me.lessis" % "ls-sbt" % "0.1.3")
+//addSbtPlugin("me.lessis" % "ls-sbt" % "0.1.3")
 addSbtPlugin("com.eed3si9n" % "sbt-assembly" % "0.14.1")
 addSbtPlugin("com.eed3si9n" % "sbt-buildinfo" % "0.5.0")
 addSbtPlugin("io.spray" % "sbt-revolver" % "0.7.1")
