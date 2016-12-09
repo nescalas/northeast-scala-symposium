@@ -9,6 +9,7 @@ import com.ning.http.client.oauth.RequestToken
 import scala.concurrent.ExecutionContext.Implicits.global
 import nescala.request.UrlEncoded
 
+/** authentication endpoints */
 object Northeast extends Config {
 
   object Error extends Params.Extract("error", Params.first)

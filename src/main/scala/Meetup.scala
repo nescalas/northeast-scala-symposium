@@ -53,7 +53,6 @@ object Meetup extends Config {
   def sign(req: Req, session: Session) =
     req <:< Map("Authorization" -> s"Bearer ${session.access}")
 
-
   def memberId(session: Session): Future[Int] =
     http(sign(url("https://api.meetup.com/2/member/self"), session)
          <<? Map("only" -> "id") OK as.String)
