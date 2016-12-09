@@ -19,8 +19,10 @@ object Server {
     Http(port)
     .resources(getClass().getResource("/www"))
     .filter(Planify {
+      // todo: refactor into unfiltered.kit.Routes
       (Northeast.site /: Seq(
         CommonHandlers.handle,
+        nyc2017.Site.pages,
         philly2016.Site.pages,
         boston2015.Site.pages,
         nyc2014.Nyc.site,

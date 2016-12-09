@@ -25,7 +25,7 @@ object Site extends Templates {
     })
 
   def pages: Intent[Any, Any] = {
-    case GET(req) & Path(Seg(Nil)) =>
+    case GET(req) & Path(Seg("2016" :: Nil)) =>
       respond(req)(indexPage(sponsors.get(Constants.MeetupOrgName)))
   }
 
