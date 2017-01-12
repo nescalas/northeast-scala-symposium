@@ -2,7 +2,7 @@ package nescala
 
 import dispatch._ // for future enrichment
 import unfiltered.Cycle.Intent
-import unfiltered.request.{ GET, Params, Path, Seg, & }
+import unfiltered.request.{ HttpRequest, GET, Params, Path, Seg, & }
 import unfiltered.response.{ Redirect, SetCookies }
 import unfiltered.Cookie
 import com.ning.http.client.oauth.RequestToken
@@ -20,15 +20,23 @@ object Northeast extends Config {
 
   def index = Redirect("/")
 
-  def site: Intent[Any, Any] = {
+  def login(
+    req: HttpRequest[Any],
+    pathVars: Map[String, String]
+  ) = req match {
+    case Params(p) => Redirect(Meetup.authorize(callback, State.unapply(p)))
+  }
 
-    case GET(Path(Seg("login" :: Nil))) & Params(p) =>
-      Redirect(Meetup.authorize(callback, State.unapply(p)))
+  def logout(
+    req: HttpRequest[Any],
+    pathVars: Map[String, String]
+  ) = SessionCookie.discard ~> Redirect("/")
 
-    case GET(Path(Seg("logout" :: Nil))) =>
-      SessionCookie.discard ~> Redirect("/")
-
-    case req @ GET(Path(Seg("authenticated" :: Nil))) & Params(params) =>
+  def authenticated(
+    req: HttpRequest[Any],
+    pathVars: Map[String, String]
+  ) = req match {
+    case Params(params) =>
       params match {
         case Error(error) =>
           index
@@ -56,6 +64,4 @@ object Northeast extends Config {
           index
       }
   }
-
-  def http = dispatch.Http
 }

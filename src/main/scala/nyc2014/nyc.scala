@@ -24,11 +24,11 @@ object Nyc extends Templates {
 
   def mukey(of: String) = s"nyc2014:members:$of"
 
-  def site: unfiltered.Cycle.Intent[Any, Any] =
-    (index orElse talkProposals orElse Tally.talks)
-
-  private def index: Cycle.Intent[Any, Any]  = {
-    case r @ GET(Path(Seg("2014" :: Nil))) => Clock("home") {
+  def index(
+    req: HttpRequest[Any],
+    pathVars: Map[String, String]
+  ) = req match {
+    case r @ GET(_) => Clock("home") {
       AuthorizedToken(r) match {
         case Some(t) =>
           Store { s =>
@@ -42,12 +42,18 @@ object Nyc extends Templates {
                     sched = Schedule.get)
       }
     }
-    case GET(Path(Seg("2014" :: "friends" :: Nil))) =>
-      friendsPage
+    case _ => Pass
   }
 
-  private def talkProposals: Cycle.Intent[Any, Any] = 
-    Proposals.viewing
+  def friends(
+    req: HttpRequest[Any],
+    pathVars: Map[String, String]
+  ) = req match {
+    case GET(_) =>
+      friendsPage
+    case _ =>
+      Pass
+  }
 
   private def proposals(r: RedisClient, mid: String): Seq[Proposal] = {
     r.keys(s"nyc2014:proposals:$mid:*") match {

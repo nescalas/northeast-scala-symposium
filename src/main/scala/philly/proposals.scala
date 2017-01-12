@@ -142,14 +142,17 @@ object Proposals extends Templates {
     }
 
     (proposals /: members)((a, e) => e match {
-      case (key, value) =>          
+      case (key, value) =>
         val (matching, notmatching) = a.partition(_("id").matches("""philly:proposals:%s:(.*)""".format(key)))
         matching.map(_ ++ value) ++ notmatching
     })
   }
 
-  val viewing: Cycle.Intent[Any, Any] = {
-    case req @ GET(Path(Seg("2013" :: "talks" :: Nil))) => Clock("fetching 2012 talks proposals") {
+  def list(
+    req: HttpRequest[Any],
+    pathVars: Map[String, String]
+  ) = req match {
+    case req @ GET(_) => Clock("fetching 2012 talks proposals") {
       /*val (authed, canVote, votes) =  req match {
         case AuthorizedToken(t)
           if (Meetup.has_rsvp(Meetup.Philly.eventId, t.token)) =>
@@ -169,6 +172,7 @@ object Proposals extends Templates {
                   canVote = false,
                   votes = Nil)
     }
+    case _ => Pass
   }
 
   private val create: Cycle.Intent[Any, Any] = {
@@ -191,7 +195,7 @@ object Proposals extends Templates {
         ))
       }
     }
-  } 
+  }
 
   val making: Cycle.Intent[Any, Any] = {
     // edit

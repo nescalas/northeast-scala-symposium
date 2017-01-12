@@ -3,13 +3,17 @@ package nescala.nyc2017
 import nescala.{ Meetup, SessionCookie }
 import unfiltered.Cycle.Intent
 import unfiltered.request.{GET, Path, HttpRequest, Seg, &}
-import unfiltered.response.ResponseFunction
+import unfiltered.response.{Pass, ResponseFunction}
 
 object Site extends Templates {
 
-  def pages: Intent[Any, Any] = {
+  def index(
+    req: HttpRequest[Any],
+    pathVars: Map[String, String]
+  ) = req match {
     case GET(req) & Path(Seg(Nil)) =>
       respond(req)(indexPage())
+    case _ => Pass
   }
 
   def respond
