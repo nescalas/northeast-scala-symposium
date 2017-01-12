@@ -64,6 +64,10 @@ a {
     color: #fff;
 }
 
+.jumbotron sup {
+  color:#eee;
+}
+
 .m-bottom {
     margin-bottom: 48px;
 }

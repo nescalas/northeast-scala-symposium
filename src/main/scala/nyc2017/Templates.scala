@@ -29,7 +29,7 @@ trait Templates {
               <h2 class="font-light">
                 a community-driven <a href="https://www.scala-lang.org/">Scala</a> conference
               </h2>
-              <h3>back to the big apple in 2017</h3>
+              <h3>back to the big apple this March 24<sup>th</sup> and 25<sup>th</sup> 2017</h3>
               <a href="https://twitter.com/nescalas" target="_blank">
                 <button><i class="twttr-blue fa fa-twitter"></i> stay tuned</button>
               </a>
