@@ -42,10 +42,6 @@ object Server {
         "/philly/rsvps/:event_id" -> philly.Philly.rsvps,
         "/2013/talk_tally" -> philly.Tally.talks
       )
-      // todo: refactor into unfiltered.kit.Routes
-      /*( /: Seq(
-        boston.Boston.site,
-        nyc.Nyc.site))(_ orElse _)*/
     }).run(
       _ => (),
       _ => dispatch.Http.shutdown()
