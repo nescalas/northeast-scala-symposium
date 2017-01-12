@@ -64,7 +64,7 @@ trait Templates {
            <div class="col-2 hidden-sm"></div>
            <div class="col-8">
              <h3 class="center m-bottom">Coming soon</h3>
-             <p>We will soon announce our nyc venue and dates soon. Afterwords we will send out a call for proposals for this year's talks</p>
+             <p>We will announce our nyc venue and dates soon. Afterwards we will send out a call for proposals for this year's talks.</p>
              <p class="center">
                <a href="https://twitter.com/nescalas" target="_blank">Follow us on twitter</a> for updates <i class="twttr-blue fa fa-twitter"></i>
              </p>
