@@ -7,8 +7,11 @@ import unfiltered.response._
 
 object Tally extends Templates {
 
-  def talks: Cycle.Intent[Any, Any] = {
-    case r @ GET(Path(Seg("2014" :: "tally" :: Nil))) =>
+  def talks(
+    req: HttpRequest[Any],
+    pathVars: Map[String, String]
+  ) = req match {
+    case r @ GET(_) =>
       r match {
         case AuthorizedToken(t) =>
           if (hosting(t.memberId.get)) talliedFor("proposals")
@@ -16,6 +19,8 @@ object Tally extends Templates {
         case _ =>
           Redirect("/2014/talks")
       }
+    case _ =>
+      Pass
   }
 
   private def talliedFor(kind: String) =

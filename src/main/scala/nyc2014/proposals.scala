@@ -215,6 +215,42 @@ object Proposals extends Templates {
     }
   }
 
+
+  def list(
+    req: HttpRequest[Any],
+    pathVars: Map[String, String]
+  ) = req match {
+    case req @ GET(Path(Seg("2014" :: "talks" :: Nil))) => Clock("fetching 2014 talks proposals") {
+      val (authed, canVote, votes) =  req match {
+        case AuthorizedToken(t)
+          if (Meetup.rsvped(Meetup.Nyc2014.dayoneEventId, t.token)) =>
+            println("has rsvp and logged in")
+            val mid = t.memberId.get
+            val votekey = s"nyc2014:talk_votes:$mid"
+            println(s"fetching votes for $votekey")
+            val currentVotes = Store {
+              _.smembers(votekey)
+               .map(_.filter(_.isDefined).map(_.get).toSeq)
+               .getOrElse(Nil)
+            }
+            println(s"current votes $currentVotes")
+            (true, true, currentVotes)
+        case AuthorizedToken(t) =>
+          println("logged in without rsvp")
+          (true, false, Nil)
+        case _ =>
+          println("alien")
+          (false, false, Nil)
+      }
+      talkListing(authed,
+                  scala.util.Random.shuffle(currentProposals),
+                  canVote = canVote,
+                  votes   = votes)
+    }
+    case _ =>
+      Pass
+  }
+
   val viewing: Cycle.Intent[Any, Any] = {
     case req @ GET(Path(Seg("2014" :: "talks" :: Nil))) => Clock("fetching 2012 talks proposals") {
       val (authed, canVote, votes) =  req match {

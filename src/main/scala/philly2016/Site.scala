@@ -24,9 +24,13 @@ object Site extends Templates {
       def load(urlname: String) = Meetup.sponsors(urlname).apply()
     })
 
-  def pages: Intent[Any, Any] = {
+  def index(
+    req: HttpRequest[Any],
+    pathVars: Map[String, String]
+  ) = req match {
     case GET(req) & Path(Seg("2016" :: Nil)) =>
       respond(req)(indexPage(sponsors.get(Constants.MeetupOrgName)))
+    case _ => Pass
   }
 
   def respond

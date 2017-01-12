@@ -8,8 +8,11 @@ object Tally extends Templates {
   import unfiltered.response._
   import QParams._
 
-  def talks: Cycle.Intent[Any, Any] = {
-    case r @ GET(Path(Seg("2013" :: "talk_tally" :: Nil))) =>
+  def talks(
+    req: HttpRequest[Any],
+    pathVars: Map[String, String]
+  ) = req match {
+    case r @ GET(_) =>
       r match {
         case AuthorizedToken(t) =>
           val mid = t.memberId.get
@@ -18,6 +21,7 @@ object Tally extends Templates {
         case _ =>
           Redirect("/2013/talks")
       }
+    case _ => Pass
   }
 
   private def talliedFor(kind: String) =

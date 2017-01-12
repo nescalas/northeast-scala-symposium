@@ -8,7 +8,7 @@ import nescala.request.UrlDecoded
 import org.joda.time.{ DateMidnight, DateTimeZone, LocalDateTime }
 import unfiltered.request.{ DELETE, GET, HttpRequest, Params, Path, POST, Seg, & }
 import unfiltered.request.QParams._
-import unfiltered.response.{ JsonContent, Redirect, ResponseString, ResponseFunction, Unauthorized }
+import unfiltered.response.{ JsonContent, Redirect, ResponseString, ResponseFunction, Unauthorized, Pass }
 import unfiltered.Cycle.Intent
 import scala.util.control.NonFatal
 import scala.util.Random
@@ -37,7 +37,7 @@ object Site extends Templates {
 
   def votesOpen = votesCutoff.isAfterNow
 
-  def talks(anchor: String = "") =
+  def talksRedirect(anchor: String = "") =
     if (anchor.nonEmpty) Redirect(s"/2015/talks#$anchor")
     else Redirect("/2015/talks")
 
@@ -65,7 +65,7 @@ object Site extends Templates {
    (session: SessionCookie,
     id: String,
     yes: Boolean): ResponseFunction[Any] =
-    if (!session.canVote) talks() else {
+    if (!session.canVote) talksRedirect() else {
       def err(msg: String) =
         s"""{"status":400, "msg":"$msg"}"""
       def ok(remaining: Int) =
@@ -79,7 +79,7 @@ object Site extends Templates {
    (session: SessionCookie,
     params: Params.Map,
     id: Option[String] = None): ResponseFunction[Any] =
-    if (!session.nescalaMember) talks() else {
+    if (!session.nescalaMember) talksRedirect() else {
       val cached = Member.get(session.member.toString)
       val expected = for {
         name <- lookup("name") is required("name is required")
@@ -90,56 +90,73 @@ object Site extends Templates {
           Proposal.create(cached.get, name.get, desc.get, kind.get)
           .fold({ err =>
              println(s"create err $err")
-             talks("propose")
+             talksRedirect("propose")
            }, {
              case (_, created) =>
-               talks(created.domId)
+               talksRedirect(created.domId)
            })
         case Some(key @ Proposal.Pattern(memberid, _))
           if memberid == session.member.toString =>
           Proposal.edit(cached.get, key, name.get, desc.get, kind.get)
            .fold({ err =>
               println(s"edit err $err")
-              talks("propose")
+              talksRedirect("propose")
             }, { updated =>
-                talks(updated.domId)
+                talksRedirect(updated.domId)
             })
         case _ =>
           // key provided but its not ours
-          talks()
+          talksRedirect()
       }
       expected(params).orFail { errors =>
-        talks("propose")
+        talksRedirect("propose")
       }
     }
 
-  def pages: Intent[Any, Any] = {
-    case GET(req) & Path(Seg("2015" :: Nil)) =>
-      respond(req)(indexPage(Schedule.slots, sponsors.get("nescala")))
-    case GET(req) & Path(Seg("2015" :: "talks" :: Nil)) =>
+  def index(
+    req: HttpRequest[Any],
+    pathVars: Map[String, String]
+  ) = respond(req)(indexPage(Schedule.slots, sponsors.get("nescala")))
+
+  def talks(
+    req: HttpRequest[Any],
+    pathVars: Map[String, String]
+  ) = req match {
+    case GET(req) =>
       respond(req)(proposalsPage(Random.shuffle(Proposal.all)))
-    case POST(req) & Path(Seg("2015" :: "talks" :: Nil)) & Params(params) =>
+    case POST(req) & Params(params) =>
       respond(req) {
         case Some(member) =>
           proposeit(member, params)
         case _ =>
-          talks()
+          talksRedirect()
       }
-    case GET(req) & Path(Seg("2015" :: "talks" :: "peek" :: Nil)) =>
-      respond(req) {
-        case Some(member) if Meetup.hosts(member.session, DayOneEvent).apply().exists(_ == member.member) =>
-          tally(Proposal.all)
-        case _ =>
-          talks()
-      }
-    case POST(req) & Path(Seg("2015" :: "talks" :: UrlDecoded(id) :: Nil)) & Params(params) =>
+    case _ => Pass
+  }
+
+  def talksPeek(
+    req: HttpRequest[Any],
+    pathVars: Map[String, String]
+  ) = respond(req) {
+    case Some(member) if Meetup.hosts(member.session, DayOneEvent).apply().exists(_ == member.member) =>
+      tally(Proposal.all)
+    case _ =>
+      talksRedirect()
+  }
+
+  def talk(
+    req: HttpRequest[Any],
+    pathVars: Map[String, String]
+  ) = req match {
+    case POST(req) & Params(params) =>
       respond(req) {
         case Some(member) =>
-          proposeit(member, params, Some(id))
+          proposeit(member, params, pathVars.get("id"))
         case _ =>
-          talks()
+          talksRedirect()
       }
-    case req @ Path(Seg("2015" :: "talks" :: UrlDecoded(id) :: "votes" :: Nil)) & Params(params) =>
+    case req @ Params(params) =>
+      val id = pathVars("id")
       respond(req) {
         case Some(member) =>
           req match {
@@ -148,10 +165,31 @@ object Site extends Templates {
             case DELETE(_) =>
               vote(member, id, false)
             case _ =>
-              talks()
+              talksRedirect()
           }
         case _ =>
-          talks()
+          talksRedirect()
+      }
+  }
+
+  def votes(
+    req: HttpRequest[Any],
+    pathVars: Map[String, String]
+  ) = req match {
+    case Params(params) =>
+      val id = pathVars("id")
+      respond(req) {
+        case Some(member) =>
+          req match {
+            case POST(_) =>
+              vote(member, id, true)
+            case DELETE(_) =>
+              vote(member, id, false)
+            case _ =>
+              talksRedirect()
+          }
+        case _ =>
+          talksRedirect()
       }
   }
 
