@@ -20,8 +20,7 @@ object Server {
     Http(port)
     .resources(getClass().getResource("/www"))
     .filter(Planify {
-      Routes.specify[Any,Any](
-        "/.well-known/acme-challenge/Q9yccbYQD4fOxSUkAR_lFOReTQ4bdZ_BTZZZ0ViFBC0" -> nyc2017.Site.ssl,
+      Routes.specify[Any,Any](        
         "/" -> nyc2017.Site.index,
         "/login" -> Northeast.login,
         "/logout" -> Northeast.logout,
@@ -41,7 +40,8 @@ object Server {
         "/2013/friends" -> philly.Philly.friends,
         "/2013/talks" -> philly.Proposals.list,
         "/philly/rsvps/:event_id" -> philly.Philly.rsvps,
-        "/2013/talk_tally" -> philly.Tally.talks
+        "/2013/talk_tally" -> philly.Tally.talks,
+        "/.well-known/acme-challenge/Q9yccbYQD4fOxSUkAR_lFOReTQ4bdZ_BTZZZ0ViFBC0" -> nyc2017.Site.ssl
       )
     }).run(
       _ => (),
