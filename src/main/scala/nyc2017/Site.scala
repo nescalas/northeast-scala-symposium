@@ -7,6 +7,15 @@ import unfiltered.response.{Pass, ResponseFunction}
 
 object Site extends Templates {
 
+  def ssl(
+    req: HttpRequest[Any],
+    pathVars: Map[String, String]
+  ) = req match {
+    case GET(req) & Path(Seg(".well-known" :: "acme-challenge" :: "Q9yccbYQD4fOxSUkAR_lFOReTQ4bdZ_BTZZZ0ViFBC0" :: _)) => 
+      unfiltered.response.ResponseString("Q9yccbYQD4fOxSUkAR_lFOReTQ4bdZ_BTZZZ0ViFBC0.ql_s6qM7EE4MZA4mzgKM0L_-v8c-KU5yzp0h5Rw5YJw")
+    case _ => Pass
+  }
+
   def index(
     req: HttpRequest[Any],
     pathVars: Map[String, String]
