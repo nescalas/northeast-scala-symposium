@@ -11,8 +11,8 @@ object Site extends Templates {
     req: HttpRequest[Any],
     pathVars: Map[String, String]
   ) = req match {
-    case GET(req) & Path(Seg(".well-known" :: "acme-challenge" :: "QVUVTQQju4MKxU6wb8jJgnJWqs9iiKICl6_q8qjxEoY" :: _)) => 
-      unfiltered.response.ResponseString("QVUVTQQju4MKxU6wb8jJgnJWqs9iiKICl6_q8qjxEoY.ql_s6qM7EE4MZA4mzgKM0L_-v8c-KU5yzp0h5Rw5YJw")
+    case GET(req) & Path(Seg(".well-known" :: "acme-challenge" :: "NVehMsEOuhK1JtEu_gme93Utb5otcrmq-K3u5LuFcmY" :: _)) => 
+      unfiltered.response.ResponseString("NVehMsEOuhK1JtEu_gme93Utb5otcrmq-K3u5LuFcmY.ql_s6qM7EE4MZA4mzgKM0L_-v8c-KU5yzp0h5Rw5YJw")
     case _ => Pass
   }
 
