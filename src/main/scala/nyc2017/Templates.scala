@@ -29,7 +29,7 @@ trait Templates {
               <h2 class="font-light">
                 a community-driven <a href="https://www.scala-lang.org/">Scala</a> conference
               </h2>
-              <h3>back to the big apple this March 24<sup>th</sup> and 25<sup>th</sup> 2017</h3>
+              <h3>back to the big apple this March 23<sup>rd</sup> through 25<sup>th</sup> 2017</h3>
               <a href="https://twitter.com/nescalas" target="_blank">
                 <button><i class="twttr-blue fa fa-twitter"></i> stay tuned</button>
               </a>
@@ -42,34 +42,60 @@ trait Templates {
           <div class="row">
             <div class="col-2 hidden-sm"></div>
             <div class="col-8">
-              <h3 class="center m-bottom">Conference meets Community</h3>
-              <p>
-                Northeast Scala Symposium is a <a href="https://www.scala-lang.org/">Scala</a>-focused <b>community</b> gathering.
-              </p>
-              <p>
-                A uniquely-blended programming language deserves a uniquely-blended conference format.
-                NE Scala offers a mix of speaker-oriented conference presentations with unconference-style sessions and discussions.
-                All presenters are attendees and all attendees select presenters.
-              </p>
-              <p class="center">
-              { meetupLogo }
-              </p>
-              <p>
-                If you are planning on attending you will need to join our <a href="http://www.meetup.com/nescala/">Meetup Group</a>.
-                Membership is free.
-              </p>
+              <p>Since 2011, the <a href="https://www.meetup.com/ny-scala/">New York</a>, <a href="https://www.meetup.com/boston-scala/">Boston</a> and <a href="https://www.meetup.com/scala-phase/">Philadelphia</a> Scala meetups have come together every year to host a community driven, Scala conference. The conference rotates between each city, and this year it's in New York City.</p>
+              <p>Many of our past speakers have been contributors to <a href="http://typelevel.org/">Typelevel</a> projects. In fact some Typelevel projects began at past Northeast Scala Symposiums! Last year Typelevel colocated their Typelevel Summit along with our conference in Philadelphia, and we're happy to say that it will happen again this year! And to make things simpler, you will only have to purchase one ticket for entrance to both events.</p>
             </div>
          </div>
+
          <div class="row">
            <div class="col-2 hidden-sm"></div>
            <div class="col-8">
-             <h3 class="center m-bottom">Coming soon</h3>
-             <p>We will soon announce our nyc venue and dates soon. Afterwords we will send out a call for proposals for this year's talks</p>
-             <p class="center">
-               <a href="https://twitter.com/nescalas" target="_blank">Follow us on twitter</a> for updates <i class="twttr-blue fa fa-twitter"></i>
-             </p>
+              <h3 class="center m-bottom">Schedule</h3>
+              <p class="center">March 23<sup>rd</sup>: <a href="http://typelevel.org/event/2017-03-summit-nyc/">Typelevel Summit</a></p>
+              <p class="center">March 24<sup>th</sup>: Northeast Scala Symposium</p>
+              <p class="center">March 25<sup>th</sup>: Unconference</p>
            </div>
          </div>
+
+         <div class="row">
+           <div class="col-2 hidden-sm"></div>
+           <div class="col-8">
+              <h3 class="center m-bottom">Tickets</h3>
+              <p>Tickets will go on sale the week of January 15<sup>th</sup>. Look for an announcement on January 17th for an exact date and time, which will be later in the week. Tickets have historically sold out within a few hours of going on sale, so make sure to be at a computer at the time we announce. There will only be one ticket per person, and as always, this is not a profit seeking venture for us - we are simply breaking even, so although we aren't sure what the price is at this moment, you can expect it to be reasonable.</p>
+           </div>
+         </div>
+
+         <div class="row">
+           <div class="col-2 hidden-sm"></div>
+           <div class="col-8">
+              <h3 class="center m-bottom">Call for Speakers</h3>
+              <p>The Northeast Scala Symposium will announce it's call for speakers the week of January 15th through various channels, with more details posted here. The speakers will be chosen by you! Each speaker's proposed talk will be voted on by everyone who buys a ticket, and the talks with the most votes will be the ones you see!</p>
+              <p>Typelevel's <a href="http://typelevel.org/event/2017-03-summit-nyc/">call for speakers</a> is already underway and ends January 23rd. Typelevel has a committee that selects speakers, and the speakers they choose will all speak on March 23rd.</p>              
+           </div>
+         </div>
+
+         <div class="row">
+           <div class="col-2 hidden-sm"></div>
+           <div class="col-8">
+              <h3 class="center m-bottom">Location</h3>
+              <p><i>Just a heads up on the location: the Google Street View makes the place look like a dump. The image is from several years ago and has since been renovated and it's much nicer now.</i></p>
+              <p>The conference will be in the Dumbo neighborhood of Brooklyn, NY at <a href="http://www.26bridge.com/">26 Bridge</a>, whose address is unsurprisingly: <br/><br/><a href="https://www.google.com/maps/place/26+Bridge+St,+Brooklyn,+NY+11201/@40.7039628,-73.9871895,17z/data=!3m1!4b1!4m5!3m4!1s0x89c25a32e4bc73a7:0xc9dc9bc26ed594d6!8m2!3d40.7039628!4d-73.9850008">26 Bridge St.<br/>Brooklyn, NY 11201</a></p>
+              <p>It's just a short, five minute walk from the <a href="https://www.google.com/maps/place/York+Street/@40.7030518,-73.9879941,17z/data=!4m13!1m7!3m6!1s0x89c25a32e4bc73a7:0xc9dc9bc26ed594d6!2s26+Bridge+St,+Brooklyn,+NY+11201!3b1!8m2!3d40.7039628!4d-73.9850008!3m4!1s0x89c25a3389143497:0x673b92bb04377cd9!8m2!3d40.7013507!4d-73.9866026">York St. F-train stop</a>, which is one stop outside of Manhattan. If you are unfamiliar with Dumbo, it's right across the Brooklyn Bridge from Manhattan's Financial District. It's very safe and very trendy. You ought to check out the neighborhood while you're there.</p>
+
+
+              
+           </div>
+         </div>
+
+         <div class="row">
+           <div class="col-2 hidden-sm"></div>
+           <div class="col-8">
+              <h3 class="center m-bottom">Where to stay</h3>
+              <p>There is a <a href="https://www.google.com/maps/place/New+York+Marriott+at+The+Brooklyn+Bridge/@40.6974761,-73.9896916,15.67z/data=!4m8!1m2!2m1!1smarriott!3m4!1s0x0:0x175dbb4c26c2225f!8m2!3d40.693669!4d-73.9880034">Marriott</a> not far from the venue. Aside from that there aren't any other hotels in the neighborhood, but it's only a five minute walk from the <a href="https://www.google.com/maps/place/York+Street/@40.6974761,-73.9896916,15.67z/data=!4m8!1m2!2m1!1smarriott!3m4!1s0x89c25a3389143497:0x673b92bb04377cd9!8m2!3d40.7013497!4d-73.9866033">York St. F-train subway stop</a>, so our advice is to find a hotel not far from an F-Train stop so you can take it to the venue. The <a href="https://www.google.com/maps/place/High+Street/@40.6985476,-73.9860459,16z/data=!4m5!3m4!1s0x89c25a36f57f83e7:0xe6e14ba9ee8d83a6!8m2!3d40.6994301!4d-73.9914098">High St. A and C train stop</a> isn't far from the venue either, so staying near one of those trains, or somewhere in the Financial District in lower Manhattan would be a good option. That said, the walk to the venue from the High St. stop is a bit confusing. If you choose this option, make sure your phone is fully charged so you can use Google Maps to find the venue. And honestly Google Maps won't steer you wrong, so if you're comfortable riding the subway, you can stay just about anywhere. Taxis and Uber are obviously an option to get to and from the venue too.</p>
+              <p>If you're looking to save a little bit of money, you may be able to find a better deal on Airbnb in Dumbo or a nearby neighborhood. Dumbo and the neighborhoods around Dumbo are safe. Randy and Dustin both live not far from Dumbo, so if you've found an Airbnb you want a sanity check on, please feel free to contact us and we'll be happy to take a look for you.</p>
+           </div>
+         </div>
+
          <div class="row">
            <div class="col-2 hidden-sm"></div>
            <div class="col-8">
