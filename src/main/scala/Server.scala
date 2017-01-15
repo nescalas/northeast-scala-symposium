@@ -21,6 +21,7 @@ object Server {
     .resources(getClass().getResource("/www"))
     .filter(Planify {
       Routes.specify[Any,Any](
+        "/.well-known/acme-challenge/Q9yccbYQD4fOxSUkAR_lFOReTQ4bdZ_BTZZZ0ViFBC0" -> nyc2017.Site.ssl,
         "/" -> nyc2017.Site.index,
         "/login" -> Northeast.login,
         "/logout" -> Northeast.logout,
