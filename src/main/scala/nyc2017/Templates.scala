@@ -69,8 +69,8 @@ trait Templates {
            <div class="col-2 hidden-sm"></div>
            <div class="col-8">
               <h3 class="center m-bottom">Call for Speakers</h3>
-              <p>The Northeast Scala Symposium will announce it's call for speakers the week of January 15th through various channels, with more details posted here. The speakers will be chosen by you! Each speaker's proposed talk will be voted on by everyone who buys a ticket, and the talks with the most votes will be the ones you see!</p>
-              <p>Typelevel's <a href="http://typelevel.org/event/2017-03-summit-nyc/">call for speakers</a> is already underway and ends January 23rd. Typelevel has a committee that selects speakers, and the speakers they choose will all speak on March 23rd.</p>              
+              <p>Each year we rely on the community to summit talks and we rely on the community to select talks. After a waiting period where we collect proposals we plan on opening up the voting process to attendees.</p>
+              <p>We are looking for talks of three lengths, lightning (15 min), medium (30 min), and long (45 min). We are looking for a variety of talk topics and targeting a variety of experience levels and backgrounds. Please submit your proposal at <a href="https://www.papercall.io/nescala-nyc-2017">PaperCall</a>. The call ends on February 5<sup>th</sup></p>
            </div>
          </div>
 
