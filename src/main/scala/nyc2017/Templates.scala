@@ -61,7 +61,7 @@ trait Templates {
            <div class="col-2 hidden-sm"></div>
            <div class="col-8">
               <h3 class="center m-bottom" id="tickets">Tickets</h3>
-              <p>Tickets will go on sale the week of January 15<sup>th</sup>. Look for an announcement on January 17th for an exact date and time, which will be later in the week. Tickets have historically sold out within a few hours of going on sale, so make sure to be at a computer at the time we announce. There will only be one ticket per person, and as always, this is not a profit seeking venture for us - we are simply breaking even, so although we aren't sure what the price is at this moment, you can expect it to be reasonable.</p>
+              <p>Tickets will go on sale January 19th at 12pm EST at <a href="https://ti.to/northeast-scala-symposium/northeast-scala-symposium-2017">ti.to</a> Make sure you're at your computer, because they go fast!</p>
            </div>
          </div>
 
