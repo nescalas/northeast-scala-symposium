@@ -68,11 +68,13 @@ trait Templates {
          <div class="row">
            <div class="col-2 hidden-sm"></div>
            <div class="col-8">
+
               <h3 class="center m-bottom" id="cfs">Call for Speakers</h3>
               <p>The Northeast Scala Symposium call for speakers is officially open we need <a href="https://www.papercall.io/nescala-nyc-2017">you to participate</a>. The speakers will be chosen by you but we need you to speak up first! Each speaker's proposed talk will be voted on by everyone who buys a ticket, and the talks with the most votes will be the ones you see!</p>
               <p>Typelevel's <a href="http://typelevel.org/event/2017-03-summit-nyc/">call for speakers</a> is already underway and ends January 23rd. Typelevel has a committee that selects speakers, and the speakers they choose will all speak on March 23rd.</p>
               <p>This year we will be accepting proposals through <a href="https://www.papercall.io/">PaperCall</a>. Submit your proposal <a href="https://www.papercall.io/cfps/307/submissions/new">here</a>. We will be closing this submission for on Feb, 15. Afterwards, we will be open up the community poll.</p>
               <p>Need inspiration? See what others voted for <a href="/2016">in</a> <a href="/2015">recent</a> <a href="/2014">years</a>.</p>
+
            </div>
          </div>
 
