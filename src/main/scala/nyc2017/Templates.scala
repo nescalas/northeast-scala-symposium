@@ -50,7 +50,7 @@ trait Templates {
          <div class="row">
            <div class="col-2 hidden-sm"></div>
            <div class="col-8">
-              <h3 class="center m-bottom">Schedule</h3>
+              <h3 class="center m-bottom" id="schedule">Schedule</h3>
               <p class="center">March 23<sup>rd</sup>: <a href="http://typelevel.org/event/2017-03-summit-nyc/">Typelevel Summit</a></p>
               <p class="center">March 24<sup>th</sup>: Northeast Scala Symposium</p>
               <p class="center">March 25<sup>th</sup>: Unconference</p>
@@ -60,7 +60,7 @@ trait Templates {
          <div class="row">
            <div class="col-2 hidden-sm"></div>
            <div class="col-8">
-              <h3 class="center m-bottom">Tickets</h3>
+              <h3 class="center m-bottom" id="tickets">Tickets</h3>
               <p>Tickets will go on sale the week of January 15<sup>th</sup>. Look for an announcement on January 17th for an exact date and time, which will be later in the week. Tickets have historically sold out within a few hours of going on sale, so make sure to be at a computer at the time we announce. There will only be one ticket per person, and as always, this is not a profit seeking venture for us - we are simply breaking even, so although we aren't sure what the price is at this moment, you can expect it to be reasonable.</p>
            </div>
          </div>
@@ -68,22 +68,24 @@ trait Templates {
          <div class="row">
            <div class="col-2 hidden-sm"></div>
            <div class="col-8">
-              <h3 class="center m-bottom">Call for Speakers</h3>
-              <p>The Northeast Scala Symposium will announce it's call for speakers the week of January 15th through various channels, with more details posted here. The speakers will be chosen by you! Each speaker's proposed talk will be voted on by everyone who buys a ticket, and the talks with the most votes will be the ones you see!</p>
-              <p>Typelevel's <a href="http://typelevel.org/event/2017-03-summit-nyc/">call for speakers</a> is already underway and ends January 23rd. Typelevel has a committee that selects speakers, and the speakers they choose will all speak on March 23rd.</p>              
+              <h3 class="center m-bottom" id="cfs">Call for Speakers</h3>
+              <p>The Northeast Scala Symposium call for speakers is officially open we need <a href="https://www.papercall.io/nescala-nyc-2017">you to participate</a>. The speakers will be chosen by you but we need you to speak up first! Each speaker's proposed talk will be voted on by everyone who buys a ticket, and the talks with the most votes will be the ones you see!</p>
+              <p>Typelevel's <a href="http://typelevel.org/event/2017-03-summit-nyc/">call for speakers</a> is already underway and ends January 23rd. Typelevel has a committee that selects speakers, and the speakers they choose will all speak on March 23rd.</p>
+              <p>This year we will be accepting proposals through <a href="https://www.papercall.io/">PaperCall</a>. Submit your proposal <a href="https://www.papercall.io/cfps/307/submissions/new">here</a>. We will be closing this submission for on Feb, 15. Afterwards, we will be open up the community poll.</p>
+              <p>Need inspiration? See what others voted for <a href="/2016">in</a> <a href="/2015">recent</a> <a href="/2014">years</a>.</p>
            </div>
          </div>
 
          <div class="row">
            <div class="col-2 hidden-sm"></div>
            <div class="col-8">
-              <h3 class="center m-bottom">Location</h3>
+              <h3 class="center m-bottom" id="location">Location</h3>
               <p><i>Just a heads up on the location: the Google Street View makes the place look like a dump. The image is from several years ago and has since been renovated and it's much nicer now.</i></p>
               <p>The conference will be in the Dumbo neighborhood of Brooklyn, NY at <a href="http://www.26bridge.com/">26 Bridge</a>, whose address is unsurprisingly: <br/><br/><a href="https://www.google.com/maps/place/26+Bridge+St,+Brooklyn,+NY+11201/@40.7039628,-73.9871895,17z/data=!3m1!4b1!4m5!3m4!1s0x89c25a32e4bc73a7:0xc9dc9bc26ed594d6!8m2!3d40.7039628!4d-73.9850008">26 Bridge St.<br/>Brooklyn, NY 11201</a></p>
               <p>It's just a short, five minute walk from the <a href="https://www.google.com/maps/place/York+Street/@40.7030518,-73.9879941,17z/data=!4m13!1m7!3m6!1s0x89c25a32e4bc73a7:0xc9dc9bc26ed594d6!2s26+Bridge+St,+Brooklyn,+NY+11201!3b1!8m2!3d40.7039628!4d-73.9850008!3m4!1s0x89c25a3389143497:0x673b92bb04377cd9!8m2!3d40.7013507!4d-73.9866026">York St. F-train stop</a>, which is one stop outside of Manhattan. If you are unfamiliar with Dumbo, it's right across the Brooklyn Bridge from Manhattan's Financial District. It's very safe and very trendy. You ought to check out the neighborhood while you're there.</p>
 
 
-              
+
            </div>
          </div>
 
@@ -99,7 +101,7 @@ trait Templates {
          <div class="row">
            <div class="col-2 hidden-sm"></div>
            <div class="col-8">
-             <h3 class="center m-bottom">Higher Kindliness</h3>
+             <h3 class="center m-bottom" id="codeofconduct">Higher Kindliness</h3>
              <p>
                 Nobody likes a jerk. Show respect for those around you.
              </p>
