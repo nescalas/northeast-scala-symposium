@@ -82,7 +82,7 @@ trait Templates {
            <div class="col-2 hidden-sm"></div>
            <div class="col-8">
               <h3 class="center m-bottom" id="location">Location</h3>
-              <p><i>Just a heads up on the location: the Google Street View makes the place look like a dump. The image is from several years ago and has since been renovated and it's much nicer now.</i></p>
+              <p><i>Just a heads up on the location: the Google Street View makes the place look like a dump. The image is from several years ago and has since been renovated and it's much nicer now. Bing has a much better <a href="https://binged.it/2j3DYxe">view</a> (thanks @derekmorr)</i></p>
               <p>The conference will be in the Dumbo neighborhood of Brooklyn, NY at <a href="http://www.26bridge.com/">26 Bridge</a>, whose address is unsurprisingly: <br/><br/><a href="https://www.google.com/maps/place/26+Bridge+St,+Brooklyn,+NY+11201/@40.7039628,-73.9871895,17z/data=!3m1!4b1!4m5!3m4!1s0x89c25a32e4bc73a7:0xc9dc9bc26ed594d6!8m2!3d40.7039628!4d-73.9850008">26 Bridge St.<br/>Brooklyn, NY 11201</a></p>
               <p>It's just a short, five minute walk from the <a href="https://www.google.com/maps/place/York+Street/@40.7030518,-73.9879941,17z/data=!4m13!1m7!3m6!1s0x89c25a32e4bc73a7:0xc9dc9bc26ed594d6!2s26+Bridge+St,+Brooklyn,+NY+11201!3b1!8m2!3d40.7039628!4d-73.9850008!3m4!1s0x89c25a3389143497:0x673b92bb04377cd9!8m2!3d40.7013507!4d-73.9866026">York St. F-train stop</a>, which is one stop outside of Manhattan. If you are unfamiliar with Dumbo, it's right across the Brooklyn Bridge from Manhattan's Financial District. It's very safe and very trendy. You ought to check out the neighborhood while you're there.</p>
 
