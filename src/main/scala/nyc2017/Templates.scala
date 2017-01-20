@@ -103,6 +103,14 @@ trait Templates {
          <div class="row">
            <div class="col-2 hidden-sm"></div>
            <div class="col-8">
+              <h3 class="center m-bottom" id="sponsoring">Sponsorship Packages</h3>
+              <p>If you are interested in sponsoring the Typelevel Summit and Northeast Scala Symposium, please look at our <a href="https://s3.amazonaws.com/meetup-test-bucket/SponsorshipPackages.pdf">sponsorship packges</a> and contact <a href="mailto:dustin.whitney@gmail.com">dustin.whitney@gmail.com</a></p>
+           </div>
+         </div>
+
+         <div class="row">
+           <div class="col-2 hidden-sm"></div>
+           <div class="col-8">
              <h3 class="center m-bottom" id="codeofconduct">Higher Kindliness</h3>
              <p>
                 Nobody likes a jerk. Show respect for those around you.
