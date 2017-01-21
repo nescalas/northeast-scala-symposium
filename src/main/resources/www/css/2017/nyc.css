@@ -8,7 +8,7 @@ body {
     background: #F38BD3;
 }
 
-a {
+a, .greenish {
   color: #38fabb;
   text-decoration: none;
   font-weight: bold;
@@ -37,7 +37,7 @@ a {
   background: #FE7880;
   background-image: linear-gradient(#F38BD3, #FE7880);
   background: url(https://a248.e.akamai.net/secure.meetupstatic.com/photos/event/8/5/0/4/highres_99874052.jpeg);
-  height: 760px;
+  height: 850px;
   /*width: 100%;*/
   background-size:cover;
   z-index: 100 !important;
@@ -60,7 +60,7 @@ a {
   z-index: 99;
 }
 
-.jumbotron h1, .jumbotron h2, .jumbotron h3 {
+.jumbotron h1, .jumbotron h2, .jumbotron h3, .jumbotron div, .jumbotron strong {
     color: #fff;
 }
 
