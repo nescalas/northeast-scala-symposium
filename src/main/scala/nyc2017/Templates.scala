@@ -30,9 +30,24 @@ trait Templates {
                 a community-driven <a href="https://www.scala-lang.org/">Scala</a> conference
               </h2>
               <h3>back to the big apple this March 23<sup>rd</sup> through 25<sup>th</sup> 2017</h3>
-              <a href="https://twitter.com/nescalas" target="_blank">
-                <button><i class="twttr-blue fa fa-twitter"></i> stay tuned</button>
-              </a>
+              <div class="container">
+                <div class="row">
+                  <div class="col-6">
+                    <a href="https://www.papercall.io/cfps/307/submissions/new" target="_blank">
+                      <button><i class="greenish fa fa-bullhorn"></i> Propose a Talk</button>
+                    </a>
+                    <div>
+                    More information <a href="#cfs">below</a>
+                    </div>
+
+                  </div>
+                  <div class="col-6">
+                    <a href="https://twitter.com/nescalas" target="_blank">
+                      <button><i class="twttr-blue fa fa-twitter"></i> Stay up to date</button>
+                    </a>
+                  </div>
+                </div>
+              </div>
             </div>
            </div>
         </div>
@@ -104,7 +119,7 @@ trait Templates {
            <div class="col-2 hidden-sm"></div>
            <div class="col-8">
               <h3 class="center m-bottom" id="sponsoring">Sponsorship Packages</h3>
-              <p>If you are interested in sponsoring the Typelevel Summit and Northeast Scala Symposium, please look at our <a href="https://s3.amazonaws.com/meetup-test-bucket/SponsorshipPackages.pdf">sponsorship packges</a> and contact <a href="mailto:dustin.whitney@gmail.com">dustin.whitney@gmail.com</a></p>
+              <p>If you are interested in sponsoring the Typelevel Summit and Northeast Scala Symposium, please look at our <a href="https://s3.amazonaws.com/meetup-test-bucket/SponsorshipPackages.pdf">sponsorship packages</a> and contact <a href="mailto:dustin.whitney@gmail.com">dustin.whitney@gmail.com</a></p>
            </div>
          </div>
 
