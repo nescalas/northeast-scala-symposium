@@ -41,6 +41,11 @@ object Server {
         "/2013/talks" -> philly.Proposals.list,
         "/philly/rsvps/:event_id" -> philly.Philly.rsvps,
         "/2013/talk_tally" -> philly.Tally.talks,
+        "/2012" -> boston.Boston.indexPage,
+        "/2012/friends" -> boston.Boston.friends,
+        "/boston/rsvps" -> boston.Boston.api,
+        "/2012/pannels" -> boston.Boston.pannelProposals,
+        "/2012/talks" -> boston.Boston.talkProposals,
         "/nyc/rsvps" -> nyc.Nyc.rsvps,
         "/nyc/photos" -> nyc.Nyc.photos,
         "/.well-known/acme-challenge/NVehMsEOuhK1JtEu_gme93Utb5otcrmq-K3u5LuFcmY" -> nyc2017.Site.ssl

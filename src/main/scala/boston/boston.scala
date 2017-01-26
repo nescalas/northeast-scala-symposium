@@ -8,17 +8,35 @@ import unfiltered.Cycle
 import com.redis.RedisClient
 
 object Boston extends Templates {
-  def site: unfiltered.Cycle.Intent[Any, Any] =
-    (index /: Seq(talkProposals,
-                  panelProposals,
-                  Votes.intent,
-                  Boston.api,
-                  Tally.talks,
-                  Tally.panels))(_ orElse _)
 
-  private def mukey(of: String) = "boston:members:%s" format of
+  def indexPage(
+    req: HttpRequest[Any],
+    pathVars: Map[String, String]
+  ) = req match {
+    case GET(Path(Seg("2012":: Nil))) & AuthorizedToken(t) => Clock("home") {
+      Store { s =>
+        index(true, keynote(s), talks(s), panel(s))
+      }
+    }
+    case GET(Path(Seg("2012" :: Nil))) => Clock("home") {
+      Store { s =>
+        index(false, keynote(s), talks(s), panel(s))
+      }
+    }
+  }
 
-  def api: unfiltered.Cycle.Intent[Any, Any] = {
+  def friends(
+    req: HttpRequest[Any],
+    pathVars: Map[String, String]
+  ) = req match {
+    case GET(Path(Seg("2012" :: "friends" :: Nil))) =>
+      sponsors
+  }
+
+  def api(
+    req: HttpRequest[Any],
+    pathVars: Map[String, String]
+  ) = req match {
     case GET(Path(Seg("boston" :: "rsvps" :: event :: Nil))) => Clock("fetching rsvp list for %s" format event) {
       import org.json4s.native.JsonMethods.{ compact, render }
       JsonContent ~> ResponseString(
@@ -26,15 +44,33 @@ object Boston extends Templates {
     }
   }
 
-  def panelProposals: Cycle.Intent[Any, Any] = {
+  def pannelProposals(
+    req: HttpRequest[Any],
+    pathVars: Map[String, String]
+  ) = req match {
     case req @ GET(Path(Seg("2012" :: "panels" :: Nil))) => Redirect("/")
   }
 
-  def talkProposals: Cycle.Intent[Any, Any] = {
+  def talkProposals(
+    req: HttpRequest[Any],
+    pathVars: Map[String, String]
+  ) = req match {
     case req @ GET(Path(Seg("2012" :: "talks" :: Nil))) => Redirect("/")
   }
 
-  private def talks(r: RedisClient): Seq[Map[String, String]] = {    
+  /*def site: unfiltered.Cycle.Intent[Any, Any] =
+    (index /: Seq(talkProposals,
+                  panelProposals,
+                  Votes.intent,
+                  Boston.api,
+                  Tally.talks,
+                  Tally.panels))(_ orElse _)*/
+
+  private def mukey(of: String) = "boston:members:%s" format of
+
+
+
+  private def talks(r: RedisClient): Seq[Map[String, String]] = {
     val Talk = """boston:talks:(.*)""".r
     r.keys("boston:talks:*") match {
       case None => Seq.empty[Map[String, String]]
@@ -86,20 +122,5 @@ object Boston extends Templates {
         }
       case _ => Map.empty[String, String]
     }
-  }
-
-  def index: Cycle.Intent[Any, Any]  = {
-    case GET(Path(Seg("2012":: Nil))) & AuthorizedToken(t) => Clock("home") {
-      Store { s =>
-        index(true, keynote(s), talks(s), panel(s))
-      }
-    }
-    case GET(Path(Seg("2012" :: Nil))) => Clock("home") {
-      Store { s =>
-        index(false, keynote(s), talks(s), panel(s))
-      }
-    }
-    case GET(Path(Seg("2012" :: "friends" :: Nil))) =>
-      sponsors
   }
 }
