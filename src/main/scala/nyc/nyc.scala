@@ -28,15 +28,4 @@ object Nyc extends Config {
        jsonp.wrap(
          compact(render(Cached.Nyc.photos))))
   }
-
-  /*def site: unfiltered.Cycle.Intent[Any, Any] = {
-    case GET(Path("/nyc/rsvps") & Jsonp.Optional(jsonp)) =>
-      JsonContent ~> ResponseString(
-        jsonp.wrap(
-          compact(render(Cached.Nyc.rsvps))))
-    case GET(Path("/nyc/photos") & Jsonp.Optional(jsonp)) =>
-      JsonContent ~> ResponseString(
-        jsonp.wrap(
-          compact(render(Cached.Nyc.photos))))
-  }*/
 }
