@@ -54,6 +54,7 @@ trait Templates {
       </div>
       <div class="body-content">
         <div class="container">
+
           <div class="row">
             <div class="col-2 hidden-sm"></div>
             <div class="col-8">
@@ -61,6 +62,14 @@ trait Templates {
               <p>Many of our past speakers have been contributors to <a href="http://typelevel.org/">Typelevel</a> projects. In fact some Typelevel projects began at past Northeast Scala Symposiums! Last year Typelevel colocated their Typelevel Summit along with our conference in Philadelphia, and we're happy to say that it will happen again this year! And to make things simpler, you will only have to purchase one ticket for entrance to both events.</p>
             </div>
          </div>
+
+         <div class="row">
+            <div class="col-2 hidden-sm"></div>
+            <div class="col-8" style="text-align:center">
+              <h3 class="center m-bottom" id="schedule">Sponsors</h3>             
+              <img src="/sponsors/rally.svg" style="width:200px"/>
+            </div>
+          </div>
 
          <div class="row">
            <div class="col-2 hidden-sm"></div>
