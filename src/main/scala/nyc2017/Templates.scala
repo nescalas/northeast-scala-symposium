@@ -67,7 +67,7 @@ trait Templates {
             <div class="col-2 hidden-sm"></div>
             <div class="col-8" style="text-align:center">
               <h3 class="center m-bottom" id="schedule">Sponsors</h3>             
-              <img src="/sponsors/rally.svg" style="width:200px"/>
+              <a href="http://www.rallyhealth.com/"><img src="/sponsors/rally.svg" style="width:200px"/></a>
             </div>
           </div>
 
