@@ -66,7 +66,10 @@ trait Templates {
          <div class="row">
             <div class="col-2 hidden-sm"></div>
             <div class="col-8" style="text-align:center">
-              <h3 class="center m-bottom" id="schedule">Sponsors</h3>             
+              <h3 class="center m-bottom" id="schedule">Sponsors</h3> 
+              <h4>Platinum</h4>        
+              <a href="http://www.cakesolutions.net/"><img src="/images/sponsors/cake.jpg" style="width:400px"/></a>
+              <h4>Gold</h4>        
               <a href="http://www.rallyhealth.com/"><img src="/sponsors/rally.svg" style="width:200px"/></a>
             </div>
           </div>
