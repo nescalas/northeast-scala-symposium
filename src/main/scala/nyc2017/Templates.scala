@@ -73,14 +73,14 @@ trait Templates {
               <a href="https://www.tapad.com/"><img src="/images/sponsors/tapad.png" style="width:400px"/></a>
               <a href="https://www.lightbend.com/"><img src="/images/sponsors/Lightbend.svg" style="width:400px"/></a>
               <h4>Gold</h4>        
-              <a href="http://www.rallyhealth.com/"><img src="/sponsors/rally.svg" style="width:200px;padding:10px"/></a>
-              <a href="http://giphy.com/"><img src="/sponsors/giphy.png" style="width:200px;10px 10px 0 10px"/></a>
-              <a href="http://driver.xyz/"><img src="/sponsors/driver-logo.png" style="width:200px;padding:10px"/></a>
-              <a href="http://comcast.com/"><img src="/sponsors/comcast.jpg" style="width:200px;padding:10px"/></a>
+              <a href="http://www.rallyhealth.com/"><img src="/images/sponsors/rally.svg" style="width:200px;padding:10px"/></a>
+              <a href="http://giphy.com/"><img src="/images/sponsors/giphy.png" style="width:200px;10px 10px 0 10px"/></a>
+              <a href="http://driver.xyz/"><img src="/images/sponsors/driver-logo.png" style="width:200px;padding:10px"/></a>
+              <a href="http://comcast.com/"><img src="/images/sponsors/comcast.jpg" style="width:200px;padding:10px"/></a>
               <h4>Silver</h4>        
-              <a href="http://underscore.io/"><img src="/sponsors/underscore.png" style="width:150px"/></a>
-              <a href="http://underscore.io/"><img src="/sponsors/underscore.png" style="width:150px"/></a>
-              <a href="https://www.iheart.com/"><img src="/sponsors/iheartradio.png" style="width:150px"/></a>
+              <a href="http://underscore.io/"><img src="/images/sponsors/underscore.png" style="width:150px"/></a>
+              <a href="http://underscore.io/"><img src="/images/sponsors/underscore.png" style="width:150px"/></a>
+              <a href="https://www.iheart.com/"><img src="/images/sponsors/iheartradio.png" style="width:150px"/></a>
             </div>
           </div>
 
