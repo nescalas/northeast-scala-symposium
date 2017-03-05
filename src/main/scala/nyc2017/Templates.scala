@@ -79,7 +79,6 @@ trait Templates {
               <a href="http://comcast.com/"><img src="/images/sponsors/comcast.jpg" style="width:200px;padding:10px"/></a>
               <h4>Silver</h4>        
               <a href="http://underscore.io/"><img src="/images/sponsors/underscore.png" style="width:150px"/></a>
-              <a href="http://underscore.io/"><img src="/images/sponsors/underscore.png" style="width:150px"/></a>
               <a href="https://www.iheart.com/"><img src="/images/sponsors/iheartradio.png" style="width:150px"/></a>
             </div>
           </div>
