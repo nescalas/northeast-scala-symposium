@@ -100,7 +100,7 @@ trait Templates {
 
                 <h4>Medium talks:</h4>
                 <ul>
-                  <li><a href="https://github.com/nescalas/proposals-2017/blob/master/medium-sandberg-thurston-using-recursive-typeclasses-to-model-your-data.md">Thurston Sanberg: Using Recursive Typeclasses to Model your Data</a></li>
+                  <li><a href="https://github.com/nescalas/proposals-2017/blob/master/medium-sandberg-thurston-using-recursive-typeclasses-to-model-your-data.md">Thurston Sandberg: Using Recursive Typeclasses to Model your Data</a></li>
                   <li><a href="https://github.com/nescalas/proposals-2017/blob/master/medium-venners-bill-hope-faith-and-proof-in-programming.md">Bill Venners: Hope, Faith, and Proof in Programming</a></li>
                   <li><a href="https://github.com/nescalas/proposals-2017/blob/master/medium-underwood-scott-dont-cheat-the-executor-execution-contexts-in-scala.md">Scott Underwood: Don’t Cheat the Executor -- Execution Contexts in Scala</a></li>
                 </ul>
