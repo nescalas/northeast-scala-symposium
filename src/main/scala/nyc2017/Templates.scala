@@ -66,7 +66,7 @@ trait Templates {
          <div class="row">
             <div class="col-2 hidden-sm"></div>
             <div class="col-8" style="text-align:center">
-              <h3 class="center m-bottom" id="schedule">Sponsors</h3> 
+              <h3 class="center m-bottom" id="sponsors">Sponsors</h3> 
               <h4>Platinum</h4>        
               <a href="http://www.cakesolutions.net/"><img src="/images/sponsors/cake.jpg" style="width:400px"/></a>
               <a href="https://www.weightwatchers.com/"><img src="/sponsors/Weight_Watchers_Logo.svg" style="width:400px"/></a>
@@ -79,7 +79,7 @@ trait Templates {
               <a href="http://comcast.com/"><img src="/sponsors/comcast.jpg" style="width:200px;padding:10px"/></a>
               <h4>Silver</h4>        
               <a href="http://underscore.io/"><img src="/sponsors/underscore.png" style="width:150px"/></a>
-              <a href="https://www.iheart.com/"><img src="/sponsors/iheartradio.png" style="width:150px"/></a>
+              <a href="https://www.iheart.com/"><img src="/sponsors/iheartradio.png" style="max-width:150px; max-height:120px"/></a>
             </div>
           </div>
 
@@ -88,7 +88,30 @@ trait Templates {
            <div class="col-8">
               <h3 class="center m-bottom" id="schedule">Schedule</h3>
               <p class="center">March 23<sup>rd</sup>: <a href="http://typelevel.org/event/2017-03-summit-nyc/">Typelevel Summit</a></p>
-              <p class="center">March 24<sup>th</sup>: Northeast Scala Symposium</p>
+              <p class="center">March 24<sup>th</sup>: Northeast Scala Symposium<br/></p>
+              <p>We're extremely excited to announce the list of speakers below! We'll put together a more concrete hourly schedule later this week and update the site here and email it to all ticket holders!</p>
+                <h4>Long talks:</h4>
+                <ul>
+                  <li><a href="https://github.com/nescalas/proposals-2017/blob/master/long-bjarnason-runar-adjunctions-in-everyday-life.md">Rúnar Bjarnason: Adjunctions in Everyday Life</a></li>
+                  <li><a href="https://github.com/nescalas/proposals-2017/blob/master/long-spiewak-daniel-free-as-in-monads.md">Daniel Spiewak: Free as in Monads</a></li>
+                  <li><a href="https://github.com/nescalas/proposals-2017/blob/master/long-shechtman-katrin-can-dsl-be-human-.md">Katrin Schectman: Can a DSL be Human?</a></li>
+                  <li><a href="https://github.com/nescalas/proposals-2017/blob/master/long-hajra-sukant-monad-transformers-scala-stop-effing-around.md">Sukant Hajra: Monad Transformers: Scala, stop Eff'ing around!</a></li>
+                </ul>
+
+                <h4>Medium talks:</h4>
+                <ul>
+                  <li><a href="https://github.com/nescalas/proposals-2017/blob/master/medium-sandberg-thurston-using-recursive-typeclasses-to-model-your-data.md">Thurston Sanberg: Using Recursive Typeclasses to Model your Data</a></li>
+                  <li><a href="https://github.com/nescalas/proposals-2017/blob/master/medium-venners-bill-hope-faith-and-proof-in-programming.md">Bill Venners: Hope, Faith, and Proof in Programming</a></li>
+                  <li><a href="https://github.com/nescalas/proposals-2017/blob/master/medium-underwood-scott-dont-cheat-the-executor-execution-contexts-in-scala.md">Scott Underwood: Don’t Cheat the Executor -- Execution Contexts in Scala</a></li>
+                </ul>
+
+                <h4>Lightning Talks:</h4>
+                <ul>
+                  <li><a href="https://github.com/nescalas/proposals-2017/blob/master/lightning-astori-jeremie-graphql-from-zero-to-scala.md">Jérémie Astori: GraphQL: From Zero to Scala</a></li>
+                  <li><a href="https://github.com/nescalas/proposals-2017/blob/master/lightning-condon-fiona-arrested-developers-what-the-scala-compiler-lucille-bluth-have-in-common.md">Fiona Condon: Arrested Developers: What the Scala Compiler &amp; Lucille Bluth Have In Common</a></li>
+                  <li><a href="https://github.com/nescalas/proposals-2017/blob/master/lightning-meredith-kevin-propertybased-testing-with-scalacheck-by-example.md">Kevin Meredith: Property-based Testing with ScalaCheck by Example</a></li>
+                  <li><a href="https://github.com/nescalas/proposals-2017/blob/master/lightning-carey-sean-shepherd-randy-giphykube.md">Randy Shephard and Sean Carey - Polyglot Deployments on Kubernetes with giphykube</a></li>
+                </ul>
               <p class="center">March 25<sup>th</sup>: Unconference</p>
            </div>
          </div>
