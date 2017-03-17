@@ -77,6 +77,7 @@ trait Templates {
               <a href="http://giphy.com/"><img src="/sponsors/giphy.png" style="width:200px;10px 10px 0 10px"/></a>
               <a href="http://driver.xyz/"><img src="/sponsors/driver-logo.png" style="width:200px;padding:10px"/></a>
               <a href="http://comcast.com/"><img src="/sponsors/comcast.jpg" style="width:200px;padding:10px"/></a>
+              <a href="http://comcast.com/"><img src="/sponsors/data-monsters.png" style="width:200px;padding:10px"/></a>
               <h4>Silver</h4>        
               <a href="http://underscore.io/"><img src="/sponsors/underscore.png" style="width:150px"/></a>
               <a href="https://www.iheart.com/"><img src="/sponsors/iheartradio.png" style="max-width:150px; max-height:120px"/></a>
