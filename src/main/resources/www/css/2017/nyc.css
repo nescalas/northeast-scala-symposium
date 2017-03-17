@@ -116,3 +116,8 @@ button:active {
     height: 600px;
   }
 }
+td{ padding:5px; vertical-align: top;}
+td img{ border-radius:8px; max-height:100px}
+td p{ margin:0px; }
+/*tr:nth-child(even) {background: #999}
+tr:nth-child(odd) {background: #888}*/

@@ -90,29 +90,213 @@ trait Templates {
               <h3 class="center m-bottom" id="schedule">Schedule</h3>
               <p class="center">March 23<sup>rd</sup>: <a href="http://typelevel.org/event/2017-03-summit-nyc/">Typelevel Summit</a></p>
               <p class="center">March 24<sup>th</sup>: Northeast Scala Symposium<br/></p>
-              <p>We're extremely excited to announce the list of speakers below! We'll put together a more concrete hourly schedule later this week and update the site here and email it to all ticket holders!</p>
-                <h4>Long talks:</h4>
-                <ul>
-                  <li><a href="https://github.com/nescalas/proposals-2017/blob/master/long-bjarnason-runar-adjunctions-in-everyday-life.md">Rúnar Bjarnason: Adjunctions in Everyday Life</a></li>
-                  <li><a href="https://github.com/nescalas/proposals-2017/blob/master/long-spiewak-daniel-free-as-in-monads.md">Daniel Spiewak: Free as in Monads</a></li>
-                  <li><a href="https://github.com/nescalas/proposals-2017/blob/master/long-shechtman-katrin-can-dsl-be-human-.md">Katrin Schectman: Can a DSL be Human?</a></li>
-                  <li><a href="https://github.com/nescalas/proposals-2017/blob/master/long-hajra-sukant-monad-transformers-scala-stop-effing-around.md">Sukant Hajra: Monad Transformers: Scala, stop Eff'ing around!</a></li>
-                </ul>
+              <p class="center">We're extremely excited to announce the list of speakers below!</p>
+                <table>
+                  <tr>
+                    <td>8:15</td>
+                    <td colspan="2">Registration &amp; Breakfast - Pastries / Fruit / Yogurt / Coffee</td>
+                  </tr>
+                  <tr>
+                    <td>9:10</td>
+                    <td colspan="2">Opening Remarks</td>
+                  </tr>
+                  <tr>
+                      <td>9:15</td>
+                    <td>
+                      <img src="https://pbs.twimg.com/profile_images/426501642544898048/JD_YL5XY_400x400.png"/>
+                    </td>
+                    <td>
+                        <a href="https://github.com/nescalas/proposals-2017/blob/master/long-spiewak-daniel-free-as-in-monads.md">Free as in Monads</a>
+                        <br/>Daniel Spiewak
+                      <p>In this talk, we will embark on an epic journey through a live editor buffer as we derive the Free monad from scratch for fun and profit in just a few dozen lines of code. And once we have it, we will see how easy to use and powerful it can be when applied to the right problems.</p>
+                      <a href="https://github.com/nescalas/proposals-2017/blob/master/long-spiewak-daniel-free-as-in-monads.md">More</a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>10:00</td>
+                    <td colspan="2">
+                      Break
+                    </td>
+                  </tr>
+                  <tr>
+                      <td>10:10</td>
+                    <td>
+                      <img src="https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/2/000/1a3/18c/071bed2.jpg"/>
+                    </td>
+                    <td>
+                        <a href="https://github.com/nescalas/proposals-2017/blob/master/long-hajra-sukant-monad-transformers-scala-stop-effing-around.md">Monad Transformers: Scala, stop Eff'ing around!</a>
+                        <br/>Sukant Hajra
+                      <p>Stop chasing Eff'ing Free Cakes with classy optics for a moment, and smell the monad transformers.
 
-                <h4>Medium talks:</h4>
-                <ul>
-                  <li><a href="https://github.com/nescalas/proposals-2017/blob/master/medium-sandberg-thurston-using-recursive-typeclasses-to-model-your-data.md">Thurston Sandberg: Using Recursive Typeclasses to Model your Data</a></li>
-                  <li><a href="https://github.com/nescalas/proposals-2017/blob/master/medium-venners-bill-hope-faith-and-proof-in-programming.md">Bill Venners: Hope, Faith, and Proof in Programming</a></li>
-                  <li><a href="https://github.com/nescalas/proposals-2017/blob/master/medium-underwood-scott-dont-cheat-the-executor-execution-contexts-in-scala.md">Scott Underwood: Don’t Cheat the Executor -- Execution Contexts in Scala</a></li>
-                </ul>
+                  All you wanted was an FP solution to dependency injection and error handling, right?
 
-                <h4>Lightning Talks:</h4>
-                <ul>
-                  <li><a href="https://github.com/nescalas/proposals-2017/blob/master/lightning-astori-jeremie-graphql-from-zero-to-scala.md">Jérémie Astori: GraphQL: From Zero to Scala</a></li>
-                  <li><a href="https://github.com/nescalas/proposals-2017/blob/master/lightning-condon-fiona-arrested-developers-what-the-scala-compiler-lucille-bluth-have-in-common.md">Fiona Condon: Arrested Developers: What the Scala Compiler &amp; Lucille Bluth Have In Common</a></li>
-                  <li><a href="https://github.com/nescalas/proposals-2017/blob/master/lightning-meredith-kevin-propertybased-testing-with-scalacheck-by-example.md">Kevin Meredith: Property-based Testing with ScalaCheck by Example</a></li>
-                  <li><a href="https://github.com/nescalas/proposals-2017/blob/master/lightning-carey-sean-shepherd-randy-giphykube.md">Randy Shephard and Sean Carey - Polyglot Deployments on Kubernetes with giphykube</a></li>
-                </ul>
+                  Let's see how far we can get with monad transformers before leaping to the next thing. You may need nothing more.</p>
+                      <a href="https://github.com/nescalas/proposals-2017/blob/master/long-hajra-sukant-monad-transformers-scala-stop-effing-around.md">More</a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>10:55</td>
+                    <td colspan="2">
+                      Break
+                    </td>
+                  </tr>
+                  <tr>
+                      <td>11:15</td>
+                    <td>
+                      <img src="https://media.licdn.com/mpr/mpr/shrinknp_200_200/AAEAAQAAAAAAAAehAAAAJGY4NTcyMjc1LWUzZDAtNDcwYi05MTVkLWIzNjE1Yjg4YzFlOQ.jpg"/>
+                    </td>
+                    <td>
+                        <a href="https://github.com/nescalas/proposals-2017/blob/master/medium-underwood-scott-dont-cheat-the-executor-execution-contexts-in-scala.md">Don’t Cheat the Executor -- Execution Contexts in Scala</a>
+                        <br/>Scott Underwood      
+                      <p>Execution Contexts provide the means to execute program logic asynchronously, and are a prerequisite for using Futures and Promises. This talk will explore common mistakes in using Execution Contexts, and strategies for configuring, debugging and monitoring them and their underlying thread pools.</p>
+                      <a href="https://github.com/nescalas/proposals-2017/blob/master/medium-underwood-scott-dont-cheat-the-executor-execution-contexts-in-scala.md">More</a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>11:45</td>
+                    <td colspan="2">
+                      Break
+                    </td>
+                  </tr>
+                  <tr>
+                      <td>11:55</td>
+                    <td>
+                      <img src="https://pbs.twimg.com/profile_images/832794514280439810/-Ii3tiML_400x400.jpg"/>
+                    </td>
+                    <td>
+                        <a href="https://github.com/nescalas/proposals-2017/blob/master/lightning-carey-sean-shepherd-randy-giphykube.md">Polyglot Deployments on Kubernetes with giphykube</a>
+                        <br/>Randy Shephard and Sean Carey
+                      <p>Scala is a leading choice for building microservices. However, tools like ConductR are useful if you have a pure Scala ecosystem. How is service orchestration done in a polyglot environment? How can one write and test code for these systems without pain? 'giphykube' solves both these problems.</p>
+                      <a href="https://github.com/nescalas/proposals-2017/blob/master/lightning-carey-sean-shepherd-randy-giphykube.md">More</a>
+                    </td>
+                  </tr>
+                  <tr>
+                      <td>12:10</td>
+                    <td>
+                      <img src="https://pbs.twimg.com/profile_images/3363276616/ec0315358b537b455ed13ff2aab98822_400x400.jpeg"/>
+                    </td>
+                    <td>
+                        <a href="https://github.com/nescalas/proposals-2017/blob/master/lightning-meredith-kevin-propertybased-testing-with-scalacheck-by-example.md">Property-based Testing with ScalaCheck by Example</a>
+                        <br/>Kevin Meredith
+                      <p>This talk discusses and demos property-based testing. After providing a high-level overview of what it is and its benefits, the talk will demo the application of ScalaCheck on a simple data structure.</p>
+                      <a href="https://github.com/nescalas/proposals-2017/blob/master/lightning-meredith-kevin-propertybased-testing-with-scalacheck-by-example.md">More</a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>12:25</td>
+                    <td colspan="2">
+                      Lunch - Steak / Chicken / Salmon / Salad / Pasta
+                    </td>
+                  </tr>
+                  <tr>
+                      <td>13:40</td>
+                    <td>
+                      <img src="https://pbs.twimg.com/profile_images/2373354377/lkazqn1mkh2dcjnan4sk_400x400.jpeg"/>
+                    </td>
+                    <td>
+                        <a href="https://github.com/nescalas/proposals-2017/blob/master/long-shechtman-katrin-can-dsl-be-human-.md">Can a DSL be Human?</a>
+                        <br/>Katrin Shechtman
+                      <p>They say DSLs are a powerful Scala feature. They say it's surprisingly easy to create DSLs in Scala. Aye, but can DSL by human? Can we use Scala to create a statically typed human interaction? What are Scala limits of supporting any kind of domain? Talk with no type theory concepts, but with a twist</p>
+                      <a href="https://github.com/nescalas/proposals-2017/blob/master/long-shechtman-katrin-can-dsl-be-human-.md">More</a>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>14:25</td>
+                    <td colspan="2">
+                      Break
+                    </td>
+                  </tr>
+                  <tr>
+                      <td>14:35</td>
+                    <td>
+                      <img src="https://pbs.twimg.com/profile_images/643827356927397890/1ppoxqUl_400x400.jpg"/>
+                    </td>
+                    <td>
+                        <a href="https://github.com/nescalas/proposals-2017/blob/master/long-bjarnason-runar-adjunctions-in-everyday-life.md">Adjunctions in Everyday Life</a>
+                        <br/>Rúnar Bjarnason
+                      <p>This talk introduces adjunctions, a category theory concept underlying and unifying monads, products, coproducts, algebraic data types, and folds.
+
+                  </p>
+                      <a href="https://github.com/nescalas/proposals-2017/blob/master/long-bjarnason-runar-adjunctions-in-everyday-life.md">More</a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>15:20</td>
+                    <td colspan="2">
+                      Break
+                    </td>
+                  </tr>
+                  <tr>
+                      <td>15:40</td>
+                    <td>
+                      <img src="https://lh5.googleusercontent.com/--Qta0UMcHFI/AAAAAAAAAAI/AAAAAAAAAUo/2SRubUefDNE/photo.jpg"/>
+                    </td>
+                    <td>
+                        <a href="https://github.com/nescalas/proposals-2017/blob/master/medium-sandberg-thurston-using-recursive-typeclasses-to-model-your-data.md">Using Recursive Typeclasses to Model your Data</a>
+                        <br/>Thurston Sandberg
+                      <p>Combine implicits, typeclasses, and the Shapeless library's HList to create a powerful data model for anything that can be mapped to case classes. Recursive typeclasses can describe behavior such as SQL statements and json serialization/deserialization with minimal boilerplate and a succinct syntax.</p>
+                      <a href="https://github.com/nescalas/proposals-2017/blob/master/medium-sandberg-thurston-using-recursive-typeclasses-to-model-your-data.md">More</a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>16:10</td>
+                    <td colspan="2">
+                      Break
+                    </td>
+                  </tr>
+                  <tr>
+                      <td>16:20</td>
+                    <td>
+                      <img src="https://pbs.twimg.com/profile_images/352703909/twitter_400x400.jpg"/>
+                    </td>
+                    <td>
+                        <a href="https://github.com/nescalas/proposals-2017/blob/master/medium-venners-bill-hope-faith-and-proof-in-programming.md">Hope, Faith, and Proof in Programming</a>
+                        <br/>Bill Venners
+                      <p>This talk will show how to apply hope, faith, and proof to write the best code you can. It will compare and contrast the three, then pick a winner. Along the way, this talk will look at types and tests from a new angle and highlight a new kind of assertion that deserves a place in your toolbox.</p>
+                      <a href="https://github.com/nescalas/proposals-2017/blob/master/medium-venners-bill-hope-faith-and-proof-in-programming.md">More</a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>16:50</td>
+                    <td colspan="2">
+                      Break
+                    </td>
+                  </tr>
+                  <tr>
+                      <td>17:00</td>
+                    <td>
+                      <img src="https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAV3AAAAJDVkNDlhMGNlLTNlNWItNDViNi04ZGU2LWQ3NGM0NmFhYmE4Mw.jpg"/>
+                    </td>
+                    <td>
+                        <a href="https://github.com/nescalas/proposals-2017/blob/master/lightning-condon-fiona-arrested-developers-what-the-scala-compiler-lucille-bluth-have-in-common.md">Arrested Developers: What the Scala Compiler &amp; Lucille Bluth Have In Common</a>
+                        <br/>Fiona Condon
+                      <p>Scala is an elegant and expressive language--so why are its compilation errors so imperious and opaque? I'll talk about my experience transitioning to Scala development from PHP and make a case for a compiler that helps programmers discover the language (with the help of lots of Lucille Bluth gifs).</p>
+                      <a href="https://github.com/nescalas/proposals-2017/blob/master/lightning-condon-fiona-arrested-developers-what-the-scala-compiler-lucille-bluth-have-in-common.md">More</a>
+                    </td>
+                  </tr>
+                  <tr>
+                      <td>17:15</td>
+                    <td>
+                      <img src="https://pbs.twimg.com/profile_images/3175318044/6248c7d6f27e00c4a0410eb04a39354c_400x400.jpeg"/>
+                    </td>
+                    <td>
+                        <a href="https://github.com/nescalas/proposals-2017/blob/master/lightning-astori-jeremie-graphql-from-zero-to-scala.md">GraphQL: From Zero to Scala</a>
+                        <br/>Jérémie Astori
+                      <p>APIs are great! But what if your APIs were coming with a type system? What if your APIs were so predictable that versioning them was history? What if consumers of your APIs could get exactly what they want at every request? Let's discover GraphQL and its implementation in Scala: Sangria.</p>
+                      <a href="https://github.com/nescalas/proposals-2017/blob/master/lightning-astori-jeremie-graphql-from-zero-to-scala.md">More</a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>17:30</td>
+                    <td colspan="2">Closing Remarks</td>
+                  </tr>
+                  <tr>
+                    <td>17:45</td>
+                    <td colspan="2">After party at the venue hosted by Meetup</td>
+                  </tr>
+                  </table>
+
               <p class="center">March 25<sup>th</sup>: Unconference</p>
            </div>
          </div>
