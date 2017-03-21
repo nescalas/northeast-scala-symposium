@@ -80,9 +80,10 @@ trait Templates {
               <a href="http://comcast.com/"><img src="/sponsors/data-monsters.png" style="width:200px;padding:10px"/></a>
               <h4>Silver</h4>        
               <a href="https://datamonsters.co/"><img src="/sponsors/underscore.png" style="width:150px"/></a>
-              <a href="https://www.iheart.com/"><img src="/images/meetup-logo-script-red.png" style="max-width:150px; max-height:120px"/></a>
+              <a href="https://www.iheart.com/"><img src="/images/iheartradio.png" style="max-width:150px; max-height:120px"/></a>
               <a href="https://www.tapad.com/"><img src="/sponsors/tapad.png" style="max-width:150px; max-height:120px"/></a>
               <h4>After Party Sponsors</h4>
+              <a href="https://www.meetup.com/"><img src="/images/meetup-logo-script-red.png" style="max-width:150px; max-height:120px"/></a>
             </div>
           </div>
 
@@ -163,11 +164,11 @@ trait Templates {
                   <tr>
                       <td>11:55</td>
                     <td>
-                      <img src="https://pbs.twimg.com/profile_images/832794514280439810/-Ii3tiML_400x400.jpg"/>
+                      <img src="https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/6/000/205/006/28f1fff.jpg"/>
                     </td>
                     <td>
                         <a href="https://github.com/nescalas/proposals-2017/blob/master/lightning-carey-sean-shepherd-randy-giphykube.md">Polyglot Deployments on Kubernetes with giphykube</a>
-                        <br/>Randy Shephard and Sean Carey
+                        <br/>Randy Shephard and Anthony Johnson
                       <p>Scala is a leading choice for building microservices. However, tools like ConductR are useful if you have a pure Scala ecosystem. How is service orchestration done in a polyglot environment? How can one write and test code for these systems without pain? 'giphykube' solves both these problems.</p>
                       <a href="https://github.com/nescalas/proposals-2017/blob/master/lightning-carey-sean-shepherd-randy-giphykube.md">More</a>
                     </td>
