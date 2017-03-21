@@ -80,10 +80,10 @@ trait Templates {
               <a href="http://comcast.com/"><img src="/sponsors/data-monsters.png" style="width:200px;padding:10px"/></a>
               <h4>Silver</h4>        
               <a href="https://datamonsters.co/"><img src="/sponsors/underscore.png" style="width:150px"/></a>
-              <a href="https://www.iheart.com/"><img src="/images/iheartradio.png" style="max-width:150px; max-height:120px"/></a>
-              <a href="https://www.tapad.com/"><img src="/sponsors/tapad.png" style="max-width:150px; max-height:120px"/></a>
+              <a href="https://www.iheart.com/"><img src="/sponsors/iheartradio.png" style="max-width:150px; max-height:120px"/></a>
               <h4>After Party Sponsors</h4>
               <a href="https://www.meetup.com/"><img src="/images/meetup-logo-script-red.png" style="max-width:150px; max-height:120px"/></a>
+              <a href="https://www.tapad.com/"><img src="/sponsors/tapad.png" style="max-width:150px; max-height:120px"/></a>
             </div>
           </div>
 
