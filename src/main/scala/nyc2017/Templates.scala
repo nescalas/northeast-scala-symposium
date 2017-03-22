@@ -300,7 +300,7 @@ trait Templates {
                   </tr>
                   </table>
 
-              <p class="center" style="font-weight:bold">March 25<sup>th</sup>: Unconference</p>
+              <p id="unconference" class="center" style="font-weight:bold">March 25<sup>th</sup>: Unconference</p>
               <p class="center">
                   The unconference will be at the 
                   <a href="https://www.google.com/maps/place/New+York+University's+Courant+Institute+of+Mathematical+Sciences/@40.7286607,-73.9978915,17z/data=!3m1!4b1!4m5!3m4!1s0x89c259906d060f39:0xd3568256090e73ed!8m2!3d40.7286607!4d-73.9956975">
