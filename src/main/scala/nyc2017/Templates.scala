@@ -168,7 +168,7 @@ trait Templates {
                     </td>
                     <td>
                         <a href="https://github.com/nescalas/proposals-2017/blob/master/lightning-carey-sean-shepherd-randy-giphykube.md">Polyglot Deployments on Kubernetes with giphykube</a>
-                        <br/>Randy Shephard and Anthony Johnson
+                        <br/>Randy Shepherd and Anthony Johnson
                       <p>Scala is a leading choice for building microservices. However, tools like ConductR are useful if you have a pure Scala ecosystem. How is service orchestration done in a polyglot environment? How can one write and test code for these systems without pain? 'giphykube' solves both these problems.</p>
                       <a href="https://github.com/nescalas/proposals-2017/blob/master/lightning-carey-sean-shepherd-randy-giphykube.md">More</a>
                     </td>
