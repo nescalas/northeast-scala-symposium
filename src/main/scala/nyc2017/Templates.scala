@@ -306,9 +306,10 @@ trait Templates {
                   <a href="https://www.google.com/maps/place/New+York+University's+Courant+Institute+of+Mathematical+Sciences/@40.7286607,-73.9978915,17z/data=!3m1!4b1!4m5!3m4!1s0x89c259906d060f39:0xd3568256090e73ed!8m2!3d40.7286607!4d-73.9956975">
                     NYU Courant Institute of Mathematical Sciences
                   </a>
-                  , which you can get to via the F-Train at the West 4th Street - Washington Square stop.<br/> <br/>
+                  , which you can get to via the F-Train at the West 4th Street - Washington Square stop. It starts at 9am, with the first session beginning at 9:30am.<br/> <br/>
                   Unfortunately it will not be catered, so eat your breakfast beforehand. We will provide a list of places to get lunch by Saturday.
-                  We will have more information on what A/V equipment will be available. It's likely you will need to bring a display adapter to work with the equipment.
+                  We have 6 rooms: 1 auditorium, 2 classrooms, and three conference rooms. The auditorium and classrooms have a wide variety of display adapters, and the three conference rooms have conference rooms require a VGA adapter.<br/><br/>
+                  <span style="font-weight:bold">How it works:</span> show up and take a look at our Google Sheet which will have rooms along the top row and times along the first column. If you have a talk you want to give, or a topic you'd like to discuss, pick a slot on the sheet, write a short blurb and then show up to that room at that time. This is meant to be very informal, and people are allowed to float around in and out of rooms while they are in session. Take a look at <a href="http://bit.ly/2mYgckF">last year's sheet</a> to get a more conrete idea
 
               </p>              
            </div>
