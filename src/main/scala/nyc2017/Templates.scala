@@ -107,6 +107,10 @@ trait Templates {
                       <td>9:15</td>
                     <td>
                       <img src="https://pbs.twimg.com/profile_images/426501642544898048/JD_YL5XY_400x400.png"/>
+                      <p style="line-height:1; text-align:center">
+                        <a href="https://youtu.be/aKUQUIHRGec">video</a><br/>
+                        (no slides)
+                      </p>
                     </td>
                     <td>
                         <a href="https://github.com/nescalas/proposals-2017/blob/master/long-spiewak-daniel-free-as-in-monads.md">Free as in Monads</a>
@@ -282,6 +286,10 @@ trait Templates {
                       <td>17:15</td>
                     <td>
                       <img src="https://pbs.twimg.com/profile_images/3175318044/6248c7d6f27e00c4a0410eb04a39354c_400x400.jpeg"/>
+                      <p style="line-height:1; text-align:center">
+                        <a href="https://www.youtube.com/watch?v=6ttypoLyRaU">video</a><br/>
+                        <a href="https://jeremie.astori.fr/talks/2017-03-24-graphql-nescala/#/">slides</a>
+                      </p>
                     </td>
                     <td>
                         <a href="https://github.com/nescalas/proposals-2017/blob/master/lightning-astori-jeremie-graphql-from-zero-to-scala.md">GraphQL: From Zero to Scala</a>
