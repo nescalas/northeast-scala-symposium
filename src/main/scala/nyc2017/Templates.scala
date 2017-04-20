@@ -180,7 +180,7 @@ trait Templates {
                   <tr>
                       <td>12:10</td>
                     <td>
-                      <img src="https://pbs.twimg.com/profile_images/3363276616/ec0315358b537b455ed13ff2aab98822_400x400.jpeg"/>
+                      <img src="https://pbs.twimg.com/profile_images/846313829986390016/pOrSIVj7_400x400.jpg"/>
                     </td>
                     <td>
                         <a href="https://github.com/nescalas/proposals-2017/blob/master/lightning-meredith-kevin-propertybased-testing-with-scalacheck-by-example.md">Property-based Testing with ScalaCheck by Example</a>
