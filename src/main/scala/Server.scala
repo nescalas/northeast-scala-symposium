@@ -1,6 +1,5 @@
 package nescala
 
-import nescala.philly2016.Site._
 import unfiltered.Cycle.Intent
 import unfiltered.jetty.Http
 import unfiltered.filter.Planify
@@ -21,7 +20,7 @@ object Server {
     .resources(getClass().getResource("/www"))
     .filter(Planify {
       Routes.specify[Any,Any](
-        "/" -> nyc2017.Site.index,
+        "/" -> boston2018.Site.index,
         "/login" -> Northeast.login,
         "/logout" -> Northeast.logout,
         "/authenticated" -> Northeast.authenticated,
