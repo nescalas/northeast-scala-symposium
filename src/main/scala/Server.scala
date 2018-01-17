@@ -26,6 +26,7 @@ object Server {
         "/logout" -> Northeast.logout,
         "/authenticated" -> Northeast.authenticated,
         "/cssless/:rest" -> CommonHandlers.cssless,
+        "/2017" -> nyc2017.Site.index,
         "/2016" -> philly2016.Site.index,
         "/2015" -> boston2015.Site.index,
         "/2015/talks" -> boston2015.Site.talks,

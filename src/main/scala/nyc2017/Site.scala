@@ -22,6 +22,8 @@ object Site extends Templates {
   ) = req match {
     case GET(req) & Path(Seg(Nil)) =>
       respond(req)(indexPage())
+    case GET(req) & Path(Seg("2017" :: Nil)) =>
+      respond(req)(indexPage())
     case _ => Pass
   }
 
