@@ -1,7 +1,6 @@
 import com.typesafe.sbt.packager.archetypes.JavaAppPackaging
 
 //seq(lsSettings :_*)
-
 libraryDependencies += "org.scalatest" %% "scalatest" % "3.0.1" % "test"
 
 libraryDependencies ++= Seq(

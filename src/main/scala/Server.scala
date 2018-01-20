@@ -24,7 +24,7 @@ object Server {
         "/login" -> Northeast.login,
         "/logout" -> Northeast.logout,
         "/authenticated" -> Northeast.authenticated,
-        "/cssless/:rest" -> CommonHandlers.cssless,
+        "/css/less/:rest" -> CommonHandlers.cssless,
         "/2017" -> nyc2017.Site.index,
         "/2016" -> philly2016.Site.index,
         "/2015" -> boston2015.Site.index,
@@ -61,23 +61,24 @@ object Server {
   */
 object CommonHandlers {
 
-  def cssless(
-    req: HttpRequest[Any],
-    pathVars: Map[String, String]
-  ) = req match {
+  def assetPreprocessor
+    (preprocessor: String,
+     output: String)
+    (req: HttpRequest[Any],
+    pathVars: Map[String, String]) = req match {
     // This case handles sbt-less generated files. If we're running from a
     // jar file, the compiled CSS files are available under a specific,
     // versioned resource path. If we're running in development mode, they're
     // available under "target". This handler checks for both and is necessary
     // because we're not using sbt-less in a platform, like Play, that has an
     // asset manager layer.
-    case GET(req) & Path(Seg("cssless" :: rest)) => {
+    case GET(req) & Path(Seg(output :: preprocessor :: rest)) => {
       import nescala.BuildInfo
       import scala.io.Source
       import java.io.File
       val thing = rest.mkString("/")
-      val rsrc = s"/webjars/root/${BuildInfo.version}/css/$thing"
-      val path = s"target/web/less/main/css/$thing"
+      val rsrc = s"/webjars/root/${BuildInfo.version}/$output/$thing"
+      val path = s"target/web/$preprocessor/main/$output/$thing"
       // Try the local compile path first. If not there, try as a resource.
       val sourceOpt = if (new File(path).exists) {
         Some(Source.fromFile(path))
@@ -87,9 +88,12 @@ object CommonHandlers {
       }
 
       sourceOpt.map { source => ResponseString(source.mkString) }
-               .getOrElse(NotFound ~> ResponseString(s"cssless/$thing"))
+               .getOrElse(NotFound ~> ResponseString(s"Not found: $output/$preprocessor/$thing"))
     }
   }
+
+  def cssless  = assetPreprocessor("less", "css")_
+  def sassless = assetPreprocessor("sass", "css")_
 
   private def sourceFromResource(resource: String): Option[Source] = {
     val stream = Option(getClass.getResourceAsStream(resource))

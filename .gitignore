@@ -5,3 +5,4 @@ target/
 # Generated CSS files. No need to check these in.
 /src/main/resources/www/css/2016/style.css
 .DS_Store
+.sass-cache/
