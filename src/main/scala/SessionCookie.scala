@@ -31,10 +31,10 @@ case class SessionCookie(session: Session, member: Int) {
 
   def rsvped(event: Int) = Meetup.rsvped(session, event)
 
-  lazy val proposals = nescala.boston2018.Proposal.list(member)
+  lazy val proposals = nescala.boston2015.Proposal.list(member)
 
   lazy val canVote: Boolean =
-    rsvped(nescala.boston2018.Site.DayOneEvent).apply()
+    rsvped(nescala.boston2015.Site.DayOneEvent).apply()
 
   lazy val votes: Set[String] = if (canVote) nescala.boston2018.Proposal.votes(member) else Set.empty
 }
