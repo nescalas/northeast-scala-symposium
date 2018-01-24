@@ -56,10 +56,10 @@ trait Templates {
           <title>northeast scala symposium</title>
           <meta charset="utf-8" />
           <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-          <link rel="stylesheet" href="/sass/sass/main.css" />
+          <link rel="stylesheet" href="/css/sass/boston2018.css" />
           <link rel="stylesheet" href="/css/2018/font-awesome.min.css" />
-          <!--[if lte IE 9]><link rel="stylesheet" href="/sass/sass/ie9.css" /><![endif]-->
-          <noscript><link rel="stylesheet" href="/sass/sass/noscript.css" /></noscript>
+          <!--[if lte IE 9]><link rel="stylesheet" href="/css/sass/ie9-boston2018.css" /><![endif]-->
+          <noscript><link rel="stylesheet" href="/css/sass/noscript-boston2018.css" /></noscript>
         </head>
         <body>
 
@@ -92,7 +92,7 @@ trait Templates {
               <!-- Footer -->
                 <footer id="footer">
                   <p class="copyright">made possible with <span class="love">&#10084;</span> from the <a href="http://www.meetup.com/boston-scala/">Boston</a>, <a href="http://www.meetup.com/scala-phase/">Philadelphia</a>, and <a href="http://www.meetup.com/ny-scala/">New York</a> scala enthusiasts</p>
-                  <p class="copyright">This year's design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+                  <p class="copyright">This year's design: <a href="https://html5up.net">HTML5 UP</a></p>
                 </footer>
 
             </div>

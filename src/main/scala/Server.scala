@@ -25,7 +25,7 @@ object Server {
         "/logout" -> Northeast.logout,
         "/authenticated" -> Northeast.authenticated,
         "/css/less/:rest" -> CommonHandlers.cssless,
-        "/sass/sass/:rest" -> CommonHandlers.csssass,
+        "/css/sass/:rest" -> CommonHandlers.csssass,
         "/2017" -> nyc2017.Site.index,
         "/2016" -> philly2016.Site.index,
         "/2015" -> boston2015.Site.index,
@@ -94,7 +94,7 @@ object CommonHandlers {
   }
 
   def cssless  = assetPreprocessor("less", "css")_
-  def csssass = assetPreprocessor("sass", "sass")_
+  def csssass = assetPreprocessor("sass", "css")_
 
   private def sourceFromResource(resource: String): Option[Source] = {
     val stream = Option(getClass.getResourceAsStream(resource))
