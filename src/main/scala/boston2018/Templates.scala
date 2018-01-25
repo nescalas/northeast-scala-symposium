@@ -8,6 +8,7 @@ import java.text.SimpleDateFormat
 import java.util.{ Date, TimeZone }
 import java.time.{ZoneId, ZonedDateTime}
 import java.time.format.DateTimeFormatter
+import scala.util.Random
 
 trait Templates {
 
@@ -19,23 +20,51 @@ trait Templates {
     body: String
   )
 
+  //We'll use this to pick slogans randomly.
+  val random = new Random
+  def slogans  = Seq(
+    "of the people, by the people, for the people",
+    "give me type safety or give me death",
+    "one if by object-oriented, two if by functional",
+    "mens et manus et compiler"
+  )
+
   def baseSections = Seq(
     Section(
       "about",
       "About",
       """|Come one, come all!
          |
-         |Join us. This is going to be great.
+         |Since 2011, the New York, Boston and Philadelphia Scala meetups have hosted together a community-driven Scala conference. Part of what "community-driven" means is the program comes from the attendees. All talks on the conference's main day are [proposed by the attendees](https://www.papercall.io/nescala-boston-2018) (that could be you!), who then vote to select which will be given.
          |
-         |March 19 at the [Broad Institute](http://broadinstitute.org/).
+         |Our friendship with [Typelevel](http://typelevel.org) continues. The conference will once again coincide with the [Typelevel Summit](https://typelevel.org/event/2018-03-summit-boston/).
+         |
+         |For the third time, we go to Boston, at the [Broad Institute](http://broadinstitute.org/) of MIT and Harvard. For the first time, the conference is starting on a Sunday:
+         |
+         |-  __Sunday__ will be the Unconference, *traditionally day 2*.
+         |-  __Monday__ will be nescala proper, *traditionally day 1*.
+         |-  __Tuesday__ will be the Typelevel Summit.
+         |
+         |Newcomers and veterans, northeasterners and the global jet-set, rebels and redcoats: all are welcome!
+         |""".stripMargin('|')
+    ),
+    Section(
+      "location",
+      "Location",
+      """|The kind folks at the [Broad Institute](http://broadinstitute.org/) know a thing or two about editing code; just ask them about [CRISPR/cas9](https://en.wikipedia.org/wiki/CRISPR#Cas9). They are generously hosting the conference this year. Located at 415 Main Street, Cambridge, the Institute is just a block away from [the Kendall/MIT stop](https://www.mbta.com/schedules_and_maps/subway/lines/stations/?stopId=12412) on the T (red line).
+         |
+         |You may want to dress warmly; Kendall Square has [a lot going on](https://www.kendallsq.org/wp-content/uploads/2016/04/2016-KSA-Walking-Map.pdf), but even the Vernal Equinox in these parts can be nasty:
+         |
+         |“Anyone who lives in Boston knows that it’s March that’s the cruelest, holding out a few days of false hope and then gleefully hitting you with the shit.” ― Stephen King, *Dreamcatcher*
          |""".stripMargin('|')
     )
   )
 
+
   private def navItem(section: Section): xml.NodeSeq =
     <li><a href={s"#${section.id}"}>{section.title}</a></li>
 
-  private def article(section: Section): xml.NodeSeq = 
+  private def article(section: Section): xml.NodeSeq =
     <article id={ section.id }>
       <h2 class="major">{ section.title}</h2>
       { val bodyHtml = markdownParser.parseToHTML(section.body)
@@ -74,7 +103,7 @@ trait Templates {
                   <div class="content">
                     <div class="inner">
                       <h1>nescala 2018</h1>
-                      <p></p>
+                      <p>{ slogans(random.nextInt(slogans.length)) }</p>
                     </div>
                   </div>
                   <nav>
@@ -92,7 +121,7 @@ trait Templates {
               <!-- Footer -->
                 <footer id="footer">
                   <p class="copyright">made possible with <span class="love">&#10084;</span> from the <a href="http://www.meetup.com/boston-scala/">Boston</a>, <a href="http://www.meetup.com/scala-phase/">Philadelphia</a>, and <a href="http://www.meetup.com/ny-scala/">New York</a> scala enthusiasts</p>
-                  <p class="copyright">This year's design: <a href="https://html5up.net">HTML5 UP</a></p>
+                  <p class="copyright">This year's site design: <a href="https://html5up.net">HTML5 UP</a></p>
                 </footer>
 
             </div>
