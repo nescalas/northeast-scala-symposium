@@ -53,7 +53,7 @@ trait Templates {
       "Location",
       """|The kind folks at the [Broad Institute](http://broadinstitute.org/) know a thing or two about editing code; just ask them about [CRISPR/cas9](https://en.wikipedia.org/wiki/CRISPR#Cas9). They are generously hosting the conference this year. Located at 415 Main Street, Cambridge, the Institute is just a block away from [the Kendall/MIT stop](https://www.mbta.com/schedules_and_maps/subway/lines/stations/?stopId=12412) on the T (red line).
          |
-         |You may want to dress warmly; Kendall Square has [a lot going on](https://www.kendallsq.org/wp-content/uploads/2016/04/2016-KSA-Walking-Map.pdf), but even the Vernal Equinox in these parts can be nasty:
+         |You may want to dress warmly; Kendall Square has [a lot going on](https://www.kendallsq.org/wp-content/uploads/2016/04/2016-KSA-Walking-Map.pdf), but even the vernal equinox in these parts can be nasty:
          |
          |“Anyone who lives in Boston knows that it’s March that’s the cruelest, holding out a few days of false hope and then gleefully hitting you with the shit.” ― Stephen King, *Dreamcatcher*
          |""".stripMargin('|')
