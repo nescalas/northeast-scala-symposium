@@ -16,6 +16,7 @@ trait Templates {
 
   case class Section(
     id: String,
+    shortTitle: String,
     title: String,
     body: String
   )
@@ -32,6 +33,7 @@ trait Templates {
   def baseSections = Seq(
     Section(
       "about",
+      "About",
       "About",
       """|Come one, come all!
          |
@@ -51,18 +53,42 @@ trait Templates {
     Section(
       "location",
       "Location",
+      "Location",
       """|The kind folks at the [Broad Institute](http://broadinstitute.org/) know a thing or two about editing code; just ask them about [CRISPR/cas9](https://en.wikipedia.org/wiki/CRISPR#Cas9). They are generously hosting the conference this year. Located at 415 Main Street, Cambridge, the Institute is just a block away from [the Kendall/MIT stop](https://www.mbta.com/schedules_and_maps/subway/lines/stations/?stopId=12412) on the T (red line).
          |
          |You may want to dress warmly; Kendall Square has [a lot going on](https://www.kendallsq.org/wp-content/uploads/2016/04/2016-KSA-Walking-Map.pdf), but even the vernal equinox in these parts can be nasty:
          |
          |“Anyone who lives in Boston knows that it’s March that’s the cruelest, holding out a few days of false hope and then gleefully hitting you with the shit.” ― Stephen King, *Dreamcatcher*
          |""".stripMargin('|')
+    ),
+    Section(
+      "rsvp",
+      "RSVP",
+      "RSVP",
+      """|To secure your spot, just RSVP to the [Day 2 meetup](https://www.meetup.com/nescala/events/247144352/). The cost is $60. This ticket will *also* get you in to the Typelevel Summit. The first hundred tickets will go on sale __Monday, January 25__ at __noon EST__.
+         |
+         |No ticket is required in order to attend [Day 1](https://www.meetup.com/nescala/events/247168183/), but please do RSVP.
+         |
+         |""".stripMargin('|')
+    ),
+    Section(
+      "higher-kindness",
+      "Code",
+      "Code of Conduct",
+      """|Nobody likes a jerk. Show respect for those around you.
+         |
+         |nescala is dedicated to providing a harassment-free experience for everyone, regardless of gender, gender identity and expression, sexual orientation, disability, physical appearance, body size, race, or religion (or lack
+thereof). We do not tolerate harassment of participants in any form. All communication should be appropriate for a technical audience, including people of many different backgrounds. Sexual language, innuendo, and imagery is not appropriate for any symposium venue, including talks.
+         |
+         |Participants violating these rules may be asked to leave without a refund, at the sole discretion of the organizers.
+         |
+         |Since this is a gathering of static typists, offenders will be caught at compile time.""".stripMargin('|')
     )
   )
 
 
   private def navItem(section: Section): xml.NodeSeq =
-    <li><a href={s"#${section.id}"}>{section.title}</a></li>
+    <li><a href={s"#${section.id}"}>{section.shortTitle}</a></li>
 
   private def article(section: Section): xml.NodeSeq =
     <article id={ section.id }>
@@ -120,6 +146,7 @@ trait Templates {
 
               <!-- Footer -->
                 <footer id="footer">
+                  <p class="copyright"><a href="/2017">2016</a> | <a href="/2016">2016</a> | <a href="/2015">2015</a> | <a href="/2014">2014</a> | <a href="/2013">2013</a> | <a href="/2012">2012</a> | <a href="/2011">2011</a></p>
                   <p class="copyright">made possible with <span class="love">&#10084;</span> from the <a href="http://www.meetup.com/boston-scala/">Boston</a>, <a href="http://www.meetup.com/scala-phase/">Philadelphia</a>, and <a href="http://www.meetup.com/ny-scala/">New York</a> scala enthusiasts</p>
                   <p class="copyright">This year's site design: <a href="https://html5up.net">HTML5 UP</a></p>
                 </footer>
