@@ -35,11 +35,11 @@ trait Templates {
       "About",
       """|Come one, come all!
          |
-         |Since 2011, the New York, Boston and Philadelphia Scala meetups have hosted together a community-driven Scala conference. Part of what "community-driven" means is the program comes from the attendees. All talks on the conference's main day are [proposed by the attendees](https://www.papercall.io/nescala-boston-2018) (that could be you!), who then vote to select which will be given.
+         |Since 2011, the New York, Boston, and Philadelphia Scala meetups have hosted together a community-driven Scala conference. Part of what "community-driven" means is the program comes from the attendees. All talks on the conference's main day are [proposed by the attendees](https://www.papercall.io/nescala-boston-2018) (that could be you!), who then vote to select which will be given.
          |
          |Our friendship with [Typelevel](http://typelevel.org) continues. The conference will once again coincide with the [Typelevel Summit](https://typelevel.org/event/2018-03-summit-boston/).
          |
-         |For the third time, we go to Boston, at the [Broad Institute](http://broadinstitute.org/) of MIT and Harvard. For the first time, the conference is starting on a Sunday:
+         |For the third time, we go to Boston, at the [Broad Institute](http://broadinstitute.org/) of MIT and Harvard. For the first time, the conference is starting on a Sunday, taking place __March 18-20__:
          |
          |-  __Sunday__ will be the Unconference, *traditionally day 2*.
          |-  __Monday__ will be nescala proper, *traditionally day 1*.
