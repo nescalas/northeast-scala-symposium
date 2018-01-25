@@ -5,7 +5,7 @@
 ## Current maintainers
 
 * [@bmc](https://github.com/bmc)
-* [@sethtisue](https://github.com/sethtisue)
+* [@ohbadiah](https://github.com/ohbadiah)
 * [@softprops](https://github.com/softprops)
 
 [maintainers]: #current-maintainers
@@ -13,6 +13,7 @@
 ## Prerequisites
 
 * You'll need to install [SBT](http://scala-sbt.org/)
+* You'll need to install [Sass](http://sass-lang.com/install), which itself will require [Ruby](https://www.ruby-lang.org/en/). Sorry.
 * You'll want a decent editor or IDE.
 * You'll need to understand at least a little bit about
   [Unfiltered](http://unfiltered.databinder.net/Unfiltered.html).
@@ -76,13 +77,14 @@ To stop:
 
 * **Web content**: If it's web site content you want to update, the templates
   for the current year are in
-  [`src/main/scala/philly2016/Templates.scala`](src/main/scala/philly2016/Templates.scala).
+  [`src/main/scala/boston2018/Templates.scala`](src/main/scala/boston2018/Templates.scala).
 
 * **CSS**: If you need to hack on the CSS rules, the 2016 code uses
-  [LESS](http://lesscss.org), while previous years use straight CSS.
+  [LESS](http://lesscss.org), while the 2018 code uses [Sass](http://sass-lang.com/install), and previous years use straight CSS.
   The Philly 2016 LESS rules are in
   [`src/main/assets/css/philly2016.less`](src/main/assets/css/philly2016.less).
-  If you don't understand LESS, **don't hack the CSS until
+  Sass files end with `.scss`, and those with filenames starting with an underscore are not compiled into matching css files.
+  If you don't understand LESS or Sass, **don't hack the CSS until
   [you do](http://lesscss.org/features/).**
 
 * **Static resources**: Anything in
