@@ -141,12 +141,15 @@ Contact one of the [maintainers][] for access.
 
 ### Preparation
 
-You'll need to install the [Heroku Toolbelt][], and you must use it to login,
-as described in the [documentation][Heroku Toolbelt].
+You'll need to install the [Heroku CLI][], and you must use it to login,
+as described in the [documentation][Heroku CLI].
 
 Next, you'll need to add a Git remote to your cloned copy of this repo:
 
     $ git remote add heroku git@heroku.com:nescala.git
+
+You also need to ensure that the app has the `heroku/scala` and `heroku/ruby`
+buildpacks installed, but that should carry over from previous years.
 
 ### Deploying
 
@@ -161,7 +164,7 @@ application has been linked to the main Git repo. If your changes are pushed to
 the main repo, you can deploy them from the _Manual Deploy_ section of the
 Deploy tab. (Honestly, though, the command line is faster.)
 
-[Heroku Toolbelt]: https://toolbelt.heroku.com/
+[Heroku CLI]: https://devcenter.heroku.com/articles/heroku-cli
 
 ## Running on a non-Heroku Server
 
