@@ -65,7 +65,7 @@ trait Templates {
       "rsvp",
       "RSVP",
       "RSVP",
-      """|To secure your spot, just RSVP to the [Day 2 meetup](https://www.meetup.com/nescala/events/247144352/). The cost is $60. This ticket will *also* get you in to the Typelevel Summit. The first hundred tickets will go on sale __Monday, January 25__ at __noon EST__.
+      """|To secure your spot, just RSVP to the [Day 2 meetup](https://www.meetup.com/nescala/events/247144352/). The cost is $60. This ticket will *also* get you in to the Typelevel Summit. The first hundred tickets will go on sale __Monday, January 29__ at __noon EST__.
          |
          |No ticket is required in order to attend [Day 1](https://www.meetup.com/nescala/events/247168183/), but please do RSVP.
          |
@@ -146,9 +146,10 @@ thereof). We do not tolerate harassment of participants in any form. All communi
 
               <!-- Footer -->
                 <footer id="footer">
-                  <p class="copyright"><a href="/2017">2016</a> | <a href="/2016">2016</a> | <a href="/2015">2015</a> | <a href="/2014">2014</a> | <a href="/2013">2013</a> | <a href="/2012">2012</a> | <a href="/2011">2011</a></p>
                   <p class="copyright">made possible with <span class="love">&#10084;</span> from the <a href="http://www.meetup.com/boston-scala/">Boston</a>, <a href="http://www.meetup.com/scala-phase/">Philadelphia</a>, and <a href="http://www.meetup.com/ny-scala/">New York</a> scala enthusiasts</p>
                   <p class="copyright">This year's site design: <a href="https://html5up.net">HTML5 UP</a></p>
+                  <br />
+                  <p class="copyright"><a href="/2017">2016</a> | <a href="/2016">2016</a> | <a href="/2015">2015</a> | <a href="/2014">2014</a> | <a href="/2013">2013</a> | <a href="/2012">2012</a> | <a href="/2011">2011</a></p>
                 </footer>
 
             </div>
