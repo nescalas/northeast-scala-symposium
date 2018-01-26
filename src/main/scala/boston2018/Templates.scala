@@ -77,7 +77,7 @@ trait Templates {
       "Code of Conduct",
       """|Nobody likes a jerk. Show respect for those around you.
          |
-         |nescala is dedicated to providing a harassment-free experience for everyone, regardless of gender, gender identity and expression, sexual orientation, disability, physical appearance, body size, race, or religion (or lack
+         |Nescala is dedicated to providing a harassment-free experience for everyone, regardless of gender, gender identity and expression, sexual orientation, disability, physical appearance, body size, race, or religion (or lack
 thereof). We do not tolerate harassment of participants in any form. All communication should be appropriate for a technical audience, including people of many different backgrounds. Sexual language, innuendo, and imagery is not appropriate for any symposium venue, including talks.
          |
          |Participants violating these rules may be asked to leave without a refund, at the sole discretion of the organizers.
