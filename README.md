@@ -148,8 +148,8 @@ Next, you'll need to add a Git remote to your cloned copy of this repo:
 
     $ git remote add heroku git@heroku.com:nescala.git
 
-You also need to ensure that the app has the `heroku/scala` and `heroku/ruby`
-buildpacks installed, but that should carry over from previous years.
+You also need to ensure that the app has the `heroku/ruby` and `heroku/scala`
+buildpacks installed, in that order, but that should carry over from previous years.
 
 ### Deploying
 
