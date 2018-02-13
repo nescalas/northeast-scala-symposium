@@ -11,10 +11,12 @@ import unfiltered.request.QParams._
 import unfiltered.response.{ JsonContent, Redirect, ResponseString, ResponseFunction, Unauthorized, Pass }
 import unfiltered.Cycle.Intent
 import scala.util.control.NonFatal
-import scala.util.Random
+import scala.util.{Random, Try}
 import java.util.concurrent.TimeUnit
 
 object Site extends Templates {
+
+  lazy val proposals2018: Try[Array[Proposal]] = Proposal.load()
 
   def index(
     req: HttpRequest[Any],
