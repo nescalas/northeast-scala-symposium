@@ -22,7 +22,10 @@ case class Proposal(
   title: String,
   twitter: String,
   url: String
-)
+) {
+  def nameWords: Seq[String] = name.split("\\s+")
+  def id: String = s"${nameWords.head.head}${nameWords.last}-${title.toLowerCase.takeWhile(_.isLetter)}".toLowerCase
+}
 
 object Proposal {
   

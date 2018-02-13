@@ -8,21 +8,36 @@ import nescala.request.UrlDecoded
 import org.joda.time.{ DateMidnight, DateTimeZone, LocalDateTime }
 import unfiltered.request.{ DELETE, GET, HttpRequest, Params, Path, POST, Seg, & }
 import unfiltered.request.QParams._
-import unfiltered.response.{ JsonContent, Redirect, ResponseString, ResponseFunction, Unauthorized, Pass }
+import unfiltered.response.{ JsonContent, NotFound, Redirect, ResponseString, ResponseFunction, Unauthorized, Pass }
 import unfiltered.Cycle.Intent
 import scala.util.control.NonFatal
-import scala.util.{Random, Try}
+import scala.util.{Random, Try, Success, Failure}
 import java.util.concurrent.TimeUnit
 
 object Site extends Templates {
 
-  lazy val proposals2018: Try[Array[Proposal]] = Proposal.load()
+  lazy val proposalStore: Map[String, Proposal] = Proposal.load() match {
+    case Success(proposals) => proposals.map(_.id).zip(proposals).toMap
+    case Failure(err) => { err.printStackTrace(); Map.empty}
+  }
 
   def index(
     req: HttpRequest[Any],
     pathVars: Map[String, String]
   ) = respond(req)(layout(baseSections))
 
+  def proposal(
+    req: HttpRequest[Any],
+    pathVars: Map[String, String]
+  ) = req match {
+    case GET(req) =>
+      pathVars
+        .get("id")
+        .flatMap{id => proposalStore.get(id)}
+        .map{proposal: Proposal => respond(req)(layout(baseSections))}
+        .getOrElse(NotFound ~> ResponseString(s"Could not find that proposal."))
+    case _ => Pass
+  }
 
   def respond
    (req: HttpRequest[_])
