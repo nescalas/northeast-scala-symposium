@@ -45,8 +45,6 @@ object Site extends Templates {
             subheading = {() => "talk proposals"}
           )
         )
-        
-
       )
 
   def proposal(

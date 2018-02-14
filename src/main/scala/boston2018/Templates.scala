@@ -24,8 +24,11 @@ trait Templates {
 
   case class Header(
     image: String,
+    twitter: String,
+    twitterTitle: String,
     heading: String,
-    subheading: () => String
+    subheading: () => String,
+    description: String
   )
 
   //We'll use this to pick slogans randomly.
@@ -38,9 +41,12 @@ trait Templates {
   )
 
   val defaultHeader = Header(
-    "/images/nescalas-logo.png",
+    "http://nescala.org/images/nescalas-logo.png",
+    "@nescalas",
     "nescala 2018",
-    { ()  => slogans(random.nextInt(slogans.length)) }
+    "nescala 2018",
+    { ()  => slogans(random.nextInt(slogans.length)) },
+    "Your friendly neighborhood Scala conference, chugging through the Northeast since 2011."
   )
 
   val backToTop = Section(
@@ -116,8 +122,11 @@ thereof). We do not tolerate harassment of participants in any form. All communi
 
   def proposalHeader(p: Proposal) = Header(
     p.avatar,
+    if (!p.twitter.isEmpty) s"@${p.twitter}" else "@nescalas",
+    p.title,
     p.name,
-    { () => p.title }
+    { () => p.title },
+    p.`abstract`
   )
 
   
@@ -190,6 +199,11 @@ thereof). We do not tolerate harassment of participants in any form. All communi
           <title>northeast scala symposium</title>
           <meta charset="utf-8" />
           <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+          <meta name="twitter:card" content="summary" />
+          <meta name="twitter:site" content={ header.twitter } />
+          <meta name="twitter:title" content={ header.twitterTitle } />
+          <meta name="twitter:description" content={ header.description } />
+          <meta name="twitter:image" content={ header.image } />
           <link rel="stylesheet" href="/css/sass/boston2018.css" />
           <link rel="stylesheet" href="/css/2018/font-awesome.min.css" />
           <!--[if lte IE 9]><link rel="stylesheet" href="/css/sass/ie9-boston2018.css" /><![endif]-->
