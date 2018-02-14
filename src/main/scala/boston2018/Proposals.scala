@@ -25,14 +25,24 @@ case class Proposal(
 ) {
   def nameWords: Seq[String] = name.split("\\s+")
   def id: String = s"${nameWords.head.head}${nameWords.last}-${title.toLowerCase.takeWhile(_.isLetter)}".toLowerCase
+  def nameLink = if (!url.isEmpty) s"[$name]($url)" else name
+  def twitterLink = if (!twitter.isEmpty) s"([@$twitter](https://twitter.com/$twitter))" else ""
 }
 
 object Proposal {
   
-  sealed abstract trait TalkFormat
-  case object LightningTalk extends TalkFormat
-  case object MediumTalk    extends TalkFormat
-  case object LongTalk      extends TalkFormat
+  sealed abstract trait TalkFormat {
+    def lengthInMinutes: Int
+  }
+  case object Lightning extends TalkFormat {
+    val lengthInMinutes = 15
+  }
+  case object Medium    extends TalkFormat{
+    val lengthInMinutes = 30
+  }
+  case object Long      extends TalkFormat{
+    val lengthInMinutes = 45
+  }
   
   class TalkFormatSerializer extends CustomSerializer[TalkFormat](format => (
     // unmarshal Function
@@ -40,9 +50,9 @@ object Proposal {
       case JString(talk_format) => {
         // helper functions, could be improved by having a mapping
         def stringToTalkFormat(in: String): TalkFormat = in match {
-          case "Lightning (15 minutes)" => LightningTalk
-          case "Medium (30 minutes)"    => MediumTalk
-          case "Long (45 minues)"       => LongTalk
+          case "Lightning (15 minutes)" => Lightning
+          case "Medium (30 minutes)"    => Medium
+          case "Long (45 minues)"       => Long
         }
 
         stringToTalkFormat(talk_format)
@@ -53,9 +63,9 @@ object Proposal {
 
       case talk_format: TalkFormat => {
         def talkFormatToString(talk_format: TalkFormat): String = talk_format match {
-          case LightningTalk => "Lightning (15 minutes)"
-          case MediumTalk    => "Medium (30 minutes)"
-          case LongTalk      => "Long (45 minues)"
+          case Lightning => "Lightning (15 minutes)"
+          case Medium    => "Medium (30 minutes)"
+          case Long      => "Long (45 minues)"
 
         }
 

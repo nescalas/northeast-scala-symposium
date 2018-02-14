@@ -21,6 +21,7 @@ object Server {
     .filter(Planify {
       Routes.specify[Any,Any](
         "/" -> boston2018.Site.index,
+        "/proposals" -> boston2018.Site.proposals,
         "/proposal/:id" -> boston2018.Site.proposal,
         "/login" -> Northeast.login,
         "/logout" -> Northeast.logout,

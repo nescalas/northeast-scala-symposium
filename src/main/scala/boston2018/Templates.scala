@@ -18,7 +18,14 @@ trait Templates {
     id: String,
     shortTitle: String,
     title: String,
-    body: String
+    body: String,
+    hasContent: Boolean = true
+  )
+
+  case class Header(
+    image: String,
+    heading: String,
+    subheading: () => String
   )
 
   //We'll use this to pick slogans randomly.
@@ -30,7 +37,21 @@ trait Templates {
     "mens et manus et compiler"
   )
 
-  def baseSections = Seq(
+  val defaultHeader = Header(
+    "/images/nescalas-logo.png",
+    "nescala 2018",
+    { ()  => slogans(random.nextInt(slogans.length)) }
+  )
+
+  val backToTop = Section(
+    "/",
+    "back to top",
+    "",
+    "",
+    false
+  )
+
+  val baseSections = Seq(
     Section(
       "about",
       "About",
@@ -72,6 +93,13 @@ trait Templates {
          |""".stripMargin('|')
     ),
     Section(
+      "proposals",
+      "proposals",
+      "Proposals",
+      "",
+      false
+    ),
+    Section(
       "higher-kindness",
       "Code",
       "Code of Conduct",
@@ -86,9 +114,60 @@ thereof). We do not tolerate harassment of participants in any form. All communi
     )
   )
 
+  def proposalHeader(p: Proposal) = Header(
+    p.avatar,
+    p.name,
+    { () => p.title }
+  )
 
+  
+  def proposalDirectorySection(format: Proposal.TalkFormat, proposals: Iterable[Proposal]) = { 
+    val proposalLink = { p: Proposal => 
+      s"[${p.name} - ${p.title}](/proposal/${p.id}/#abstract)"
+    }
+    Section(
+      s"$format",
+      s"$format",
+      s"$format",
+      proposals.toSeq.sortBy(_.nameWords.last.toLowerCase).map("- " + proposalLink(_)).mkString("\n")
+    )
+  }
+
+  def proposalSections(p: Proposal): Seq[Section] = Seq(
+    Section(
+      s"/proposals#${p.talk_format}",
+      s"↖${p.talk_format} talks",
+      "",
+      "",
+      false
+    ),
+    Section(
+      "speaker",
+      "speaker",
+      p.name,
+      s"""|${p.nameLink} ${p.twitterLink}
+          |<br />${p.organization}
+          |
+          |${p.bio}
+          """.stripMargin('|')
+    ),
+    Section(
+      "abstract",
+      "abstract",
+      "Abstract",
+      p.`abstract`
+    ),
+    Section(
+      "details",
+      "details",
+      "Details",
+      p.description
+    )
+  )
+
+  
   private def navItem(section: Section): xml.NodeSeq =
-    <li><a href={s"#${section.id}"}>{section.shortTitle}</a></li>
+    <li><a href={if (section.hasContent) "#" + section.id else section.id }>{section.shortTitle}</a></li>
 
   private def article(section: Section): xml.NodeSeq =
     <article id={ section.id }>
@@ -98,7 +177,7 @@ thereof). We do not tolerate harassment of participants in any form. All communi
     </article>
 
   def layout
-   (sections: Seq[Section])
+   (sections: Iterable[Section] = baseSections, header: Header = defaultHeader)
    (session: Option[SessionCookie] = None)
     = Html5(
       <html>
@@ -124,12 +203,12 @@ thereof). We do not tolerate harassment of participants in any form. All communi
               <!-- Header -->
                 <header id="header">
                   <div class="logo" style="border-width:0px">
-                    <img src="/images/nescalas-logo.png" width="100%" />
+                    <img src={ header.image } width="100%" />
                   </div>
                   <div class="content">
                     <div class="inner">
-                      <h1>nescala 2018</h1>
-                      <p>{ slogans(random.nextInt(slogans.length)) }</p>
+                      <h1>{ header.heading }</h1>
+                      <p>{ header.subheading() }</p>
                     </div>
                   </div>
                   <nav>
@@ -141,7 +220,7 @@ thereof). We do not tolerate harassment of participants in any form. All communi
 
               <!-- Main -->
                 <div id="main">
-                      { sections.map(article) }
+                      { sections.filter(_.hasContent).map(article) }
                 </div>
 
               <!-- Footer -->

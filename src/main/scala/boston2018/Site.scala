@@ -12,6 +12,7 @@ import unfiltered.response.{ JsonContent, NotFound, Redirect, ResponseString, Re
 import unfiltered.Cycle.Intent
 import scala.util.control.NonFatal
 import scala.util.{Random, Try, Success, Failure}
+import java.net.URLDecoder
 import java.util.concurrent.TimeUnit
 
 object Site extends Templates {
@@ -24,7 +25,29 @@ object Site extends Templates {
   def index(
     req: HttpRequest[Any],
     pathVars: Map[String, String]
-  ) = respond(req)(layout(baseSections))
+  ) = respond(req)(layout())
+
+  def proposals(
+    req: HttpRequest[Any],
+    pathVars: Map[String, String]
+  ) = respond(req)(
+        layout(
+          backToTop +:
+          proposalStore
+            .values
+            .groupBy(_.talk_format)
+            .toSeq
+            .sortBy(_._1.lengthInMinutes)
+            .reverse
+            .map{case (fmt, ps) => proposalDirectorySection(fmt, ps)}
+          ,
+          defaultHeader.copy(
+            subheading = {() => "talk proposals"}
+          )
+        )
+        
+
+      )
 
   def proposal(
     req: HttpRequest[Any],
@@ -33,8 +56,13 @@ object Site extends Templates {
     case GET(req) =>
       pathVars
         .get("id")
-        .flatMap{id => proposalStore.get(id)}
-        .map{proposal: Proposal => respond(req)(layout(baseSections))}
+        .flatMap{id => proposalStore.get(URLDecoder.decode(id, "UTF-8"))}
+        .map{p: Proposal => respond(req)(
+          layout(
+            proposalSections(p),
+            proposalHeader(p)
+          )
+        )}
         .getOrElse(NotFound ~> ResponseString(s"Could not find that proposal."))
     case _ => Pass
   }
