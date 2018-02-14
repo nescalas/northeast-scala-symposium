@@ -136,7 +136,7 @@ thereof). We do not tolerate harassment of participants in any form. All communi
   def proposalSections(p: Proposal): Seq[Section] = Seq(
     Section(
       s"/proposals#${p.talk_format}",
-      s"↖${p.talk_format} talks",
+      s"↖${p.talk_format}",
       "",
       "",
       false
