@@ -42,6 +42,8 @@ object Site extends Templates {
             .map{case (fmt, ps) => proposalDirectorySection(fmt, ps)}
           ,
           defaultHeader.copy(
+            twitterTitle = "2018 Proposals",
+            description = "See the 43 proposed talks from which the program will be selected by the conference attendees.",
             subheading = {() => "talk proposals"}
           )
         )
