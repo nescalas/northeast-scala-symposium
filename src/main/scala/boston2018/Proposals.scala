@@ -17,6 +17,7 @@ case class Proposal(
   location: String,
   name: String,
   organization: String,
+  state: String,
   tags: Seq[String],
   talk_format: Proposal.TalkFormat,
   title: String,
