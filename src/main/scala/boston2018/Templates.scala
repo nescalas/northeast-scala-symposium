@@ -204,10 +204,10 @@ thereof). We do not tolerate harassment of participants in any form. All communi
           <meta name="twitter:title" content={ header.twitterTitle } />
           <meta name="twitter:description" content={ header.description } />
           <meta name="twitter:image" content={ header.image } />
-          <link rel="stylesheet" href="/css/sass/boston2018.css" />
+          <link rel="stylesheet" href="/css/2018/boston2018.css" />
           <link rel="stylesheet" href="/css/2018/font-awesome.min.css" />
-          <!--[if lte IE 9]><link rel="stylesheet" href="/css/sass/ie9-boston2018.css" /><![endif]-->
-          <noscript><link rel="stylesheet" href="/css/sass/noscript-boston2018.css" /></noscript>
+          <!--[if lte IE 9]><link rel="stylesheet" href="/css/2018/ie9-boston2018.css" /><![endif]-->
+          <noscript><link rel="stylesheet" href="/css/2018/noscript-boston2018.css" /></noscript>
         </head>
         <body>
 
