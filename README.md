@@ -13,7 +13,6 @@
 ## Prerequisites
 
 * You'll need to install [SBT](http://scala-sbt.org/)
-* You'll need to install [Sass](http://sass-lang.com/install), which itself will require [Ruby](https://www.ruby-lang.org/en/). Sorry.
 * You'll want a decent editor or IDE.
 * You'll need to understand at least a little bit about
   [Unfiltered](http://unfiltered.databinder.net/Unfiltered.html).
@@ -80,7 +79,7 @@ To stop:
   [`src/main/scala/boston2018/Templates.scala`](src/main/scala/boston2018/Templates.scala).
 
 * **CSS**: If you need to hack on the CSS rules, the 2016 code uses
-  [LESS](http://lesscss.org), while the 2018 code uses [Sass](http://sass-lang.com/install), and previous years use straight CSS.
+  [LESS](http://lesscss.org), while the 2018 code used [Sass](http://sass-lang.com/install) (but now just uses the compiled css), and previous years use straight CSS.
   The Philly 2016 LESS rules are in
   [`src/main/assets/css/philly2016.less`](src/main/assets/css/philly2016.less).
   Sass files end with `.scss`, and those with filenames starting with an underscore are not compiled into matching css files.
@@ -148,8 +147,8 @@ Next, you'll need to add a Git remote to your cloned copy of this repo:
 
     $ git remote add heroku git@heroku.com:nescala.git
 
-You also need to ensure that the app has the `heroku/ruby` and `heroku/scala`
-buildpacks installed, in that order, but that should carry over from previous years.
+You also need to ensure that the app has the `heroku/scala` buildpacks installed, 
+but that should carry over from previous years.
 
 ### Deploying
 
