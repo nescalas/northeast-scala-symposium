@@ -11,7 +11,7 @@ import unfiltered.request.QParams._
 import unfiltered.response.{ JsonContent, NotFound, Redirect, ResponseString, ResponseFunction, Unauthorized, Pass }
 import unfiltered.Cycle.Intent
 import scala.util.control.NonFatal
-import scala.util.{Random, Try, Success, Failure}
+import scala.util.{Random, Success, Failure}
 import java.net.URLDecoder
 import java.util.concurrent.TimeUnit
 
