@@ -22,6 +22,11 @@ object Site extends Templates {
     case Failure(err) => { err.printStackTrace(); Map.empty}
   }
 
+  lazy val schedule = Schedule.load match { 
+    case Success(schedule) => schedule
+    case Failure(err) => { err.printStackTrace(); Nil}
+  }
+
   def index(
     req: HttpRequest[Any],
     pathVars: Map[String, String]

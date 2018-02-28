@@ -6,6 +6,7 @@ import Json._
 
 object Schedule {
 
+  def startTime = LocalTime.parse("08:15")
   def lunchTime = LocalTime.parse("12:30")
 
   /** Something to fit into the day's schedule.
@@ -43,12 +44,12 @@ object Schedule {
 
   /** Given a start time and a list of proposals to be given, build a day's schedule.
    */
-  def nescalaProgram(startTime: LocalTime)(proposals: Seq[Proposal]): Seq[Item] = build(
+  def nescalaProgram(talks: Seq[Talk]): Seq[Item] = build(
     startTime,
     Seq(
       Registration,
       Remarks(5)
-    ) ++ proposals.map(Talk)
+    ) ++ talks
     :+ Remarks(5)
   )
 
@@ -76,8 +77,7 @@ object Schedule {
   /** Load a resource file containing a JSON array of proposal id's representing the day's talk order.
    */
   def load(): Try[Seq[Item]] = loadJsonResource[Array[String]]("/2018/program.json").map(
-    _.toSeq.flatMap(Site.proposalStore.get)
-  ).map(
-    nescalaProgram(LocalTime.parse("08:15"))_
-  )
+    _.toSeq.flatMap(Site.proposalStore.get).map(Talk)
+  ).map(nescalaProgram)
+
 }

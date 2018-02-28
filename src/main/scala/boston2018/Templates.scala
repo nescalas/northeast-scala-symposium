@@ -57,7 +57,7 @@ trait Templates {
     false
   )
 
-  val baseSections = Seq(
+  def baseSections(schedule: Seq[Schedule.Item]) = Seq(
     Section(
       "about",
       "About",
@@ -92,12 +92,13 @@ trait Templates {
       "rsvp",
       "RSVP",
       "RSVP",
-      """|To secure your spot, just RSVP to the [Day 2 meetup](https://www.meetup.com/nescala/events/247144352/). The cost is $60. This ticket will *also* get you in to the Typelevel Summit. The first hundred tickets will go on sale __Monday, January 29__ at __noon EST__.
+      """|To secure your spot, just RSVP to the [Day 2 meetup](https://www.meetup.com/nescala/events/247144352/). The cost is $60. This ticket will *also* get you in to the Typelevel Summit.
          |
          |No ticket is required in order to attend [Day 1](https://www.meetup.com/nescala/events/247168183/), but please do RSVP.
          |
          |""".stripMargin('|')
     ),
+    scheduleSection(schedule),
     Section(
       "proposals",
       "proposals",
@@ -141,7 +142,7 @@ thereof). We do not tolerate harassment of participants in any form. All communi
       proposals.toSeq.sortBy(_.nameWords.last.toLowerCase).map("- " + proposalLink(_)).mkString("\n")
     )
   }
-
+  
   def proposalSections(p: Proposal): Seq[Section] = Seq(
     Section(
       s"/proposals#${p.talk_format}",
@@ -174,6 +175,15 @@ thereof). We do not tolerate harassment of participants in any form. All communi
     )
   )
 
+  def itemRow(item: Schedule.Item) = s"""|<tr>
+                                         |  <td>$item</td>
+                                         |</tr>""".stripMargin('|')
+  def scheduleSection(items: Iterable[Schedule.Item]) = Section(
+    "schedule",
+    "schedule",
+    "Day 2 Schedule",
+    s"<table>${items.map(itemRow).mkString("")}</table>"
+  )
   
   private def navItem(section: Section): xml.NodeSeq =
     <li><a href={if (section.hasContent) "#" + section.id else section.id }>{section.shortTitle}</a></li>
@@ -186,7 +196,7 @@ thereof). We do not tolerate harassment of participants in any form. All communi
     </article>
 
   def layout
-   (sections: Iterable[Section] = baseSections, header: Header = defaultHeader)
+   (sections: Iterable[Section] = baseSections(Site.schedule), header: Header = defaultHeader)
    (session: Option[SessionCookie] = None)
     = Html5(
       <html>
