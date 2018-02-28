@@ -1,6 +1,7 @@
 package nescala.boston2018
 
 import java.time.{LocalTime}
+import java.time.temporal.ChronoUnit
 import scala.util.Try
 import Json._
 
@@ -38,7 +39,7 @@ object Schedule {
    */
   case class Item(slot: Slot, startTime: LocalTime) {
     def endTime: LocalTime = startTime.plusMinutes(slot.minutes)
-    def straddlesLunch: Boolean = startTime.isBefore(lunchTime) && endTime.plusMinutes(10).isAfter(lunchTime)
+    def endsNear(timeOfInterest: LocalTime): Boolean = Math.abs(endTime.until(timeOfInterest, ChronoUnit.MINUTES)) <= 25
     def isTalk: Boolean = slot match {
       case Talk(_) => true
       case _       => false
@@ -65,7 +66,7 @@ object Schedule {
     case Nil =>  Nil
     case (firstOrder :: rst) => rst.foldLeft(Seq(Item(firstOrder, startTime))){ 
       //If the last thing took us past our lunch threshold, have lunch next.
-      case (items@(previousItem :: _), nextSlot) if previousItem.straddlesLunch => {
+      case (items@(previousItem :: _), nextSlot) if previousItem.endsNear(lunchTime) => {
           val lunch = previousItem.followedBy(Lunch)
           lunch.followedBy(nextSlot) +: lunch +: items
         }
