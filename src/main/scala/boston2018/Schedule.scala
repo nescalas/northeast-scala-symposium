@@ -80,7 +80,9 @@ object Schedule {
     }.reverse
   }
 
-  /** Load a resource file containing a JSON array of proposal id's representing the day's talk order.
+  /** Load a resource file containing a JSON array of proposal id's representing the day's talk order,
+   *  look up the corresponding proposals, 
+   *  and build the schedule.
    */
   def load(): Try[Seq[Item]] = loadJsonResource[Array[String]]("/2018/program.json").map(
     _.toSeq.flatMap(Site.proposalStore.get).map(Talk)
