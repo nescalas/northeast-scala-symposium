@@ -8,5 +8,6 @@
   "jossa-functional",
   "stisue-scala",
   "cli-moving",
-  "bvenners-pragmatic"
+  "bvenners-pragmatic",
+  "aradke-typeclasses"
 ]
