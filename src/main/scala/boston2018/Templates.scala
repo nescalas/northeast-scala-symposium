@@ -132,14 +132,11 @@ thereof). We do not tolerate harassment of participants in any form. All communi
 
   
   def proposalDirectorySection(format: Proposal.TalkFormat, proposals: Iterable[Proposal]) = { 
-    val proposalLink = { p: Proposal => 
-      s"[${p.name} - ${p.title}](/proposal/${p.id}/#abstract)"
-    }
     Section(
       s"$format",
       s"$format",
       s"$format",
-      proposals.toSeq.sortBy(_.nameWords.last.toLowerCase).map("- " + proposalLink(_)).mkString("\n")
+      proposals.toSeq.sortBy(_.nameWords.last.toLowerCase).map("- " + _.summaryLink).mkString("\n")
     )
   }
   
@@ -175,14 +172,15 @@ thereof). We do not tolerate harassment of participants in any form. All communi
     )
   )
 
-  def itemRow(item: Schedule.Item) = s"""|<tr>
-                                         |  <td>$item</td>
-                                         |</tr>""".stripMargin('|')
+  def scheduleRow(item: Schedule.Item) = s"${item.startTime}|${item.slot.minutes} min|${item.slot.description}"
   def scheduleSection(items: Iterable[Schedule.Item]) = Section(
     "schedule",
     "schedule",
     "Day 2 Schedule",
-    s"<table>${items.map(itemRow).mkString("")}</table>"
+    s"""|Time|Duration|Description
+        |:--:|:-----:|:----------
+        |${items.map(scheduleRow).mkString("\n")}
+        |""".stripMargin('|')
   )
   
   private def navItem(section: Section): xml.NodeSeq =

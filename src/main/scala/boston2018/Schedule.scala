@@ -13,19 +13,25 @@ object Schedule {
    */
   sealed abstract trait Slot {
     def minutes: Int
+    def description: String
   }
 
   case object Registration extends Slot {
     val minutes = 45
+    val description = "Registration, and breakfast sponsored by [CiBO Technologies](http://www.cibotechnologies.com/)"
   }
-  case class Remarks(minutes: Int) extends Slot
+  case class Remarks(minutes: Int, description: String) extends Slot
   case class Talk(proposal: Proposal) extends Slot {
     val minutes = proposal.talk_format.lengthInMinutes
+    val description = proposal.summaryLink
     override def toString = s"Talk(${proposal.id})"
   }
-  case class Break(minutes: Int) extends Slot
+  case class Break(minutes: Int) extends Slot {
+    val description = "Break"
+  }
   case object Lunch extends Slot {
     val minutes = 90
+    val description = "Lunch on your own [out in Kendall Square](https://www.kendallsq.org/wp-content/uploads/2016/04/2016-KSA-Walking-Map.pdf)"
   }
 
   /** A slot scheduled at a specific time.
@@ -48,9 +54,9 @@ object Schedule {
     startTime,
     Seq(
       Registration,
-      Remarks(5)
+      Remarks(5, "Opening remarks")
     ) ++ talks
-    :+ Remarks(5)
+    :+ Remarks(5, "Closing remarks")
   )
 
   /** Schedule items one after the next, inserting breaks or lunch where appropriate.

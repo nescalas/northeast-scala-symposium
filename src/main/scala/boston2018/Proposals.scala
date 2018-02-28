@@ -23,6 +23,7 @@ case class Proposal(
   def id: String = s"${nameWords.head.head}${nameWords.last}-${title.toLowerCase.takeWhile(_.isLetter)}".toLowerCase
   def nameLink = if (!url.isEmpty) s"[$name]($url)" else name
   def twitterLink = if (!twitter.isEmpty) s"([@$twitter](https://twitter.com/$twitter))" else ""
+  def summaryLink = s"[$name - $title](/proposal/$id/#abstract)"
 }
 
 object Proposal {
