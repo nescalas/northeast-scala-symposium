@@ -102,7 +102,7 @@ trait Templates {
     Section(
       "friends",
       "Friends",
-      "Our sponsors (thank you!)",
+      "Thank you!",
       Sponsor.sponsors.map{s => s"###[![${s.name}](${s.logo})](${s.homepage})\nis ${s.sponsorship}"}.mkString("\n\n")
     ),
     Section(
