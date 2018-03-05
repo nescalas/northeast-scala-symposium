@@ -103,7 +103,7 @@ trait Templates {
       "friends",
       "Friends",
       "Thank you!",
-      Sponsor.sponsors.map{s => s"###[![${s.name}](${s.logo})](${s.homepage})\nis ${s.sponsorship}"}.mkString("\n\n")
+      Sponsor.sponsors.map{s => s"###[![${s.name}](${s.logo})](${s.homepage})\nis ${s.sponsorship}."}.mkString("\n\n")
     ),
     Section(
       "higher-kindness",
