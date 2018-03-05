@@ -103,20 +103,8 @@ trait Templates {
       "friends",
       "Friends",
       "Our sponsors (thank you!)",
-      """|
-         |### [![CiBO Technologies](/sponsors/cibo-technologies-logo.svg)](http://www.cibotechnologies.com/)
-         |is catering breakfast on Day 2. 🥐
-         |
-         |### [<img alt="Threat Stack" src="/sponsors/threat-stack-logo.png" style="max-width:50%" />](http://threatstack.com/)
-         |is sponsoring lunch at [Clover Food Lab](https://www.cloverfoodlab.com/locations/location/?l=cloverknd) on the day of the Unconference. 🥙
-         |
-         |### [![Twilio](/sponsors/twilio-logo.svg)](http://twilio.com/)
-         |is catering happy hour after the Unconference. 🍻
-         |
-         |### [<img alt="Bridgewater Associates" src="/sponsors/bridgewater-logo.svg" style="max-width:50%" />](http://bwater.com/)
-         |is sponsoring videography for us and for the Typelevel Summit. 📹
-         |
-         |""".stripMargin('|')),
+      Sponsor.sponsors.map{s => s"###[![${s.name}](${s.logo})](${s.homepage})\nis ${s.sponsorship}"}.mkString("\n\n")
+    ),
     Section(
       "higher-kindness",
       "Code",
@@ -224,6 +212,7 @@ thereof). We do not tolerate harassment of participants in any form. All communi
           <meta name="twitter:description" content={ header.description } />
           <meta name="twitter:image" content={ header.image } />
           <link rel="stylesheet" href="/css/2018/boston2018.css" />
+          <link rel="stylesheet" href="/css/2018/addon.css" />
           <link rel="stylesheet" href="/css/2018/font-awesome.min.css" />
           <!--[if lte IE 9]><link rel="stylesheet" href="/css/2018/ie9-boston2018.css" /><![endif]-->
           <noscript><link rel="stylesheet" href="/css/2018/noscript-boston2018.css" /></noscript>
