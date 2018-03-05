@@ -100,12 +100,23 @@ trait Templates {
     ),
     scheduleSection(schedule),
     Section(
-      "proposals",
-      "proposals",
-      "Proposals",
-      "",
-      false
-    ),
+      "friends",
+      "Friends",
+      "Our sponsors (thank you!)",
+      """|
+         |### [![CiBO Technologies](/sponsors/cibo-technologies-logo.svg)](http://www.cibotechnologies.com/)
+         |is catering breakfast on Day 2. 🥐
+         |
+         |### [<img alt="Threat Stack" src="/sponsors/threat-stack-logo.png" style="max-width:50%" />](http://threatstack.com/)
+         |is sponsoring lunch at [Clover Food Lab](https://www.cloverfoodlab.com/locations/location/?l=cloverknd) on the day of the Unconference. 🥙
+         |
+         |### [![Twilio](/sponsors/twilio-logo.svg)](http://twilio.com/)
+         |is catering happy hour after the Unconference. 🍻
+         |
+         |### [<img alt="Bridgewater Associates" src="/sponsors/bridgewater-logo.svg" style="max-width:50%" />](http://bwater.com/)
+         |is sponsoring videography for us and for the Typelevel Summit. 📹
+         |
+         |""".stripMargin('|')),
     Section(
       "higher-kindness",
       "Code",
