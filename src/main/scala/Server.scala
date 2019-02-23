@@ -4,8 +4,8 @@ import unfiltered.Cycle.Intent
 import unfiltered.jetty.Http
 import unfiltered.filter.Planify
 import unfiltered.kit.Routes
-import unfiltered.request.{HttpRequest, GET, Seg, Path, Method, &}
-import unfiltered.response.{NotFound, ResponseString, Pass}
+import unfiltered.request.{&, GET, HttpRequest, Method, Path, Seg}
+import unfiltered.response.{NotFound, Pass, Redirect, ResponseString}
 
 import scala.io.Source
 
@@ -16,7 +16,13 @@ object Server {
       case 1 => args(0).toInt
       case _ => sys.error(s"Usage: Server [port]")
     }
+    val redirect = unfiltered.filter.Planify {
+      case _ => Redirect("https://nescala.io")
+    }
+
     Http(port)
+      .plan(redirect)
+/*
     .resources(getClass().getResource("/www"))
     .filter(Planify {
       Routes.specify[Any,Any](
@@ -53,7 +59,9 @@ object Server {
         "/nyc/photos" -> nyc.Nyc.photos,
         "/.well-known/acme-challenge/NVehMsEOuhK1JtEu_gme93Utb5otcrmq-K3u5LuFcmY" -> nyc2017.Site.ssl
       )
-    }).run(
+    })
+*/
+  .run(
       _ => (),
       _ => dispatch.Http.shutdown()
     )
